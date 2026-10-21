@@ -39,6 +39,16 @@ if (!prefersReduced && !isMobileOrTouch) {
   });
 }
 
+// Suspend smooth scrolling while a dialog is open. Without this, Lenis keeps
+// consuming wheel events and the modal card cannot scroll natively.
+window.addEventListener('mp:modal-open', () => {
+  if (lenis) lenis.stop();
+});
+
+window.addEventListener('mp:modal-close', () => {
+  if (lenis) lenis.start();
+});
+
 // Healthy lag smoothing prevents abrupt jumps
 gsap.ticker.lagSmoothing(500, 33);
 

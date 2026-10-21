@@ -1404,9 +1404,14 @@ body:has(.header.is-menu-open) .cookie-banner,
   padding: 10rem 2rem;
 }
 
-.cta-section__bg {
+/* Higher specificity than `.skeleton-box` (which declares position: relative
+   later in this file). Without this, the CTA image falls into normal flow,
+   pushes the copy downwards and leaves a large empty band above it. */
+.cta-section > .cta-section__bg {
   position: absolute;
   inset: 0;
+  border: 0;
+  border-radius: 0;
 }
 
 .cta-section__bg-image {
@@ -1628,23 +1633,20 @@ body:has(.header.is-menu-open) .cookie-banner,
   display: block;
 }
 
+/* Progressive enhancement: the photo is always rendered as its bytes
+   arrive. The shimmer is only a hint that the download is in progress —
+   it must never be the thing that keeps the content invisible. */
 .skeleton-box img {
-  opacity: 0;
-  transition: opacity 0.35s ease;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+/* Once the bytes are in, the shimmer retires. */
 .skeleton-box.is-loaded::before {
   opacity: 0;
   animation: none;
-}
-
-.skeleton-box.is-loaded img,
-.skeleton-box img.is-loaded {
-  opacity: 1 !important;
 }
 
 .service-card__image-wrap {
@@ -2069,7 +2071,12 @@ body:has(.header.is-menu-open) .cookie-banner,
   width: 100%;
   max-width: 680px;
   max-height: 90vh;
+  max-height: min(90vh, calc(100dvh - 3rem));
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(47, 128, 237, 0.55) transparent;
   background: rgba(12, 32, 54, 0.95);
   border: 1px solid rgba(47, 128, 237, 0.25);
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(47, 128, 237, 0.15);
@@ -2322,12 +2329,13 @@ body:has(.header.is-menu-open) .cookie-banner,
     gap: 1rem;
   }
   .modal {
-    padding: 1rem;
+    padding: 0.75rem;
   }
   .modal__card {
     padding: 1.5rem 1.25rem;
     border-radius: 16px;
     max-height: 92vh;
+    max-height: calc(100dvh - 1.5rem);
   }
   .modal__close {
     top: 0.75rem;

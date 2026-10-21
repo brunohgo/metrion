@@ -236,40 +236,8 @@
     </div>
   </footer>
 
-  <!-- Modal -->
-  <div class="modal" id="quote-modal" role="dialog" aria-modal="true">
-    <div class="modal__backdrop"></div>
-    <div class="modal__card">
-      <button type="button" class="modal__close">&times;</button>
-      <h3 class="text-2xl font-bold text-white mb-4">Pedido de Informação & Orçamento</h3>
-      <form id="quote-form">
-        <div class="form-group">
-          <label class="form-label">Nome Completo *</label>
-          <input type="text" name="name" class="form-input" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Empresa *</label>
-          <input type="text" name="company" class="form-input" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Email Corporativo *</label>
-          <input type="email" name="email" class="form-input" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Equipamento / Serviço *</label>
-          <input type="text" name="equipment" class="form-input" placeholder="Ex.: Balanças e Manómetros" required>
-        </div>
-        <div class="form-group">
-          <label class="form-checkbox">
-            <input type="checkbox" name="consent" required>
-            <span class="form-checkbox-label">Autorizo o processamento para fins deste contacto.</span>
-          </label>
-        </div>
-        <div id="quote-feedback"></div>
-        <button type="submit" class="btn btn--primary w-full justify-center mt-4">Submeter Pedido</button>
-      </form>
-    </div>
-  </div>
+  <!-- O modal de orçamento é injetado por initQuoteModal() a partir de
+       src/js/components/quoteModalTemplate.js, para manter um único formulário. -->
 
   <script type="module" src="/src/js/main.js"></script>
 </body>

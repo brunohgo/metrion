@@ -139,10 +139,11 @@ export function initPreloader(onCompleteCallback) {
     });
   };
 
+  // Only the LCP image is worth fetching eagerly. The remaining below-the-fold
+  // images are `loading="lazy"` on purpose: fetching them here would steal
+  // mobile bandwidth from the hero and from the content the user is scrolling to.
   const criticalImages = [
-    '/images/hero-laboratory.jpg',
-    '/images/about-laboratory.jpg',
-    '/images/calibration-service.jpg'
+    '/images/hero-laboratory.jpg'
   ];
 
   criticalImages.forEach(preloadImage);

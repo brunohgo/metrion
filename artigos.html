@@ -300,40 +300,8 @@
     </div>
   </footer>
 
-  <!-- Modal de Orçamento -->
-  <div class="modal" id="quote-modal" role="dialog" aria-modal="true">
-    <div class="modal__backdrop"></div>
-    <div class="modal__card">
-      <button type="button" class="modal__close">&times;</button>
-      <h3 class="text-2xl font-bold text-white mb-2">Pedido de Orçamento</h3>
-      <form id="quote-form">
-        <div class="form-group">
-          <label class="form-label">Nome *</label>
-          <input type="text" name="name" class="form-input" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Empresa *</label>
-          <input type="text" name="company" class="form-input" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Email *</label>
-          <input type="email" name="email" class="form-input" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Equipamento *</label>
-          <input type="text" name="equipment" class="form-input" required>
-        </div>
-        <div class="form-group">
-          <label class="form-checkbox">
-            <input type="checkbox" name="consent" required>
-            <span class="form-checkbox-label">Autorizo o processamento de dados.</span>
-          </label>
-        </div>
-        <div id="quote-feedback"></div>
-        <button type="submit" class="btn btn--primary w-full justify-center mt-2">Enviar Pedido</button>
-      </form>
-    </div>
-  </div>
+  <!-- O modal de orçamento é injetado por initQuoteModal() a partir de
+       src/js/components/quoteModalTemplate.js, para manter um único formulário. -->
 
   <script type="module">
     import '/src/styles/main.css';
@@ -429,11 +397,12 @@
         readerModal.classList.add('is-active');
         document.body.style.overflow = 'hidden';
 
-        // Re-attach quote buttons inside modal
+        // Close the reader and let the shared quote modal handle the request
         readerContent.querySelectorAll('.btn-open-quote').forEach(b => {
           b.addEventListener('click', () => {
             readerModal.classList.remove('is-active');
-            document.querySelector('#quote-modal')?.classList.add('is-active');
+            document.body.style.overflow = '';
+            document.dispatchEvent(new CustomEvent('mp:open-quote'));
           });
         });
       };
