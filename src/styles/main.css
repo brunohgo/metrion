@@ -496,8 +496,8 @@ body:has(.header.is-menu-open) .cookie-banner,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transform: scale(1.1);
+  opacity: 0.85;
+  transform: scale(1);
 }
 
 .hero__bg-overlay {
@@ -526,7 +526,7 @@ body:has(.header.is-menu-open) .cookie-banner,
   height: 600px;
   border-radius: 50%;
   filter: blur(150px);
-  opacity: 0;
+  opacity: 0.08;
   pointer-events: none;
 }
 
@@ -550,7 +550,7 @@ body:has(.header.is-menu-open) .cookie-banner,
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  opacity: 0;
+  opacity: 0.5;
 }
 
 .hero__grid-line {
@@ -594,9 +594,8 @@ body:has(.header.is-menu-open) .cookie-banner,
     var(--color-blue-electric) 80%,
     transparent 100%
   );
-  opacity: 0;
+  opacity: 0.2;
   z-index: 3;
-  transform: scaleX(0);
 }
 
 .hero__content {
@@ -624,7 +623,7 @@ body:has(.header.is-menu-open) .cookie-banner,
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1.5rem;
-  opacity: 0;
+  opacity: 1;
 }
 
 .hero__badge-dot {
@@ -648,8 +647,8 @@ body:has(.header.is-menu-open) .cookie-banner,
 
 .hero__title-line {
   display: block;
-  opacity: 0;
-  transform: translateY(100%);
+  opacity: 1;
+  transform: none;
 }
 
 .hero__title-highlight {
@@ -665,14 +664,14 @@ body:has(.header.is-menu-open) .cookie-banner,
   line-height: 1.7;
   color: var(--color-gray-tech);
   margin-bottom: 2.5rem;
-  opacity: 0;
+  opacity: 1;
 }
 
 .hero__actions {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  opacity: 0;
+  opacity: 1;
 }
 
 .hero__scroll-indicator {
@@ -685,7 +684,7 @@ body:has(.header.is-menu-open) .cookie-banner,
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  opacity: 0;
+  opacity: 1;
 }
 
 .hero__scroll-mouse {

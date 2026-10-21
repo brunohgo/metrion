@@ -67,28 +67,30 @@ export function initPreloader(onCompleteCallback) {
       ease: 'power2.out',
       onUpdate: () => setProgressVisuals(progress.value),
       onComplete: () => {
+        // Trigger hero reveal immediately as preloader starts fading!
+        if (typeof onCompleteCallback === 'function') onCompleteCallback();
+
         // High-tech exit sequence
         const exitTl = gsap.timeline({
           onComplete: () => {
             preloader.classList.add('is-hidden');
-            setTimeout(() => preloader.remove(), 400);
-            if (typeof onCompleteCallback === 'function') onCompleteCallback();
+            setTimeout(() => preloader.remove(), 250);
           }
         });
 
         exitTl.to([logo, svgContainer, progressBar], {
           opacity: 0,
-          scale: 0.95,
-          y: -12,
-          duration: 0.22,
-          stagger: 0.04,
+          scale: 0.96,
+          y: -10,
+          duration: 0.18,
+          stagger: 0.03,
           ease: 'power2.in'
         })
         .to(preloader, {
           opacity: 0,
-          duration: 0.28,
+          duration: 0.22,
           ease: 'power2.inOut'
-        }, '-=0.08');
+        }, '-=0.06');
       }
     });
   };

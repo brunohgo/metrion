@@ -23,96 +23,45 @@ export function initHeroAnimation() {
   const scrollIndicator = hero.querySelector('.hero__scroll-indicator');
   const liveMicrometer = hero.querySelector('#live-micrometer-val');
 
-  if (prefersReduced) {
-    // Immediate display without animation
+  const isMobile = window.innerWidth <= 768;
+
+  if (prefersReduced || isMobile) {
+    // Immediate display on mobile and reduced motion without any delay
     if (bgImage) gsap.set(bgImage, { opacity: 0.85, scale: 1 });
-    if (badge) gsap.set(badge, { opacity: 1 });
+    if (badge) gsap.set(badge, { opacity: 1, y: 0 });
     if (titleLines) gsap.set(titleLines, { opacity: 1, y: 0 });
-    if (subtitle) gsap.set(subtitle, { opacity: 1 });
-    if (actions) gsap.set(actions, { opacity: 1 });
-    if (measurements) gsap.set(measurements, { opacity: 1 });
+    if (subtitle) gsap.set(subtitle, { opacity: 1, y: 0 });
+    if (actions) gsap.set(actions, { opacity: 1, y: 0 });
+    if (measurements) gsap.set(measurements, { opacity: 1, x: 0 });
+    if (scrollIndicator) gsap.set(scrollIndicator, { opacity: 1 });
     return;
   }
 
-  // Entrance Timeline
-  const tl = gsap.timeline({ delay: 0.1 });
+  // Desktop: Fast, ultra-smooth micro-entrance (all within 0.35s, no blank screen)
+  const tl = gsap.timeline();
 
-  // 1. Reveal background with scale settling
   if (bgImage) {
-    tl.to(bgImage, {
-      opacity: 0.85,
-      scale: 1,
-      duration: 1.4,
-      ease: 'power3.out'
-    });
-  }
-
-  // 2. Technical grid reveals
-  if (gridLines) {
-    tl.to(gridLines, {
-      opacity: 0.6,
-      duration: 0.8,
-      ease: 'power2.out'
-    }, '-=1.0');
-  }
-
-  // 3. Luminous laser sweep line
-  if (luminousLine) {
-    tl.fromTo(luminousLine, 
-      { scaleX: 0, opacity: 0 },
-      { scaleX: 1, opacity: 0.8, duration: 0.8, ease: 'expo.inOut' },
-      '-=0.9'
-    )
-    .to(luminousLine, { opacity: 0.15, duration: 0.5 }, '+=0.1');
-  }
-
-  // 4. Staggered typography
-  if (badge) {
-    tl.to(badge, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.6');
+    tl.fromTo(bgImage, { scale: 1.04, opacity: 0.7 }, { scale: 1, opacity: 0.85, duration: 0.45, ease: 'power2.out' });
   }
 
   if (titleLines.length) {
-    tl.to(titleLines, {
-      opacity: 1,
-      y: 0,
-      duration: 0.9,
-      stagger: 0.15,
-      ease: 'power3.out'
-    }, '-=0.5');
+    tl.fromTo(titleLines, { y: 15, opacity: 0.3 }, { y: 0, opacity: 1, duration: 0.35, stagger: 0.06, ease: 'power2.out' }, '-=0.35');
   }
 
   if (subtitle) {
-    tl.to(subtitle, {
-      opacity: 1,
-      y: 0,
-      duration: 0.7,
-      ease: 'power2.out'
-    }, '-=0.5');
+    tl.fromTo(subtitle, { y: 10, opacity: 0.4 }, { y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' }, '-=0.25');
   }
 
   if (actions) {
-    tl.to(actions, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: 'power2.out'
-    }, '-=0.4');
+    tl.fromTo(actions, { y: 10, opacity: 0.4 }, { y: 0, opacity: 1, duration: 0.25, ease: 'power2.out' }, '-=0.2');
   }
 
   if (measurements) {
-    tl.to(measurements, {
-      opacity: 1,
-      x: 0,
-      duration: 0.8,
-      ease: 'power2.out'
-    }, '-=0.4');
+    tl.fromTo(measurements, { x: 15, opacity: 0.3 }, { x: 0, opacity: 1, duration: 0.35, ease: 'power2.out' }, '-=0.25');
   }
 
   if (scrollIndicator) {
-    tl.to(scrollIndicator, {
-      opacity: 1,
-      duration: 0.6
-    }, '-=0.2');
+    tl.fromTo(scrollIndicator, { opacity: 0 }, { opacity: 1, duration: 0.3 }, '-=0.15');
   }
 
   // Live micron reading jitter simulation
