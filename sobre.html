@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html lang="pt-PT" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre a Empresa — MetriPrecision Metrologia & Qualificação</title>
+  <meta name="description" content="Conheça a MetriPrecision: compromisso ético e científico com a calibração metrológica, manutenção de precisão e qualificação térmica industrial em Portugal.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232F80ED'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5v-3h3v-2h-3v-3h-2v3H8v2h3v3h2z'/%3E%3C/svg%3E">
+    <!-- Preconnect & Asynchronous Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <style>
+    /* Critical FOUC Shield + Skeleton */
+    html, body { background-color: #07111F !important; margin: 0; padding: 0; }
+    .skeleton-loader { position: fixed; inset: 0; z-index: 999999; background: #07111F; display: flex; flex-direction: column; }
+    .skeleton-loader.is-hidden { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+    .skel-header { height: 72px; border-bottom: 1px solid #112A45; display: flex; align-items: center; padding: 0 2rem; gap: 2rem; }
+    .skel-bar { background: linear-gradient(90deg, #112A45 25%, #1a3a5c 50%, #112A45 75%); background-size: 200% 100%; animation: skel-shimmer 1.5s ease-in-out infinite; border-radius: 6px; }
+    .skel-hero { padding: 6rem 2rem 3rem; max-width: 900px; }
+    .skel-content { padding: 2rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; max-width: 1200px; flex: 1; }
+    .skel-col { display: flex; flex-direction: column; gap: 1rem; }
+    @keyframes skel-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    @media (max-width: 768px) { .skel-content { grid-template-columns: 1fr; } .skel-hero { padding: 4rem 1.5rem 2rem; } }
+  </style>
+</head>
+<body class="bg-[#07111F] text-[#F6FAFD] antialiased selection:bg-[#2F80ED] selection:text-white">
+  <!-- Skeleton Loader -->
+  <div class="skeleton-loader" id="skeleton-loader" aria-hidden="true">
+    <div class="skel-header">
+      <div class="skel-bar" style="width:140px;height:20px;"></div>
+      <div class="skel-bar" style="width:80px;height:12px;margin-left:auto;"></div>
+      <div class="skel-bar" style="width:60px;height:12px;"></div>
+      <div class="skel-bar" style="width:100px;height:34px;border-radius:20px;"></div>
+    </div>
+    <div class="skel-hero">
+      <div class="skel-bar" style="width:180px;height:14px;margin-bottom:1rem;"></div>
+      <div class="skel-bar" style="width:85%;height:36px;margin-bottom:0.75rem;"></div>
+      <div class="skel-bar" style="width:70%;height:16px;"></div>
+    </div>
+    <div class="skel-content">
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:220px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:60%;height:20px;"></div>
+        <div class="skel-bar" style="width:100%;height:12px;"></div>
+        <div class="skel-bar" style="width:90%;height:12px;"></div>
+        <div class="skel-bar" style="width:95%;height:12px;"></div>
+        <div class="skel-bar" style="width:80%;height:12px;"></div>
+      </div>
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:120px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:70%;height:14px;"></div>
+        <div class="skel-bar" style="width:100%;height:10px;"></div>
+        <div class="skel-bar" style="width:85%;height:10px;"></div>
+      </div>
+    </div>
+  </div>
+    <script>
+    (function(){
+      var s = document.getElementById('skeleton-loader');
+      if(!s) return;
+      function hide(){
+        s.classList.add('is-hidden');
+        setTimeout(function(){ if(s.parentNode) s.remove(); }, 300);
+      }
+      if(document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(hide, 100);
+      } else {
+        document.addEventListener('DOMContentLoaded', function(){ setTimeout(hide, 100); });
+      }
+      setTimeout(hide, 600);
+    })();
+  </script>
+
+  <!-- Header -->
+  <header class="header is-scrolled" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo">METRI<span class="text-[#35E0E8]">PRECISION</span></a>
+      <nav class="header__nav">
+        <a href="/" class="header__nav-link">Início</a>
+        <a href="/sobre.html" class="header__nav-link is-active">Sobre</a>
+        <a href="/servicos/calibracao.html" class="header__nav-link">Calibração</a>
+        <a href="/servicos/qualificacao-termica.html" class="header__nav-link">Qualificação</a>
+        <a href="/artigos.html" class="header__nav-link">Artigos</a>
+        <a href="/contactos.html" class="header__nav-link">Contactos</a>
+      </nav>
+            <!-- Action & Mobile Toggle Buttons -->
+      <div class="flex items-center gap-4">
+        <button type="button" class="header__cta desktop-only btn-open-quote">Pedir Orçamento</button>
+        <button class="header__mobile-toggle" aria-label="Abrir Menu de Navegação" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="header__mobile-menu" aria-label="Menu Mobile">
+      <a href="/" class="header__mobile-link">Início</a>
+      <a href="/sobre.html" class="header__mobile-link">A Empresa</a>
+      <a href="/servicos/calibracao.html" class="header__mobile-link">Calibração</a>
+      <a href="/servicos/manutencao.html" class="header__mobile-link">Manutenção</a>
+      <a href="/servicos/qualificacao-termica.html" class="header__mobile-link">Qualificação Térmica</a>
+      <a href="/servicos/gestao-calibracoes.html" class="header__mobile-link">Gestão de Calibrações</a>
+      <a href="/servicos/rastreabilidade.html" class="header__mobile-link">Rastreabilidade Metrológica</a>
+      <a href="/servicos/auditorias.html" class="header__mobile-link">Apoio a Auditorias</a>
+      <a href="/artigos.html" class="header__mobile-link">Artigos Técnicos</a>
+      <a href="/contactos.html" class="header__mobile-link">Contactos</a>
+      
+      <div class="pt-6">
+        <button type="button" class="btn btn--primary w-full justify-center btn-open-quote">
+          Solicitar Proposta Metrológica
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Subpage -->
+  <section class="pt-36 pb-20 bg-gradient-to-b from-[#0C2036]/60 to-[#07111F] border-b border-[#112A45]">
+    <div class="max-w-5xl mx-auto px-6">
+      <span class="text-xs font-mono font-bold text-[#35E0E8] uppercase tracking-wider">Identidade & Compromisso</span>
+      <h1 class="text-4xl md:text-5xl font-bold font-heading text-white mt-2 mb-4">Sobre a MetriPrecision</h1>
+      <p class="text-lg text-[#93A4B5] max-w-3xl leading-relaxed">
+        Uma organização estruturada para responder aos desafios crescentes de rigor metrológico, conformidade regulamentar e controlo de grandezas físicas no ecossistema produtivo em Portugal.
+      </p>
+    </div>
+  </section>
+
+  <!-- Conteúdo Institucional -->
+  <section class="section section--dark">
+    <div class="section__container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+        <div>
+          <span class="section__label">Missão, Visão e Valores</span>
+          <h2 class="section__title">Fundamentação Científica em Cada Medição</h2>
+          <div class="space-y-4 text-[#93A4B5] leading-relaxed">
+            <p>
+              A MetriPrecision nasce do reconhecimento de que a exatidão não é apenas uma métrica laboratorial, mas um fator determinante na competitividade e segurança das empresas. A nossa missão é proporcionar soluções metrológicas tecnicamente inatacáveis, garantindo que cada cliente compreenda com clareza os erros, incertezas e limites operacionais dos seus equipamentos.
+            </p>
+            <p>
+              Pautamo-nos pela independência técnica, rigor metodológico e transparência documental. As nossas metodologias seguem as melhores práticas internacionais consignadas na <strong>NP EN ISO/IEC 17025</strong> e as diretrizes do Vocabulário Internacional de Metrologia (VIM).
+            </p>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden border border-[#2F80ED]/20 shadow-2xl">
+          <img src="/images/about-laboratory.jpg" alt="Instalações de laboratório metrológico moderno" class="w-full h-auto object-cover">
+        </div>
+      </div>
+
+      <!-- Pilares Institucionais -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+        <div class="p-8 rounded-xl bg-[#0C2036]/40 border border-[#2F80ED]/10">
+          <div class="text-3xl mb-4 text-[#35E0E8]"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <h3 class="text-xl font-bold font-heading text-white mb-2">Exatidão Comprovada</h3>
+          <p class="text-sm text-[#93A4B5] leading-relaxed">
+            Padrões de referência rastreáveis a institutos primários, garantindo que os seus relatórios e certificados resistem ao escrutínio de qualquer auditoria de qualidade.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-xl bg-[#0C2036]/40 border border-[#2F80ED]/10">
+          <div class="text-3xl mb-4 text-[#35E0E8]"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v19"/><path d="M5 8l7-5 7 5"/><path d="M3 13l2-5h0l2 5a3 3 0 0 1-4 0z"/><path d="M17 13l2-5h0l2 5a3 3 0 0 1-4 0z"/><line x1="8" y1="21" x2="16" y2="21"/></svg></div>
+          <h3 class="text-xl font-bold font-heading text-white mb-2">Conformidade Sem Ficções</h3>
+          <p class="text-sm text-[#93A4B5] leading-relaxed">
+            Comunicação ética e factual: distinguimos com clareza os âmbitos da calibração, manutenção e verificação legal, sem inventar acreditações ou qualificações inexistentes.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-xl bg-[#0C2036]/40 border border-[#2F80ED]/10">
+          <div class="text-3xl mb-4 text-[#35E0E8]"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <h3 class="text-xl font-bold font-heading text-white mb-2">Agilidade Industrial</h3>
+          <p class="text-sm text-[#93A4B5] leading-relaxed">
+            Processos otimizados para reduzir o tempo de imobilização dos instrumentos em fábrica, com agendamentos programados e acompanhamento contínuo dos ciclos.
+          </p>
+        </div>
+      </div>
+
+      <!-- Timeline Metodológica Demonstrativa -->
+      <div class="p-10 rounded-2xl bg-[#0C2036]/30 border border-[#112A45]">
+        <h3 class="text-2xl font-bold font-heading text-white mb-6">Ciclo Técnico de Intervenção</h3>
+        <p class="text-sm text-[#93A4B5] mb-8 max-w-2xl">
+          A nossa abordagem operacional assenta num ciclo contínuo estruturado para assegurar total controlo metrológico do parque instrumental dos nossos parceiros:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div class="border-l-2 border-[#2F80ED] pl-4">
+            <span class="text-xs font-mono text-[#35E0E8]">FASE 1</span>
+            <h4 class="font-bold text-white mt-1">Inventariação</h4>
+            <p class="text-xs text-[#93A4B5] mt-1">Registo exaustivo dos instrumentos, gamas operacionais e tolerâncias críticas do processo.</p>
+          </div>
+
+          <div class="border-l-2 border-[#2F80ED] pl-4">
+            <span class="text-xs font-mono text-[#35E0E8]">FASE 2</span>
+            <h4 class="font-bold text-white mt-1">Ensaio Padronizado</h4>
+            <p class="text-xs text-[#93A4B5] mt-1">Execução de ensaios com métodos validados e controlo rigoroso de condições ambientais.</p>
+          </div>
+
+          <div class="border-l-2 border-[#2F80ED] pl-4">
+            <span class="text-xs font-mono text-[#35E0E8]">FASE 3</span>
+            <h4 class="font-bold text-white mt-1">Análise Crítica</h4>
+            <p class="text-xs text-[#93A4B5] mt-1">Cálculo de incerteza expandida e determinação da conformidade face às tolerâncias.</p>
+          </div>
+
+          <div class="border-l-2 border-[#2F80ED] pl-4">
+            <span class="text-xs font-mono text-[#35E0E8]">FASE 4</span>
+            <h4 class="font-bold text-white mt-1">Custódia & Alertas</h4>
+            <p class="text-xs text-[#93A4B5] mt-1">Emissão documental e monitorização antecipada da data limite para recalibração.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-[#0A1929] border-t border-[#112A45] text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl font-bold font-heading text-white mb-4">Necessita de apoio metrológico especializado?</h2>
+      <p class="text-[#93A4B5] mb-8">Discuta os seus requisitos técnicos diretamente com os nossos consultores.</p>
+      <button type="button" class="btn btn--primary btn-open-quote">Solicitar Contacto Técnico</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__bottom">
+        <div class="footer__copy">&copy; 2026 MetriPrecision. Conteúdo institucional de engenharia.</div>
+        <div class="footer__legal-links">
+          <a href="/privacidade.html" class="footer__legal-link">Privacidade</a>
+          <a href="/cookies.html" class="footer__legal-link">Cookies</a>
+          <a href="/artigos.html" class="footer__legal-link">Artigos</a>
+          <a href="/" class="footer__legal-link">Início</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="quote-modal" role="dialog" aria-modal="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__card">
+      <button type="button" class="modal__close">&times;</button>
+      <h3 class="text-2xl font-bold text-white mb-4">Pedido de Informação & Orçamento</h3>
+      <form id="quote-form">
+        <div class="form-group">
+          <label class="form-label">Nome Completo *</label>
+          <input type="text" name="name" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Empresa *</label>
+          <input type="text" name="company" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Corporativo *</label>
+          <input type="email" name="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Equipamento / Serviço *</label>
+          <input type="text" name="equipment" class="form-input" placeholder="Ex.: Balanças e Manómetros" required>
+        </div>
+        <div class="form-group">
+          <label class="form-checkbox">
+            <input type="checkbox" name="consent" required>
+            <span class="form-checkbox-label">Autorizo o processamento para fins deste contacto.</span>
+          </label>
+        </div>
+        <div id="quote-feedback"></div>
+        <button type="submit" class="btn btn--primary w-full justify-center mt-4">Submeter Pedido</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

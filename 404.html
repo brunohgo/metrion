@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="pt-PT" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Página Não Encontrada | MetriPrecision</title>
+  <meta name="description" content="A página solicitada não foi localizada nos nossos registos metrológicos.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232F80ED'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5v-3h3v-2h-3v-3h-2v3H8v2h3v3h2z'/%3E%3C/svg%3E">
+    <!-- Preconnect & Asynchronous Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <style>
+    /* Critical FOUC Shield + Skeleton */
+    html, body { background-color: #07111F !important; margin: 0; padding: 0; }
+    .skeleton-loader { position: fixed; inset: 0; z-index: 999999; background: #07111F; display: flex; flex-direction: column; }
+    .skeleton-loader.is-hidden { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+    .skel-header { height: 72px; border-bottom: 1px solid #112A45; display: flex; align-items: center; padding: 0 2rem; gap: 2rem; }
+    .skel-bar { background: linear-gradient(90deg, #112A45 25%, #1a3a5c 50%, #112A45 75%); background-size: 200% 100%; animation: skel-shimmer 1.5s ease-in-out infinite; border-radius: 6px; }
+    .skel-hero { padding: 6rem 2rem 3rem; max-width: 900px; }
+    .skel-content { padding: 2rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; max-width: 1200px; flex: 1; }
+    .skel-col { display: flex; flex-direction: column; gap: 1rem; }
+    @keyframes skel-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    @media (max-width: 768px) { .skel-content { grid-template-columns: 1fr; } .skel-hero { padding: 4rem 1.5rem 2rem; } }
+  </style>
+</head>
+<body class="bg-[#07111F] text-[#F6FAFD] min-h-screen flex flex-col justify-between antialiased selection:bg-[#2F80ED] selection:text-white">
+  <!-- Skeleton Loader -->
+  <div class="skeleton-loader" id="skeleton-loader" aria-hidden="true">
+    <div class="skel-header">
+      <div class="skel-bar" style="width:140px;height:20px;"></div>
+      <div class="skel-bar" style="width:80px;height:12px;margin-left:auto;"></div>
+      <div class="skel-bar" style="width:60px;height:12px;"></div>
+      <div class="skel-bar" style="width:100px;height:34px;border-radius:20px;"></div>
+    </div>
+    <div class="skel-hero">
+      <div class="skel-bar" style="width:180px;height:14px;margin-bottom:1rem;"></div>
+      <div class="skel-bar" style="width:85%;height:36px;margin-bottom:0.75rem;"></div>
+      <div class="skel-bar" style="width:70%;height:16px;"></div>
+    </div>
+    <div class="skel-content">
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:220px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:60%;height:20px;"></div>
+        <div class="skel-bar" style="width:100%;height:12px;"></div>
+        <div class="skel-bar" style="width:90%;height:12px;"></div>
+        <div class="skel-bar" style="width:95%;height:12px;"></div>
+        <div class="skel-bar" style="width:80%;height:12px;"></div>
+      </div>
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:120px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:70%;height:14px;"></div>
+        <div class="skel-bar" style="width:100%;height:10px;"></div>
+        <div class="skel-bar" style="width:85%;height:10px;"></div>
+      </div>
+    </div>
+  </div>
+    <script>
+    (function(){
+      var s = document.getElementById('skeleton-loader');
+      if(!s) return;
+      function hide(){
+        s.classList.add('is-hidden');
+        setTimeout(function(){ if(s.parentNode) s.remove(); }, 300);
+      }
+      if(document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(hide, 100);
+      } else {
+        document.addEventListener('DOMContentLoaded', function(){ setTimeout(hide, 100); });
+      }
+      setTimeout(hide, 600);
+    })();
+  </script>
+
+  <!-- Header -->
+  <header class="header is-scrolled" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo">METRI<span class="text-[#35E0E8]">PRECISION</span></a>
+      <a href="/" class="header__cta">Voltar ao Início</a>
+    </div>
+  </header>
+
+  <!-- 404 Hero -->
+  <main class="flex-grow flex items-center justify-center py-32 px-6">
+    <div class="max-w-md w-full text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#112A45] text-xs font-mono text-[#35E0E8] mb-4">
+        <span>ERRO DE LEITURA METROLÓGICA</span>
+      </div>
+
+      <div class="text-8xl md:text-9xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-[#2F80ED] to-[#35E0E8] tracking-tight mb-2">
+        404
+      </div>
+
+      <h1 class="text-2xl font-bold font-heading text-white mb-3">
+        Desvio Fora de Escala
+      </h1>
+
+      <p class="text-sm text-[#93A4B5] leading-relaxed mb-8">
+        O endereço que tentou aceder não corresponde a qualquer grandeza ou parâmetro existente no nosso catálogo de páginas.
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/" class="btn btn--primary justify-center">
+          <span>Página Principal</span>
+        </a>
+        <a href="/contactos.html" class="btn btn--secondary justify-center">
+          <span>Contactar Suporte</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer py-8 border-t border-[#112A45]">
+    <div class="max-w-4xl mx-auto px-6 text-center text-xs text-[#6B7B8D]">
+      &copy; 2026 MetriPrecision. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

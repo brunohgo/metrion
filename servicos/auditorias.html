@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html lang="pt-PT" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apoio Técnico a Auditorias Metrológicas — MetriPrecision</title>
+  <meta name="description" content="Apoio técnico e preparação documental para auditorias de sistemas de gestão da qualidade em Portugal. Revisão de certificados, análise de lacunas e resposta técnica a desvios.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232F80ED'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5v-3h3v-2h-3v-3h-2v3H8v2h3v3h2z'/%3E%3C/svg%3E">
+    <!-- Preconnect & Asynchronous Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <style>
+    /* Critical FOUC Shield + Skeleton */
+    html, body { background-color: #07111F !important; margin: 0; padding: 0; }
+    .skeleton-loader { position: fixed; inset: 0; z-index: 999999; background: #07111F; display: flex; flex-direction: column; }
+    .skeleton-loader.is-hidden { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+    .skel-header { height: 72px; border-bottom: 1px solid #112A45; display: flex; align-items: center; padding: 0 2rem; gap: 2rem; }
+    .skel-bar { background: linear-gradient(90deg, #112A45 25%, #1a3a5c 50%, #112A45 75%); background-size: 200% 100%; animation: skel-shimmer 1.5s ease-in-out infinite; border-radius: 6px; }
+    .skel-hero { padding: 6rem 2rem 3rem; max-width: 900px; }
+    .skel-content { padding: 2rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; max-width: 1200px; flex: 1; }
+    .skel-col { display: flex; flex-direction: column; gap: 1rem; }
+    @keyframes skel-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    @media (max-width: 768px) { .skel-content { grid-template-columns: 1fr; } .skel-hero { padding: 4rem 1.5rem 2rem; } }
+  </style>
+</head>
+<body class="bg-[#07111F] text-[#F6FAFD] antialiased selection:bg-[#2F80ED] selection:text-white">
+  <!-- Skeleton Loader -->
+  <div class="skeleton-loader" id="skeleton-loader" aria-hidden="true">
+    <div class="skel-header">
+      <div class="skel-bar" style="width:140px;height:20px;"></div>
+      <div class="skel-bar" style="width:80px;height:12px;margin-left:auto;"></div>
+      <div class="skel-bar" style="width:60px;height:12px;"></div>
+      <div class="skel-bar" style="width:100px;height:34px;border-radius:20px;"></div>
+    </div>
+    <div class="skel-hero">
+      <div class="skel-bar" style="width:180px;height:14px;margin-bottom:1rem;"></div>
+      <div class="skel-bar" style="width:85%;height:36px;margin-bottom:0.75rem;"></div>
+      <div class="skel-bar" style="width:70%;height:16px;"></div>
+    </div>
+    <div class="skel-content">
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:220px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:60%;height:20px;"></div>
+        <div class="skel-bar" style="width:100%;height:12px;"></div>
+        <div class="skel-bar" style="width:90%;height:12px;"></div>
+        <div class="skel-bar" style="width:95%;height:12px;"></div>
+        <div class="skel-bar" style="width:80%;height:12px;"></div>
+      </div>
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:120px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:70%;height:14px;"></div>
+        <div class="skel-bar" style="width:100%;height:10px;"></div>
+        <div class="skel-bar" style="width:85%;height:10px;"></div>
+      </div>
+    </div>
+  </div>
+    <script>
+    (function(){
+      var s = document.getElementById('skeleton-loader');
+      if(!s) return;
+      function hide(){
+        s.classList.add('is-hidden');
+        setTimeout(function(){ if(s.parentNode) s.remove(); }, 300);
+      }
+      if(document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(hide, 100);
+      } else {
+        document.addEventListener('DOMContentLoaded', function(){ setTimeout(hide, 100); });
+      }
+      setTimeout(hide, 600);
+    })();
+  </script>
+
+  <!-- Header -->
+  <header class="header is-scrolled" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo">METRI<span class="text-[#35E0E8]">PRECISION</span></a>
+      <nav class="header__nav">
+        <a href="/" class="header__nav-link">Início</a>
+        <a href="/sobre.html" class="header__nav-link">Sobre</a>
+        <a href="/servicos/calibracao.html" class="header__nav-link">Calibração</a>
+        <a href="/servicos/qualificacao-termica.html" class="header__nav-link">Qualificação</a>
+        <a href="/servicos/gestao-calibracoes.html" class="header__nav-link">Gestão</a>
+        <a href="/servicos/rastreabilidade.html" class="header__nav-link">Rastreabilidade</a>
+        <a href="/servicos/auditorias.html" class="header__nav-link is-active">Auditorias</a>
+        <a href="/artigos.html" class="header__nav-link">Artigos</a>
+        <a href="/contactos.html" class="header__nav-link">Contactos</a>
+      </nav>
+            <!-- Action & Mobile Toggle Buttons -->
+      <div class="flex items-center gap-4">
+        <button type="button" class="header__cta desktop-only btn-open-quote">Pedir Orçamento</button>
+        <button class="header__mobile-toggle" aria-label="Abrir Menu de Navegação" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="header__mobile-menu" aria-label="Menu Mobile">
+      <a href="/" class="header__mobile-link">Início</a>
+      <a href="/sobre.html" class="header__mobile-link">A Empresa</a>
+      <a href="/servicos/calibracao.html" class="header__mobile-link">Calibração</a>
+      <a href="/servicos/manutencao.html" class="header__mobile-link">Manutenção</a>
+      <a href="/servicos/qualificacao-termica.html" class="header__mobile-link">Qualificação Térmica</a>
+      <a href="/servicos/gestao-calibracoes.html" class="header__mobile-link">Gestão de Calibrações</a>
+      <a href="/servicos/rastreabilidade.html" class="header__mobile-link">Rastreabilidade Metrológica</a>
+      <a href="/servicos/auditorias.html" class="header__mobile-link">Apoio a Auditorias</a>
+      <a href="/artigos.html" class="header__mobile-link">Artigos Técnicos</a>
+      <a href="/contactos.html" class="header__mobile-link">Contactos</a>
+      
+      <div class="pt-6">
+        <button type="button" class="btn btn--primary w-full justify-center btn-open-quote">
+          Solicitar Proposta Metrológica
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Service Hero -->
+  <section class="pt-36 pb-20 bg-gradient-to-b from-[#0C2036]/80 to-[#07111F] border-b border-[#112A45]">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#112A45] text-xs font-mono text-[#35E0E8] mb-4">
+        <span>CONSULTORIA TÉCNICA</span> &bull; <span>CONFORMIDADE DOCUMENTAL & ANÁLISE DE LACUNAS</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold font-heading text-white mb-4">
+        Apoio Técnico a Auditorias
+      </h1>
+      <p class="text-lg text-[#93A4B5] max-w-3xl leading-relaxed">
+        Preparação antecipada do dossier metrológico, diagnóstico de lacunas em certificados, validação de regras de decisão e suporte técnico fundamentado perante auditorias de sistemas de gestão da qualidade.
+      </p>
+    </div>
+  </section>
+
+  <!-- Conteúdo Principal -->
+  <section class="section section--dark">
+    <div class="section__container">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
+        <div class="lg:col-span-2 space-y-8">
+          <div class="rounded-2xl overflow-hidden border border-[#2F80ED]/20 shadow-xl mb-8">
+            <img src="/images/audit-service.jpg" alt="Equipa técnica em análise documental de dossiers metrológicos e relatórios de calibração" class="w-full h-auto object-cover" fetchpriority="high" decoding="async">
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold font-heading text-white mb-4">Em que consiste o Apoio a Auditorias?</h2>
+            <div class="text-[#93A4B5] space-y-4 leading-relaxed text-sm md:text-base">
+              <p>
+                Durante auditorias de sistemas de gestão (ISO 9001, IATF 16949, ISO 13485 ou NP EN ISO/IEC 17025) e inspeções de boas práticas de fabrico (GMP), os auditores examinam detalhadamente a coerência metrológica da empresa: se as tolerâncias de processo foram devidamente respeitadas, se a incerteza de calibração foi considerada nas decisões de conformidade e se existe evidência documentada da cadeia ininterrupta de rastreabilidade.
+              </p>
+              <p>
+                O nosso serviço oferece uma revisão prévia estruturada: organizamos os dossiers por grandeza e posto de trabalho, efetuamos a análise crítica dos registos de calibração face aos critérios de aceitação internos e identificamos eventuais lacunas antes da chegada dos auditores externos.
+              </p>
+            </div>
+          </div>
+
+          <!-- Limitação Ética e Legal Obrigatória -->
+          <div class="p-6 rounded-xl bg-[#0C2036]/60 border border-amber-500/30 text-xs text-[#93A4B5] leading-relaxed">
+            <strong class="text-amber-400 block mb-1">Nota Ética e Regulamentar Obrigatória:</strong>
+            A MetriPrecision atua estritamente como consultoria técnica independente de preparação e apoio metrológico. Não exercemos funções de organismo de certificação (ex.: APCER, SGS, TÜV) nem de organismo de acreditação (IPAC). O nosso papel é apoiar os nossos parceiros a organizarem e justificarem tecnicamente as suas evidências perante os organismos competentes.
+          </div>
+
+          <!-- Componentes da Preparação -->
+          <div>
+            <h3 class="text-xl font-bold font-heading text-white mb-4">Âmbitos de Intervenção</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+                <h4 class="font-bold text-white text-sm">Gap Analysis Metrológico</h4>
+                <p class="text-xs text-[#93A4B5] mt-1">Identificação preventiva de instrumentos com calibração vencida, incertezas incompatíveis com o processo ou especificações omissas.</p>
+              </div>
+              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+                <h4 class="font-bold text-white text-sm">Validação de Regras de Decisão</h4>
+                <p class="text-xs text-[#93A4B5] mt-1">Implementação de regras de decisão sobre conformidade de acordo com a norma ISO/IEC Guide 98-4 (zona de guarda e risco do consumidor/produtor).</p>
+              </div>
+              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+                <h4 class="font-bold text-white text-sm">Suporte na Resposta a Não Conformidades</h4>
+                <p class="text-xs text-[#93A4B5] mt-1">Auxílio técnico na fundamentação da causa-raiz e desenho de planos de ação corretiva perante apontamentos de auditorias anteriores.</p>
+              </div>
+              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+                <h4 class="font-bold text-white text-sm">Estruturação do Dossier Técnico</h4>
+                <p class="text-xs text-[#93A4B5] mt-1">Compilação organizada de certificados, mapas de desvio, cálculos de incerteza e evidências de padrões para consulta imediata.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Específico -->
+          <div>
+            <h3 class="text-xl font-bold font-heading text-white mb-4">Perguntas Frequentes sobre Auditorias</h3>
+            <div class="faq-list">
+              <div class="faq-item">
+                <button class="faq-item__trigger" aria-expanded="false">
+                  <span>Qual o apontamento mais comum de auditores em metrologia?</span>
+                  <div class="faq-item__icon" aria-hidden="true"></div>
+                </button>
+                <div class="faq-item__content">
+                  <div class="faq-item__answer">
+                    O erro mais frequente é a «calibração de gaveta»: o laboratório emite o certificado, a empresa arquiva-o sem análise crítica e continua a utilizar o instrumento sem verificar se o erro somado à incerteza ultrapassa a tolerância admissível para o produto fabricado. Apoiamos a formalização do registo de análise crítica para eliminar esta não conformidade.
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-item__trigger" aria-expanded="false">
+                  <span>A vossa equipa pode estar presente durante a auditoria externa?</span>
+                  <div class="faq-item__icon" aria-hidden="true"></div>
+                </button>
+                <div class="faq-item__content">
+                  <div class="faq-item__answer">
+                    Sim. Disponibilizamos acompanhamento técnico presencial ou remoto durante a sessão de auditoria para esclarecer dúvidas específicas dos auditores sobre métodos de cálculo de incerteza, regras de decisão ou cadeias de rastreabilidade dos padrões aplicados.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/20">
+            <h3 class="font-bold text-white text-lg mb-2">Preparar Auditoria</h3>
+            <p class="text-xs text-[#93A4B5] mb-4">
+              Agende uma revisão técnica prévia aos seus registos e dossiers metrológicos.
+            </p>
+            <button type="button" class="btn btn--primary w-full justify-center btn-open-quote" data-service="auditorias">
+              Solicitar Apoio Técnico
+            </button>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#0C2036]/30 border border-[#112A45] space-y-4">
+            <h4 class="font-bold text-white text-sm uppercase tracking-wider">Referenciais Auditados</h4>
+            <ul class="text-xs text-[#93A4B5] space-y-2">
+              <li class="flex items-center gap-2">
+                <span class="text-[#35E0E8]">▪</span> ISO 9001: Cláusula 7.1.5
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#35E0E8]">▪</span> IATF 16949 (Setor Automóvel)
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#35E0E8]">▪</span> ISO 13485 (Dispositivos Médicos)
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#35E0E8]">▪</span> GMP / EudraLex Vol 4 Anexo 15
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#35E0E8]">▪</span> ISO/IEC Guide 98-4 (Regras de Decisão)
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__bottom">
+        <div class="footer__copy">&copy; 2026 MetriPrecision. Todos os direitos reservados.</div>
+        <div class="footer__legal-links">
+          <a href="/privacidade.html" class="footer__legal-link">Privacidade</a>
+          <a href="/cookies.html" class="footer__legal-link">Cookies</a>
+          <a href="/artigos.html" class="footer__legal-link">Artigos</a>
+          <a href="/" class="footer__legal-link">Início</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+﻿<!DOCTYPE html>
+<html lang="pt-PT" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artigos & Publicações Técnicas de Metrologia — MetriPrecision</title>
+  <meta name="description" content="Artigos técnicos originais sobre metrologia industrial, cálculo de incerteza (GUM), qualificação térmica GMP e legislação metrológica em Portugal.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232F80ED'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5v-3h3v-2h-3v-3h-2v3H8v2h3v3h2z'/%3E%3C/svg%3E">
+    <!-- Preconnect & Asynchronous Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <style>
+    /* Critical FOUC Shield + Skeleton */
+    html, body { background-color: #07111F !important; margin: 0; padding: 0; }
+    .skeleton-loader { position: fixed; inset: 0; z-index: 999999; background: #07111F; display: flex; flex-direction: column; }
+    .skeleton-loader.is-hidden { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+    .skel-header { height: 72px; border-bottom: 1px solid #112A45; display: flex; align-items: center; padding: 0 2rem; gap: 2rem; }
+    .skel-bar { background: linear-gradient(90deg, #112A45 25%, #1a3a5c 50%, #112A45 75%); background-size: 200% 100%; animation: skel-shimmer 1.5s ease-in-out infinite; border-radius: 6px; }
+    .skel-hero { padding: 6rem 2rem 3rem; max-width: 900px; }
+    .skel-content { padding: 2rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; max-width: 1200px; flex: 1; }
+    .skel-col { display: flex; flex-direction: column; gap: 1rem; }
+    @keyframes skel-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    @media (max-width: 768px) { .skel-content { grid-template-columns: 1fr; } .skel-hero { padding: 4rem 1.5rem 2rem; } }
+  </style>
+</head>
+<body class="bg-[#07111F] text-[#F6FAFD] antialiased selection:bg-[#2F80ED] selection:text-white">
+  <!-- Skeleton Loader -->
+  <div class="skeleton-loader" id="skeleton-loader" aria-hidden="true">
+    <div class="skel-header">
+      <div class="skel-bar" style="width:140px;height:20px;"></div>
+      <div class="skel-bar" style="width:80px;height:12px;margin-left:auto;"></div>
+      <div class="skel-bar" style="width:60px;height:12px;"></div>
+      <div class="skel-bar" style="width:100px;height:34px;border-radius:20px;"></div>
+    </div>
+    <div class="skel-hero">
+      <div class="skel-bar" style="width:180px;height:14px;margin-bottom:1rem;"></div>
+      <div class="skel-bar" style="width:85%;height:36px;margin-bottom:0.75rem;"></div>
+      <div class="skel-bar" style="width:70%;height:16px;"></div>
+    </div>
+    <div class="skel-content">
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:220px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:60%;height:20px;"></div>
+        <div class="skel-bar" style="width:100%;height:12px;"></div>
+        <div class="skel-bar" style="width:90%;height:12px;"></div>
+        <div class="skel-bar" style="width:95%;height:12px;"></div>
+        <div class="skel-bar" style="width:80%;height:12px;"></div>
+      </div>
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:120px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:70%;height:14px;"></div>
+        <div class="skel-bar" style="width:100%;height:10px;"></div>
+        <div class="skel-bar" style="width:85%;height:10px;"></div>
+      </div>
+    </div>
+  </div>
+    <script>
+    (function(){
+      var s = document.getElementById('skeleton-loader');
+      if(!s) return;
+      function hide(){
+        s.classList.add('is-hidden');
+        setTimeout(function(){ if(s.parentNode) s.remove(); }, 300);
+      }
+      if(document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(hide, 100);
+      } else {
+        document.addEventListener('DOMContentLoaded', function(){ setTimeout(hide, 100); });
+      }
+      setTimeout(hide, 600);
+    })();
+  </script>
+
+  <!-- Header -->
+  <header class="header is-scrolled" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo">METRI<span class="text-[#35E0E8]">PRECISION</span></a>
+      <nav class="header__nav">
+        <a href="/" class="header__nav-link">Início</a>
+        <a href="/sobre.html" class="header__nav-link">Sobre</a>
+        <a href="/servicos/calibracao.html" class="header__nav-link">Calibração</a>
+        <a href="/servicos/qualificacao-termica.html" class="header__nav-link">Qualificação Térmica</a>
+        <a href="/artigos.html" class="header__nav-link is-active">Artigos</a>
+        <a href="/contactos.html" class="header__nav-link">Contactos</a>
+      </nav>
+            <!-- Action & Mobile Toggle Buttons -->
+      <div class="flex items-center gap-4">
+        <button type="button" class="header__cta desktop-only btn-open-quote">Pedir Orçamento</button>
+        <button class="header__mobile-toggle" aria-label="Abrir Menu de Navegação" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="header__mobile-menu" aria-label="Menu Mobile">
+      <a href="/" class="header__mobile-link">Início</a>
+      <a href="/sobre.html" class="header__mobile-link">A Empresa</a>
+      <a href="/servicos/calibracao.html" class="header__mobile-link">Calibração</a>
+      <a href="/servicos/manutencao.html" class="header__mobile-link">Manutenção</a>
+      <a href="/servicos/qualificacao-termica.html" class="header__mobile-link">Qualificação Térmica</a>
+      <a href="/servicos/gestao-calibracoes.html" class="header__mobile-link">Gestão de Calibrações</a>
+      <a href="/servicos/rastreabilidade.html" class="header__mobile-link">Rastreabilidade Metrológica</a>
+      <a href="/servicos/auditorias.html" class="header__mobile-link">Apoio a Auditorias</a>
+      <a href="/artigos.html" class="header__mobile-link">Artigos Técnicos</a>
+      <a href="/contactos.html" class="header__mobile-link">Contactos</a>
+      
+      <div class="pt-6">
+        <button type="button" class="btn btn--primary w-full justify-center btn-open-quote">
+          Solicitar Proposta Metrológica
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Subpage -->
+  <section class="pt-36 pb-20 bg-gradient-to-b from-[#0C2036]/80 to-[#07111F] border-b border-[#112A45]">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#112A45] text-xs font-mono text-[#35E0E8] mb-4">
+        <span>CONHECIMENTO TÉCNICO & REGULAMENTAR</span> &bull; <span>PUBLICAÇÕES INDUSTRIAIS</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold font-heading text-white mb-4">
+        Artigos Técnicos & Boas Práticas Metrológicas
+      </h1>
+      <p class="text-lg text-[#93A4B5] max-w-3xl leading-relaxed">
+        Análises fundamentadas sobre cálculo de incerteza, referenciais normativos portugueses, qualificação de processos térmicos e otimização de planos de calibração.
+      </p>
+    </div>
+  </section>
+
+  <!-- Lista de Artigos Técnicos -->
+  <section class="section section--dark">
+    <div class="section__container">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <!-- Artigo 1 -->
+        <article class="p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/15 flex flex-col justify-between hover:border-[#35E0E8]/40 transition-all group">
+          <div>
+            <div class="rounded-xl overflow-hidden mb-6 h-56 relative">
+              <img src="/images/blog-uncertainty.jpg" alt="Gráficos de cálculo de incerteza de medição e análise estatística" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#07111F] via-transparent to-transparent"></div>
+              <span class="absolute bottom-3 left-3 text-xs font-mono font-bold px-2.5 py-1 rounded bg-[#07111F]/80 text-[#35E0E8] border border-cyan-400/20">
+                INCERTEZA & GUM
+              </span>
+            </div>
+
+            <div class="flex items-center gap-4 text-xs font-mono text-[#93A4B5] mb-3">
+              <span>Leitura: 6 min</span>
+              <span>&bull;</span>
+              <span>ISO/IEC Guide 98-4</span>
+            </div>
+
+            <h2 class="text-xl font-bold font-heading text-white mb-3 group-hover:text-[#35E0E8] transition-colors">
+              Incerteza de Medição vs Tolerância de Processo: Como Evitar Decisões Falsas
+            </h2>
+
+            <p class="text-sm text-[#93A4B5] leading-relaxed mb-6">
+              A análise da zona de guarda (guard band) e o impacto das regras de decisão na aceitação de peças fabricadas. Como harmonizar a incerteza expandida com o limite de tolerância do cliente.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-[#112A45] flex items-center justify-between">
+            <span class="text-xs text-[#93A4B5] font-mono">Artigo Técnico #MP-01</span>
+            <button type="button" class="btn-read-article text-xs font-bold text-[#2F80ED] hover:text-[#35E0E8] inline-flex items-center gap-1" data-article="1">
+              Ler Análise Completa &rarr;
+            </button>
+          </div>
+        </article>
+
+        <!-- Artigo 2 -->
+        <article class="p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/15 flex flex-col justify-between hover:border-[#35E0E8]/40 transition-all group">
+          <div>
+            <div class="rounded-xl overflow-hidden mb-6 h-56 relative">
+              <img src="/images/blog-autoclave.jpg" alt="Autoclave industrial e câmara de ensaio térmico com registadores" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#07111F] via-transparent to-transparent"></div>
+              <span class="absolute bottom-3 left-3 text-xs font-mono font-bold px-2.5 py-1 rounded bg-[#07111F]/80 text-[#35E0E8] border border-cyan-400/20">
+                QUALIFICAÇÃO TÉRMICA
+              </span>
+            </div>
+
+            <div class="flex items-center gap-4 text-xs font-mono text-[#93A4B5] mb-3">
+              <span>Leitura: 8 min</span>
+              <span>&bull;</span>
+              <span>EudraLex Anexo 15</span>
+            </div>
+
+            <h2 class="text-xl font-bold font-heading text-white mb-3 group-hover:text-[#35E0E8] transition-colors">
+              Qualificação Térmica em Autoclaves: O que Exige o Anexo 15 do EudraLex
+            </h2>
+
+            <p class="text-sm text-[#93A4B5] leading-relaxed mb-6">
+              Distribuição térmica em vazio vs ensaio de penetração de calor com carga crítica. Metodologia de cálculo do valor F0 e identificação do ponto frio em processos de esterilização.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-[#112A45] flex items-center justify-between">
+            <span class="text-xs text-[#93A4B5] font-mono">Artigo Técnico #MP-02</span>
+            <button type="button" class="btn-read-article text-xs font-bold text-[#2F80ED] hover:text-[#35E0E8] inline-flex items-center gap-1" data-article="2">
+              Ler Análise Completa &rarr;
+            </button>
+          </div>
+        </article>
+
+        <!-- Artigo 3 -->
+        <article class="p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/15 flex flex-col justify-between hover:border-[#35E0E8]/40 transition-all group">
+          <div>
+            <div class="rounded-xl overflow-hidden mb-6 h-56 relative">
+              <img src="/images/blog-legal-metrology.jpg" alt="Legislação metrológica portuguesa e Diário da República" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#07111F] via-transparent to-transparent"></div>
+              <span class="absolute bottom-3 left-3 text-xs font-mono font-bold px-2.5 py-1 rounded bg-[#07111F]/80 text-[#35E0E8] border border-cyan-400/20">
+                METROLOGIA LEGAL
+              </span>
+            </div>
+
+            <div class="flex items-center gap-4 text-xs font-mono text-[#93A4B5] mb-3">
+              <span>Leitura: 5 min</span>
+              <span>&bull;</span>
+              <span>DL n.º 29/2022</span>
+            </div>
+
+            <h2 class="text-xl font-bold font-heading text-white mb-3 group-hover:text-[#35E0E8] transition-colors">
+              Calibração Industrial vs Verificação Metrológica Legal em Portugal
+            </h2>
+
+            <p class="text-sm text-[#93A4B5] leading-relaxed mb-6">
+              Como o Decreto-Lei n.º 29/2022 e a Portaria n.º 211/2022 delimitam as obrigações estatais das calibrações de sistema de gestão da qualidade (ISO 9001 e ISO 17025).
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-[#112A45] flex items-center justify-between">
+            <span class="text-xs text-[#93A4B5] font-mono">Artigo Técnico #MP-03</span>
+            <button type="button" class="btn-read-article text-xs font-bold text-[#2F80ED] hover:text-[#35E0E8] inline-flex items-center gap-1" data-article="3">
+              Ler Análise Completa &rarr;
+            </button>
+          </div>
+        </article>
+
+        <!-- Artigo 4 -->
+        <article class="p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/15 flex flex-col justify-between hover:border-[#35E0E8]/40 transition-all group">
+          <div>
+            <div class="rounded-xl overflow-hidden mb-6 h-56 relative">
+              <img src="/images/blog-frequency.jpg" alt="Circuito de precisão e planeamento de intervalos metrológicos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#07111F] via-transparent to-transparent"></div>
+              <span class="absolute bottom-3 left-3 text-xs font-mono font-bold px-2.5 py-1 rounded bg-[#07111F]/80 text-[#35E0E8] border border-cyan-400/20">
+                GESTÃO DA QUALIDADE
+              </span>
+            </div>
+
+            <div class="flex items-center gap-4 text-xs font-mono text-[#93A4B5] mb-3">
+              <span>Leitura: 7 min</span>
+              <span>&bull;</span>
+              <span>Guia OIML D 10</span>
+            </div>
+
+            <h2 class="text-xl font-bold font-heading text-white mb-3 group-hover:text-[#35E0E8] transition-colors">
+              Como Definir Intervalos de Calibração com Base no Documento OIML D 10
+            </h2>
+
+            <p class="text-sm text-[#93A4B5] leading-relaxed mb-6">
+              Os 5 métodos consagrados pela Organização Internacional de Metrologia Legal para rever intervalos: método em escada, cartas de controlo e análise de risco por histórico.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-[#112A45] flex items-center justify-between">
+            <span class="text-xs text-[#93A4B5] font-mono">Artigo Técnico #MP-04</span>
+            <button type="button" class="btn-read-article text-xs font-bold text-[#2F80ED] hover:text-[#35E0E8] inline-flex items-center gap-1" data-article="4">
+              Ler Análise Completa &rarr;
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal do Leitor de Artigo -->
+  <div class="modal" id="article-reader-modal" role="dialog" aria-modal="true" aria-labelledby="article-modal-title">
+    <div class="modal__backdrop"></div>
+    <div class="modal__card max-w-3xl">
+      <button type="button" class="modal__close" aria-label="Fechar Leitor">&times;</button>
+      <div id="article-modal-content" class="text-sm text-[#93A4B5] leading-relaxed space-y-4">
+        <!-- Injetado dinamicamente via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__bottom">
+        <div class="footer__copy">&copy; 2026 MetriPrecision. Artigos técnicos de engenharia metrológica.</div>
+        <div class="footer__legal-links">
+          <a href="/privacidade.html" class="footer__legal-link">Privacidade</a>
+          <a href="/cookies.html" class="footer__legal-link">Cookies</a>
+          <a href="/" class="footer__legal-link">Início</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal de Orçamento -->
+  <div class="modal" id="quote-modal" role="dialog" aria-modal="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__card">
+      <button type="button" class="modal__close">&times;</button>
+      <h3 class="text-2xl font-bold text-white mb-2">Pedido de Orçamento</h3>
+      <form id="quote-form">
+        <div class="form-group">
+          <label class="form-label">Nome *</label>
+          <input type="text" name="name" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Empresa *</label>
+          <input type="text" name="company" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email *</label>
+          <input type="email" name="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Equipamento *</label>
+          <input type="text" name="equipment" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-checkbox">
+            <input type="checkbox" name="consent" required>
+            <span class="form-checkbox-label">Autorizo o processamento de dados.</span>
+          </label>
+        </div>
+        <div id="quote-feedback"></div>
+        <button type="submit" class="btn btn--primary w-full justify-center mt-2">Enviar Pedido</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import '/src/styles/main.css';
+    import { initHeader } from '/src/js/components/header.js';
+    import { initQuoteModal } from '/src/js/components/quoteModal.js';
+    import { initCookieBanner } from '/src/js/components/cookieBanner.js';
+    import { initMagneticButtons } from '/src/js/components/magneticButtons.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initHeader();
+      initQuoteModal();
+      initCookieBanner();
+      initMagneticButtons();
+
+      const articlesData = {
+        '1': {
+          title: 'Incerteza de Medição vs Tolerância de Processo: Como Evitar Decisões Falsas',
+          tag: 'INCERTEZA & GUM (ISO/IEC Guide 98-4)',
+          author: 'Equipa de Engenharia Metrológica MetriPrecision',
+          body: `
+            <p class="text-base text-white font-medium">Na indústria moderna, o resultado de uma medição não é apenas um número: é uma tomada de decisão sobre conformidade ou rejeição.</p>
+            <p>Quando um instrumento indica um valor próximo do limite de tolerância superior (LTS) ou inferior (LTI), a incerteza expandida de medição ($U$) determina a probabilidade de estarmos a aceitar uma peça defeituosa (risco do consumidor) ou a rejeitar uma peça conforme (risco do produtor).</p>
+            <h4 class="text-white font-bold text-base mt-4">1. A Regra de Decisão com Zona de Guarda</h4>
+            <p>De acordo com o referencial ISO/IEC Guide 98-4, a aplicação de uma zona de guarda (guard band $w$) reduz o intervalo de aceitação: $w = r \\cdot U$, onde $r$ é o multiplicador de guarda. Isto assegura que mesmo no pior cenário de deriva metrológica, a peça instalada no cliente final cumpre as especificações nominais.</p>
+            <h4 class="text-white font-bold text-base mt-4">2. Recomendações para os Gestores de Qualidade</h4>
+            <p>Antes de definir a periodicidade de calibração, certifique-se de que a razão de capacidade de medição (TUR - Test Uncertainty Ratio) é de pelo menos 4:1 face à tolerância do seu processo produtivo.</p>
+          `
+        },
+        '2': {
+          title: 'Qualificação Térmica em Autoclaves: O que Exige o Anexo 15 do EudraLex',
+          tag: 'QUALIFICAÇÃO TÉRMICA & GMP',
+          author: 'Especialista em Ensaios Térmicos',
+          body: `
+            <p class="text-base text-white font-medium">A qualificação de autoclaves na indústria farmacêutica e de dispositivos médicos requer uma abordagem multifásica rigorosa.</p>
+            <p>O Anexo 15 das Boas Práticas de Fabrico (GMP) europeias estipula que a qualificação deve demonstrar homogeneidade térmica em todo o volume útil da câmara de esterilização.</p>
+            <h4 class="text-white font-bold text-base mt-4">1. Distribuição em Vazio vs Penetração de Calor com Carga</h4>
+            <p>Não basta qualificar a câmara vazia. É obrigatório executar o mapeamento térmico com a carga máxima e o padrão de empilhamento mais desfavorável (worst-case), inserindo sensores flexíveis de temperatura no interior dos artigos mais densos para confirmar que a temperatura de 121 °C é mantida durante o tempo estipulado.</p>
+            <h4 class="text-white font-bold text-base mt-4">2. Cálculo do Fator de Letalidade F0</h4>
+            <p>O valor $F_0$ acumula matematicamente a letalidade biológica do ciclo: $F_0 = \\Delta t \\cdot \\sum 10^{(T - 121)/z}$, garantindo a inativação fiável de microrganismos e esporos termorresistentes.</p>
+          `
+        },
+        '3': {
+          title: 'Calibração Industrial vs Verificação Metrológica Legal em Portugal',
+          tag: 'LEGISLAÇÃO METROLÓGICA (DL 29/2022)',
+          author: 'Consultoria Regulamentar Metrológica',
+          body: `
+            <p class="text-base text-white font-medium">Existe frequente confusão entre a calibração facultativa no âmbito da ISO 9001 e o controlo metrológico legal estatuído pelo Estado Português.</p>
+            <h4 class="text-white font-bold text-base mt-4">1. Decreto-Lei n.º 29/2022 e Portaria n.º 211/2022</h4>
+            <p>A metrologia legal aplica-se estritamente aos instrumentos de medição utilizados em operações comerciais (ex.: pesagem de produtos pré-embalados, bombas de combustível), proteção do ambiente, segurança e fiscalização rodoviária, ou saúde. Estes instrumentos necessitam de aprovação de modelo e operações de verificação periódica anual realizadas por entidades delegadas pelo IPQ.</p>
+            <h4 class="text-white font-bold text-base mt-4">2. A Calibração Industrial</h4>
+            <p>A calibração industrial aplica-se aos instrumentos de controlo interno fabril (micrómetros, paquímetros, manómetros de processo). Não tem imposição periódica fixa do Estado, sendo a frequência definida pela análise de risco da própria empresa.</p>
+          `
+        },
+        '4': {
+          title: 'Como Definir Intervalos de Calibração com Base no Documento OIML D 10',
+          tag: 'GESTÃO DA QUALIDADE & OIML',
+          author: 'Gabinete Técnico MetriPrecision',
+          body: `
+            <p class="text-base text-white font-medium">Fixar cegamente intervalos de 12 meses para todos os instrumentos é dispendioso e tecnicamente ineficiente.</p>
+            <p>O documento internacional OIML D 10 (Guidelines for the determination of calibration intervals of measuring instruments) propõe metodologias dinâmicas para ajustar prazos com base empírica.</p>
+            <h4 class="text-white font-bold text-base mt-4">1. O Método em Escada (Automatic Adjustment)</h4>
+            <p>Se um instrumento se mantém dentro de 50% do seu Erro Máximo Admissível (EMA) durante 2 calibrações consecutivas, o seu intervalo é estendido (ex.: de 12 para 18 meses). Caso apresente desvio, o intervalo é reduzido imediatamente.</p>
+            <h4 class="text-white font-bold text-base mt-4">2. Cartas de Controlo de Deriva</h4>
+            <p>Ao traçar a evolução do erro em função do tempo, é possível extrapolar com precisão a data em que o instrumento ultrapassará o limite de aceitação, programando a recalibração antes da ocorrência de não conformidades.</p>
+          `
+        }
+      };
+
+      const readerModal = document.querySelector('#article-reader-modal');
+      const readerContent = document.querySelector('#article-modal-content');
+      const closeBtn = readerModal ? readerModal.querySelector('.modal__close') : null;
+      const backdrop = readerModal ? readerModal.querySelector('.modal__backdrop') : null;
+
+      const openReader = (articleId) => {
+        const article = articlesData[articleId];
+        if (!article || !readerContent) return;
+
+        readerContent.innerHTML = `
+          <div class="border-b border-[#112A45] pb-4 mb-4">
+            <span class="text-xs font-mono font-bold text-[#35E0E8]">${article.tag}</span>
+            <h2 id="article-modal-title" class="text-2xl font-bold font-heading text-white mt-1 mb-2">${article.title}</h2>
+            <div class="text-xs text-[#93A4B5] font-mono">${article.author}</div>
+          </div>
+          <div class="space-y-4">
+            ${article.body}
+          </div>
+          <div class="pt-6 border-t border-[#112A45] flex justify-between items-center mt-6">
+            <span class="text-xs text-[#93A4B5]">Dúvidas sobre a aplicação deste conceito na sua empresa?</span>
+            <button type="button" class="btn btn--primary btn-open-quote text-xs py-2 px-4">Pedir Consultoria</button>
+          </div>
+        `;
+
+        readerModal.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+
+        // Re-attach quote buttons inside modal
+        readerContent.querySelectorAll('.btn-open-quote').forEach(b => {
+          b.addEventListener('click', () => {
+            readerModal.classList.remove('is-active');
+            document.querySelector('#quote-modal')?.classList.add('is-active');
+          });
+        });
+      };
+
+      const closeReader = () => {
+        readerModal.classList.remove('is-active');
+        document.body.style.overflow = '';
+      };
+
+      document.querySelectorAll('.btn-read-article').forEach(btn => {
+        btn.addEventListener('click', () => {
+          openReader(btn.dataset.article);
+        });
+      });
+
+      if (closeBtn) closeBtn.addEventListener('click', closeReader);
+      if (backdrop) backdrop.addEventListener('click', closeReader);
+    });
+  </script>
+</body>
+</html>

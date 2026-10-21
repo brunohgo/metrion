@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html lang="pt-PT" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calibração de Instrumentos de Medição — MetriPrecision</title>
+  <meta name="description" content="Serviço de calibração metrológica de instrumentos de medição em Portugal: balanças, manómetros, micrómetros, paquímetros e termómetros segundo a NP EN ISO/IEC 17025.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232F80ED'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5v-3h3v-2h-3v-3h-2v3H8v2h3v3h2z'/%3E%3C/svg%3E">
+    <!-- Preconnect & Asynchronous Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <style>
+    /* Critical FOUC Shield + Skeleton */
+    html, body { background-color: #07111F !important; margin: 0; padding: 0; }
+    .skeleton-loader { position: fixed; inset: 0; z-index: 999999; background: #07111F; display: flex; flex-direction: column; }
+    .skeleton-loader.is-hidden { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+    .skel-header { height: 72px; border-bottom: 1px solid #112A45; display: flex; align-items: center; padding: 0 2rem; gap: 2rem; }
+    .skel-bar { background: linear-gradient(90deg, #112A45 25%, #1a3a5c 50%, #112A45 75%); background-size: 200% 100%; animation: skel-shimmer 1.5s ease-in-out infinite; border-radius: 6px; }
+    .skel-hero { padding: 6rem 2rem 3rem; max-width: 900px; }
+    .skel-content { padding: 2rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; max-width: 1200px; flex: 1; }
+    .skel-col { display: flex; flex-direction: column; gap: 1rem; }
+    @keyframes skel-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    @media (max-width: 768px) { .skel-content { grid-template-columns: 1fr; } .skel-hero { padding: 4rem 1.5rem 2rem; } }
+  </style>
+</head>
+<body class="bg-[#07111F] text-[#F6FAFD] antialiased selection:bg-[#2F80ED] selection:text-white">
+
+  <!-- Skeleton Loader -->
+  <div class="skeleton-loader" id="skeleton-loader" aria-hidden="true">
+    <div class="skel-header">
+      <div class="skel-bar" style="width:140px;height:20px;"></div>
+      <div class="skel-bar" style="width:80px;height:12px;margin-left:auto;"></div>
+      <div class="skel-bar" style="width:60px;height:12px;"></div>
+      <div class="skel-bar" style="width:100px;height:34px;border-radius:20px;"></div>
+    </div>
+    <div class="skel-hero">
+      <div class="skel-bar" style="width:180px;height:14px;margin-bottom:1rem;"></div>
+      <div class="skel-bar" style="width:85%;height:36px;margin-bottom:0.75rem;"></div>
+      <div class="skel-bar" style="width:70%;height:16px;"></div>
+    </div>
+    <div class="skel-content">
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:220px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:60%;height:20px;"></div>
+        <div class="skel-bar" style="width:100%;height:12px;"></div>
+        <div class="skel-bar" style="width:90%;height:12px;"></div>
+        <div class="skel-bar" style="width:95%;height:12px;"></div>
+        <div class="skel-bar" style="width:80%;height:12px;"></div>
+      </div>
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:120px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:70%;height:14px;"></div>
+        <div class="skel-bar" style="width:100%;height:10px;"></div>
+        <div class="skel-bar" style="width:85%;height:10px;"></div>
+      </div>
+    </div>
+  </div>
+    <script>
+    (function(){
+      var s = document.getElementById('skeleton-loader');
+      if(!s) return;
+      function hide(){
+        s.classList.add('is-hidden');
+        setTimeout(function(){ if(s.parentNode) s.remove(); }, 300);
+      }
+      if(document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(hide, 100);
+      } else {
+        document.addEventListener('DOMContentLoaded', function(){ setTimeout(hide, 100); });
+      }
+      setTimeout(hide, 600);
+    })();
+  </script>
+
+  <!-- Header -->
+  <header class="header is-scrolled" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo">METRI<span class="text-[#35E0E8]">PRECISION</span></a>
+      <nav class="header__nav">
+        <a href="/" class="header__nav-link">Início</a>
+        <a href="/sobre.html" class="header__nav-link">Sobre</a>
+        <a href="/servicos/calibracao.html" class="header__nav-link is-active">Calibração</a>
+        <a href="/servicos/manutencao.html" class="header__nav-link">Manutenção</a>
+        <a href="/servicos/qualificacao-termica.html" class="header__nav-link">Qualificação</a>
+        <a href="/servicos/gestao-calibracoes.html" class="header__nav-link">Gestão</a>
+        <a href="/servicos/rastreabilidade.html" class="header__nav-link">Rastreabilidade</a>
+        <a href="/servicos/auditorias.html" class="header__nav-link">Auditorias</a>
+        <a href="/artigos.html" class="header__nav-link">Artigos</a>
+        <a href="/contactos.html" class="header__nav-link">Contactos</a>
+      </nav>
+            <!-- Action & Mobile Toggle Buttons -->
+      <div class="flex items-center gap-4">
+        <button type="button" class="header__cta desktop-only btn-open-quote">Pedir Orçamento</button>
+        <button class="header__mobile-toggle" aria-label="Abrir Menu de Navegação" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="header__mobile-menu" aria-label="Menu Mobile">
+      <a href="/" class="header__mobile-link">Início</a>
+      <a href="/sobre.html" class="header__mobile-link">A Empresa</a>
+      <a href="/servicos/calibracao.html" class="header__mobile-link">Calibração</a>
+      <a href="/servicos/manutencao.html" class="header__mobile-link">Manutenção</a>
+      <a href="/servicos/qualificacao-termica.html" class="header__mobile-link">Qualificação Térmica</a>
+      <a href="/servicos/gestao-calibracoes.html" class="header__mobile-link">Gestão de Calibrações</a>
+      <a href="/servicos/rastreabilidade.html" class="header__mobile-link">Rastreabilidade Metrológica</a>
+      <a href="/servicos/auditorias.html" class="header__mobile-link">Apoio a Auditorias</a>
+      <a href="/artigos.html" class="header__mobile-link">Artigos Técnicos</a>
+      <a href="/contactos.html" class="header__mobile-link">Contactos</a>
+      
+      <div class="pt-6">
+        <button type="button" class="btn btn--primary w-full justify-center btn-open-quote">
+          Solicitar Proposta Metrológica
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Service Hero -->
+  <section class="pt-36 pb-20 bg-gradient-to-b from-[#0C2036]/80 to-[#07111F] border-b border-[#112A45]">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#112A45] text-xs font-mono text-[#35E0E8] mb-4">
+        <span>ENGENHARIA METROLÓGICA</span> &bull; <span>NP EN ISO/IEC 17025</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold font-heading text-white mb-4">
+        Calibração de Instrumentos de Medição
+      </h1>
+      <p class="text-lg text-[#93A4B5] max-w-3xl leading-relaxed">
+        Garantia da exatidão das medições e cálculo da incerteza metrológica associada para assegurar o controlo de qualidade dos produtos e a conformidade do seu sistema de gestão perante auditorias.
+      </p>
+    </div>
+  </section>
+
+  <!-- Corpo do Serviço -->
+  <section class="section section--dark">
+    <div class="section__container">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
+        <!-- Coluna Principal -->
+        <div class="lg:col-span-2 space-y-8">
+          <div class="rounded-2xl overflow-hidden border border-[#2F80ED]/20 shadow-xl mb-8">
+            <img src="/images/calibration-service.jpg" alt="Calibração de manómetros e instrumentos de medição em bancada laboratorial com padrões de referência" class="w-full h-auto object-cover" fetchpriority="high" decoding="async">
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold font-heading text-white mb-4">O que é a Calibração Metrológica?</h2>
+            <div class="text-[#93A4B5] space-y-4 leading-relaxed text-sm md:text-base">
+              <p>
+                A calibração não deve ser confundida com ajuste ou reparação. De acordo com o Vocabulário Internacional de Metrologia (VIM 2.39), a calibração é a operação que estabelece a relação entre os valores indicados pelo seu instrumento e os valores correspondentes materializados por padrões metrológicos de referência rastreáveis.
+              </p>
+              <p>
+                O objetivo primordial é determinar os <strong>erros de indicação</strong> do instrumento e associar a cada ponto ensaiado uma <strong>incerteza expandida de medição</strong> fundamentada na metodologia do GUM (ISO/IEC Guide 98-3). Este conhecimento permite aos responsáveis técnicos decidir se o equipamento permanece dentro das tolerâncias admitidas pelo processo produtivo.
+              </p>
+            </div>
+          </div>
+
+          <!-- Distinção Crítica -->
+          <div class="p-6 rounded-xl bg-[#0C2036]/60 border border-[#2F80ED]/30">
+            <h3 class="text-lg font-bold text-[#35E0E8] mb-2">Distinção Importante: Calibração vs Verificação Legal</h3>
+            <p class="text-xs text-[#93A4B5] leading-relaxed">
+              A <strong>calibração</strong> é um ato metrológico voluntário no âmbito da garantia da qualidade industrial e dos referenciais normativos (como a ISO 9001 ou IATF 16949). Não se confunde com o <strong>controlo metrológico legal</strong> (Decreto-Lei n.º 29/2022), que é obrigatório para instrumentos afetos a transações comerciais, saúde e segurança pública, e cuja verificação compete exclusivamente a organismos qualificados pelo IPQ.
+            </p>
+          </div>
+
+          <!-- Equipamentos Abrangidos -->
+          <div>
+            <h3 class="text-xl font-bold font-heading text-white mb-4">Instrumentos & Grandezas Abrangidas</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+                <h4 class="font-bold text-white text-sm">Dimensional</h4>
+                <p class="text-xs text-[#93A4B5] mt-1">Micrómetros, paquímetros, comparadores de quadrante, medidores de espessura, réguas graduadas e blocos padrão.</p>
+              </div>
+              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+                <h4 class="font-bold text-white text-sm">Pressão</h4>
+                <p class="text-xs text-[#93A4B5] mt-1">Manómetros digitais e analógicos, vacuómetros, transmissores e transdutores de pressão relativa e diferencial.</p>
+              </div>
+              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+                <h4 class="font-bold text-white text-sm">Temperatura & Humidade</h4>
+                <p class="text-xs text-[#93A4B5] mt-1">Termómetros de resistência (PT100), termopares, termómetros de líquido em vidro, termo-higrómetros e dataloggers.</p>
+              </div>
+              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+                <h4 class="font-bold text-white text-sm">Massa & Força</h4>
+                <p class="text-xs text-[#93A4B5] mt-1">Balanças analíticas, balanças de precisão, plataformas industriais, dinamómetros e torquímetros.</p>
+              </div>
+              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+                <h4 class="font-bold text-white text-sm">Grandezas Elétricas</h4>
+                <p class="text-xs text-[#93A4B5] mt-1">Multímetros digitais de bancada e portáteis, pinças amperimétricas, calibradores de processo (mA, mV, Ohms).</p>
+              </div>
+              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+                <h4 class="font-bold text-white text-sm">Tempo & Rotação</h4>
+                <p class="text-xs text-[#93A4B5] mt-1">Cronómetros digitais de precisão, tacómetros óticos e mecânicos e contadores industriais.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Específico -->
+          <div>
+            <h3 class="text-xl font-bold font-heading text-white mb-4">Perguntas Frequentes sobre Calibração</h3>
+            <div class="faq-list">
+              <div class="faq-item">
+                <button class="faq-item__trigger" aria-expanded="false">
+                  <span>Qual a diferença entre erro de indicação e incerteza de medição?</span>
+                  <div class="faq-item__icon" aria-hidden="true"></div>
+                </button>
+                <div class="faq-item__content">
+                  <div class="faq-item__answer">
+                    O <strong>erro de indicação</strong> é a diferença entre a indicação do instrumento e o valor fornecido pelo padrão de referência. A <strong>incerteza de medição</strong> é um parâmetro não negativo que caracteriza a dispersão dos valores que poderiam razoavelmente ser atribuídos à grandeza medida, integrando variabilidade estatística, resolução e incerteza do padrão.
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-item__trigger" aria-expanded="false">
+                  <span>A calibração pode ser efetuada nas nossas instalações (in situ)?</span>
+                  <div class="faq-item__icon" aria-hidden="true"></div>
+                </button>
+                <div class="faq-item__content">
+                  <div class="faq-item__answer">
+                    Sim. Para instrumentos de difícil transporte (balanças industriais, manómetros em linha contínua, autoclaves ou banhos térmicos), a nossa equipa desloca padrões portáteis calibrados para realizar o ensaio diretamente na sua fábrica, garantindo condições ambientais monitorizadas.
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-item__trigger" aria-expanded="false">
+                  <span>O certificado emitido é válido para auditorias ISO 9001 e IATF 16949?</span>
+                  <div class="faq-item__icon" aria-hidden="true"></div>
+                </button>
+                <div class="faq-item__content">
+                  <div class="faq-item__answer">
+                    Sim. O certificado é estruturado com todos os elementos exigidos pelos referenciais de qualidade internacionais: identificação unívoca do equipamento, procedimentos aplicados, condições ambientais, identificação de padrões com respetiva rastreabilidade e incerteza expandida com fator k=2.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar com Ações e Especificações -->
+        <div class="space-y-6">
+          <div class="p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/20">
+            <h3 class="font-bold text-white text-lg mb-2">Solicitar Calibração</h3>
+            <p class="text-xs text-[#93A4B5] mb-4">
+              Indique os instrumentos e o prazo desejado para uma cotação rápida.
+            </p>
+            <button type="button" class="btn btn--primary w-full justify-center btn-open-quote" data-service="calibracao">
+              Pedir Orçamento
+            </button>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#0C2036]/30 border border-[#112A45] space-y-4">
+            <h4 class="font-bold text-white text-sm uppercase tracking-wider">Entregáveis do Ensaio</h4>
+            <ul class="text-xs text-[#93A4B5] space-y-2">
+              <li class="flex items-center gap-2">
+                <span class="text-[#35E0E8]">✓</span> Certificado de Calibração digital
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#35E0E8]">✓</span> Etiqueta metrológica inviolável
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#35E0E8]">✓</span> Tabela de erros de indicação e incerteza (k=2)
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#35E0E8]">✓</span> Evidência de rastreabilidade a padrões primários
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#35E0E8]">✓</span> Inclusão em base de dados de alertas de vencimento
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__bottom">
+        <div class="footer__copy">&copy; 2026 MetriPrecision. Todos os direitos reservados.</div>
+        <div class="footer__legal-links">
+          <a href="/privacidade.html" class="footer__legal-link">Privacidade</a>
+          <a href="/cookies.html" class="footer__legal-link">Cookies</a>
+          <a href="/artigos.html" class="footer__legal-link">Artigos</a>
+          <a href="/" class="footer__legal-link">Início</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

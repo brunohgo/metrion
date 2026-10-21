@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MetriPrecision — Engenharia de Precisão, Calibração e Qualificação Térmica em Portugal</title>
+  <meta name="description" content="Serviços especializados de calibração metrológica, manutenção de instrumentos de medição e qualificação térmica industrial em Portugal. Rigor técnico e conformidade com NP EN ISO/IEC 17025.">
+  <meta name="keywords" content="calibração Portugal, metrologia industrial, qualificação térmica, autoclaves, manómetros, NP EN ISO/IEC 17025, ensaios térmicos, rastreabilidade metrológica">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MetriPrecision — Engenharia de Precisão e Calibração Metrológica">
+  <meta property="og:description" content="Precisão que transforma resultados. Soluções laboratoriais de calibração, manutenção e qualificação térmica para o tecido industrial português.">
+  <meta property="og:image" content="/images/hero-laboratory.jpg">
+  <meta property="og:locale" content="pt_PT">
+  
+  <link rel="canonical" href="https://www.exemplo.invalid/">
+  
+  <!-- Preconnect & Asynchronous Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+
+  <!-- Structured Data JSON-LD (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "MetriPrecision",
+    "description": "Engenharia de precisão, calibração metrológica de instrumentos de medição e qualificação térmica industrial em Portugal.",
+    "url": "https://www.exemplo.invalid/",
+    "logo": "https://www.exemplo.invalid/images/hero-laboratory.jpg",
+    "image": "https://www.exemplo.invalid/images/hero-laboratory.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "PT"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Serviços Metrológicos",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Calibração de Instrumentos de Medição" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manutenção Técnica e Ajuste" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Qualificação Térmica de Equipamentos" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gestão Integral de Calibrações" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rastreabilidade Metrológica VIM" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Apoio Técnico a Auditorias" } }
+      ]
+    }
+  }
+  </script>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232F80ED'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5v-3h3v-2h-3v-3h-2v3H8v2h3v3h2z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <style>
+    /* Critical FOUC and Preloader Shield */
+    html, body {
+      background-color: #07111F !important;
+      color: #F6FAFD;
+      margin: 0;
+      padding: 0;
+      overflow-x: clip;
+    }
+    .preloader {
+      position: fixed;
+      inset: 0;
+      background: #07111F !important;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .preloader__logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #F6FAFD;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+    .preloader__svg-container {
+      width: 120px;
+      height: 120px;
+      max-width: 120px;
+      max-height: 120px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .preloader__svg {
+      width: 120px !important;
+      height: 120px !important;
+      max-width: 120px !important;
+      max-height: 120px !important;
+    }
+    .gauge-ring {
+      fill: none !important;
+      stroke: rgba(47, 128, 237, 0.2) !important;
+      stroke-width: 3.5;
+    }
+    .gauge-progress {
+      fill: none !important;
+      stroke: #35E0E8 !important;
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      stroke-dasharray: 283;
+      stroke-dashoffset: 283;
+    }
+    .gauge-needle {
+      stroke: #35E0E8 !important;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+    }
+    .preloader__progress-bar {
+      width: 200px;
+      height: 2px;
+      background: #112A45;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-[#07111F] text-[#F6FAFD] antialiased selection:bg-[#2F80ED] selection:text-white">
+
+  <!-- ========================================== -->
+  <!-- PRELOADER CINEMATOGRÁFICO                   -->
+  <!-- ========================================== -->
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader__logo">MetriPrecision</div>
+    <div class="preloader__svg-container">
+      <svg class="preloader__svg" width="120" height="120" style="width:120px; height:120px; max-width:120px; max-height:120px;" viewBox="0 0 100 100" aria-label="A carregar instrumento metrológico">
+        <circle class="gauge-ring" cx="50" cy="50" r="45" fill="none" stroke="rgba(47, 128, 237, 0.2)" stroke-width="3.5" />
+        <circle class="gauge-progress" cx="50" cy="50" r="45" fill="none" stroke="#35E0E8" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" transform="rotate(-90 50 50)" />
+        <line class="gauge-needle" x1="50" y1="50" x2="50" y2="18" stroke="#35E0E8" stroke-width="2.5" stroke-linecap="round" />
+        <circle cx="50" cy="50" r="5" fill="#2F80ED" />
+      </svg>
+    </div>
+    <div class="preloader__progress-bar">
+      <div class="preloader__progress-fill"></div>
+    </div>
+    <div class="text-[0.7rem] font-mono text-[#93A4B5] tracking-widest mt-3 preloader__value">0%</div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 01 — HEADER INTELIGENTE                     -->
+  <!-- ========================================== -->
+  <header class="header" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo" aria-label="MetriPrecision Homepage">
+        METRI<span class="text-[#35E0E8]">PRECISION</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="header__nav" aria-label="Navegação Principal">
+        <a href="/" class="header__nav-link is-active">Início</a>
+        <a href="/sobre.html" class="header__nav-link">Sobre</a>
+        
+        <!-- Services Dropdown -->
+        <div class="header__dropdown" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+          <div class="header__dropdown-trigger header__nav-link">
+            <span>Serviços</span>
+            <svg class="header__dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="header__dropdown-menu" role="menu">
+            <a href="/servicos/calibracao.html" class="header__dropdown-item" role="menuitem">
+              <div class="header__dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v19"/><path d="M5 8l7-5 7 5"/><path d="M3 13l2-5h0l2 5a3 3 0 0 1-4 0z"/><path d="M17 13l2-5h0l2 5a3 3 0 0 1-4 0z"/><line x1="8" y1="21" x2="16" y2="21"/></svg></div>
+              <div>
+                <div class="font-semibold text-white">Calibração de Instrumentos</div>
+                <div class="text-xs text-[#93A4B5]">NP EN ISO/IEC 17025</div>
+              </div>
+            </a>
+            <a href="/servicos/manutencao.html" class="header__dropdown-item" role="menuitem">
+              <div class="header__dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+              <div>
+                <div class="font-semibold text-white">Manutenção Técnica</div>
+                <div class="text-xs text-[#93A4B5]">Preventiva e Corretiva</div>
+              </div>
+            </a>
+            <a href="/servicos/qualificacao-termica.html" class="header__dropdown-item" role="menuitem">
+              <div class="header__dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg></div>
+              <div>
+                <div class="font-semibold text-white">Qualificação Térmica</div>
+                <div class="text-xs text-[#93A4B5]">Mapeamento & Autoclaves</div>
+              </div>
+            </a>
+            <a href="/servicos/gestao-calibracoes.html" class="header__dropdown-item" role="menuitem">
+              <div class="header__dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+              <div>
+                <div class="font-semibold text-white">Gestão de Calibrações</div>
+                <div class="text-xs text-[#93A4B5]">Plano & Histórico Digital</div>
+              </div>
+            </a>
+            <a href="/servicos/rastreabilidade.html" class="header__dropdown-item" role="menuitem">
+              <div class="header__dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+              <div>
+                <div class="font-semibold text-white">Rastreabilidade Metrológica</div>
+                <div class="text-xs text-[#93A4B5]">Cadeia de Padrões VIM</div>
+              </div>
+            </a>
+            <a href="/servicos/auditorias.html" class="header__dropdown-item" role="menuitem">
+              <div class="header__dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="15" y2="16"/></svg></div>
+              <div>
+                <div class="font-semibold text-white">Apoio a Auditorias</div>
+                <div class="text-xs text-[#93A4B5]">Conformidade Documental</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="#normas" class="header__nav-link">Normas</a>
+        <a href="#equipamentos" class="header__nav-link">Equipamentos</a>
+        <a href="/artigos.html" class="header__nav-link">Artigos</a>
+        <a href="#faq" class="header__nav-link">FAQ</a>
+        <a href="/contactos.html" class="header__nav-link">Contactos</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-4">
+        <button type="button" class="header__cta desktop-only btn-open-quote" aria-label="Solicitar Orçamento">
+          Pedir Orçamento
+        </button>
+
+        <!-- Mobile Toggle Button -->
+        <button class="header__mobile-toggle" aria-label="Abrir Menu de Navegação" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="header__mobile-menu" aria-label="Menu Mobile">
+      <a href="/" class="header__mobile-link">Início</a>
+      <a href="/sobre.html" class="header__mobile-link">A Empresa</a>
+      <a href="/servicos/calibracao.html" class="header__mobile-link">Calibração</a>
+      <a href="/servicos/manutencao.html" class="header__mobile-link">Manutenção</a>
+      <a href="/servicos/qualificacao-termica.html" class="header__mobile-link">Qualificação Térmica</a>
+      <a href="/servicos/gestao-calibracoes.html" class="header__mobile-link">Gestão de Calibrações</a>
+      <a href="/servicos/rastreabilidade.html" class="header__mobile-link">Rastreabilidade Metrológica</a>
+      <a href="/servicos/auditorias.html" class="header__mobile-link">Apoio a Auditorias</a>
+      <a href="/artigos.html" class="header__mobile-link">Artigos Técnicos</a>
+      <a href="/contactos.html" class="header__mobile-link">Contactos</a>
+      
+      <div class="pt-6">
+        <button type="button" class="btn btn--primary w-full justify-center btn-open-quote">
+          Solicitar Proposta Metrológica
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- 02 — HERO CINEMATOGRÁFICA                   -->
+  <!-- ========================================== -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__bg">
+      <img src="/images/hero-laboratory.jpg" alt="Laboratório de metrologia avançada e calibração de instrumentos de precisão" class="hero__bg-image" width="1920" height="1080" fetchpriority="high" decoding="async">
+      <div class="hero__bg-overlay"></div>
+      <div class="hero__bg-gradient"></div>
+    </div>
+
+    <div class="hero__glow hero__glow--blue"></div>
+    <div class="hero__glow hero__glow--cyan"></div>
+
+    <!-- Technical SVG Grid Lines -->
+    <div class="hero__grid-lines">
+      <div class="hero__grid-line hero__grid-line--v" style="left: 15%;"></div>
+      <div class="hero__grid-line hero__grid-line--v" style="left: 50%;"></div>
+      <div class="hero__grid-line hero__grid-line--v" style="left: 85%;"></div>
+      <div class="hero__grid-line hero__grid-line--h" style="top: 25%;"></div>
+      <div class="hero__grid-line hero__grid-line--h" style="top: 75%;"></div>
+    </div>
+
+    <!-- Luminous Laser Sweep Line -->
+    <div class="hero__luminous-line"></div>
+
+    <div class="hero__content">
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        <span>Metrologia Industrial & Qualificação Térmica</span>
+      </div>
+
+      <h1 id="hero-title" class="hero__title">
+        <span class="hero__title-line">PRECISÃO QUE</span>
+        <span class="hero__title-line hero__title-highlight">TRANSFORMA RESULTADOS.</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Soluções especializadas em calibração, metrologia e qualificação térmica para organizações em Portugal que exigem rigor científico, fiabilidade dos dados e controlo absoluto dos seus processos críticos.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#servicos" class="btn btn--primary">
+          <span>Explorar Serviços</span>
+          <svg class="btn--icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <button type="button" class="btn btn--secondary btn-open-quote">
+          <span>Solicitar Orçamento</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Micron Measurement Readout & Interactive Dial Comparator -->
+    <div class="hero__measurements" aria-label="Indicadores Metrológicos em Tempo Real">
+      <!-- Interactive Comparator Dial Gauge Canvas -->
+      <div class="hero__measurement glass p-3.5 rounded-xl border border-cyan-400/30 flex flex-col items-center">
+        <div class="text-[0.68rem] font-mono text-[#35E0E8] tracking-widest uppercase mb-1 flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#35E0E8] animate-ping"></span>
+          Comparador Analógico Ativo
+        </div>
+        <div class="w-36 h-36 relative">
+          <canvas id="hero-gauge-canvas" class="w-full h-full cursor-crosshair" aria-label="Relógio Comparador de Precisão Interativo"></canvas>
+        </div>
+        <div class="text-[0.6rem] text-[#93A4B5] font-mono mt-1">Interação dinâmica por ponteiro</div>
+      </div>
+
+      <div class="hero__measurement glass p-4 rounded-xl border border-cyan-400/20">
+        <div class="hero__measurement-unit mb-1">Leitura Micrométrica Ativa</div>
+        <div class="hero__measurement-value font-mono">
+          <span id="live-micrometer-val">38.2540</span> <span class="text-xs text-white">mm</span>
+        </div>
+        <div class="text-[0.65rem] text-[#93A4B5] mt-1 font-mono">U = ± 0.0012 mm (k=2)</div>
+      </div>
+
+      <div class="hero__measurement glass p-4 rounded-xl border border-blue-500/20">
+        <div class="hero__measurement-unit mb-1">Estabilidade Térmica Laboratório</div>
+        <div class="text-xl font-bold font-mono text-[#35E0E8]">20.04 °C</div>
+        <div class="text-[0.65rem] text-[#93A4B5] mt-1 font-mono">UR: 48.2% ± 3%</div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="hero__scroll-indicator" aria-hidden="true">
+      <div class="hero__scroll-mouse">
+        <div class="hero__scroll-wheel"></div>
+      </div>
+      <span class="hero__scroll-text">Deslizar</span>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 03 — INTRODUÇÃO INSTITUCIONAL              -->
+  <!-- ========================================== -->
+  <section class="section section--darker" id="institucional">
+    <div class="section__container">
+      <div class="intro-split">
+        <div class="reveal-left">
+          <span class="section__label">A Arte da Exatidão</span>
+          <h2 class="section__title">Engenharia Metrológica Orientada ao Tecido Industrial</h2>
+          <div class="intro-split__text">
+            <p>
+              Em setores regulados e processos produtivos de elevada exigência, a incerteza de medição não pode ser uma variável descontrolada. Cada desvio não identificado acarreta custos operacionais, risco de não conformidade e potenciais perdas de lote.
+            </p>
+            <p>
+              A nossa abordagem assenta na convergência entre o rigor da metodologia científica, referenciada aos princípios do <strong>Vocabulário Internacional de Metrologia (VIM)</strong> e da norma <strong>NP EN ISO/IEC 17025</strong>, e a agilidade necessária para manter os seus instrumentos operacionais com paragens mínimas.
+            </p>
+            <p>
+              Garantimos rastreabilidade metrológica documentada através de padrões calibrados por laboratórios nacionais e internacionais competentes, proporcionando às equipas de qualidade a tranquilidade técnica necessária perante auditorias de certificação e inspeções regulamentares.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-[#112A45] mt-6">
+            <div>
+              <div class="text-2xl font-bold font-mono text-[#35E0E8]" data-counter="17025" data-prefix="ISO ">ISO 17025</div>
+              <div class="text-xs text-[#93A4B5] mt-1">Referencial Técnico</div>
+            </div>
+            <div>
+              <div class="text-2xl font-bold font-mono text-[#2F80ED]" data-counter="100" data-suffix="%">100%</div>
+              <div class="text-xs text-[#93A4B5] mt-1">Rastreabilidade Ininterrupta</div>
+            </div>
+            <div>
+              <div class="text-2xl font-bold font-mono text-white" data-counter="2" data-prefix="k = " data-decimals="0">k = 2</div>
+              <div class="text-xs text-[#93A4B5] mt-1">Fator de Abrangência (95.45%)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="intro-split__image reveal-right">
+          <img src="/images/about-laboratory.jpg" alt="Instalações laboratoriais modernas e bancadas de ensaio metrológico" loading="lazy" decoding="async" width="800" height="600">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 04 — SERVIÇOS EM BENTO GRID                 -->
+  <!-- ========================================== -->
+  <section class="section section--dark" id="servicos">
+    <div class="section__container">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="section__label">Áreas de Especialização</span>
+        <h2 class="section__title">Serviços Metrológicos Integrados</h2>
+        <p class="section__description mx-auto">
+          Capacidade técnica multidisciplinar para cobrir as principais grandezas físicas industriais, desde o ensaio térmico até à gestão integral do parque instrumental.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- 01: Calibração (Featured 2x2) -->
+        <a href="/servicos/calibracao.html" class="service-card service-card--featured group">
+          <img src="/images/calibration-service.jpg" alt="Calibração de manómetros e instrumentos de pressão em bancada laboratorial" class="service-card__image group-hover:scale-[1.02] transition-transform duration-500" loading="lazy" decoding="async">
+          <div class="service-card__top">
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M6 8l6-5 6 5M6 16l6 5 6-5"/></svg>
+            </div>
+            <span class="service-card__number">01</span>
+          </div>
+          <h3 class="service-card__title text-2xl">Calibração de Instrumentos de Medição</h3>
+          <p class="service-card__description">
+            Determinação exata dos erros de indicação e cálculo rigoroso da incerteza expandida para instrumentos dimensionais, pressão, massa, temperatura e grandeza elétrica. Emissão de certificados pormenorizados com avaliação de conformidade face às tolerâncias do seu processo.
+          </p>
+          <div class="flex flex-wrap gap-2 my-4">
+            <span class="text-[0.7rem] px-2.5 py-1 rounded-full bg-[#112A45] text-[#35E0E8]">Balanças & Pesos</span>
+            <span class="text-[0.7rem] px-2.5 py-1 rounded-full bg-[#112A45] text-[#35E0E8]">Manómetros & Transmissores</span>
+            <span class="text-[0.7rem] px-2.5 py-1 rounded-full bg-[#112A45] text-[#35E0E8]">Micrómetros & Paquímetros</span>
+            <span class="text-[0.7rem] px-2.5 py-1 rounded-full bg-[#112A45] text-[#35E0E8]">Termómetros & PT100</span>
+          </div>
+          <span class="service-card__link">
+            Saber mais sobre calibração
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </span>
+        </a>
+
+        <!-- 02: Manutenção de Instrumentos -->
+        <a href="/servicos/manutencao.html" class="service-card group">
+          <div class="service-card__top">
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <span class="service-card__number">02</span>
+          </div>
+          <h3 class="service-card__title">Manutenção & Ajuste Metrológico</h3>
+          <p class="service-card__description">
+            Diagnóstico antecipado, manutenção preventiva, limpeza por ultrassons, substituição de vedantes e calibração de confirmação após ajuste mecânico ou eletrónico.
+          </p>
+          <span class="service-card__link">
+            Consultar manutenção
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </span>
+        </a>
+
+        <!-- 03: Qualificação Térmica -->
+        <a href="/servicos/qualificacao-termica.html" class="service-card group">
+          <div class="service-card__top">
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+            </div>
+            <span class="service-card__number">03</span>
+          </div>
+          <h3 class="service-card__title">Qualificação Térmica</h3>
+          <p class="service-card__description">
+            Mapeamento tridimensional de uniformidade e estabilidade térmica em autoclaves, câmaras frigoríficas, estufas e incubadoras segundo diretrizes GMP / EudraLex Anexo 15.
+          </p>
+          <span class="service-card__link">
+            Ver ensaios térmicos
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </span>
+        </a>
+
+        <!-- 04: Gestão de Calibrações -->
+        <a href="/servicos/gestao-calibracoes.html" class="service-card group">
+          <div class="service-card__top">
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            </div>
+            <span class="service-card__number">04</span>
+          </div>
+          <h3 class="service-card__title">Gestão do Parque Instrumental</h3>
+          <p class="service-card__description">
+            Inventariação, planeamento automatizado de recalibrações, gestão do ciclo de vida e histórico digital de certificados para prevenir instrumentos caducados em linha.
+          </p>
+          <span class="service-card__link">
+            Explorar gestão
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </span>
+        </a>
+
+        <!-- 05: Rastreabilidade Metrológica -->
+        <a href="/servicos/rastreabilidade.html" class="service-card group">
+          <div class="service-card__top">
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            </div>
+            <span class="service-card__number">05</span>
+          </div>
+          <h3 class="service-card__title">Rastreabilidade Metrológica</h3>
+          <p class="service-card__description">
+            Garantia da cadeia ininterrupta de calibrações referenciada a padrões primários (IPQ, BIPM, NIST), assegurando a legitimidade internacional de qualquer valor medido.
+          </p>
+          <span class="service-card__link">
+            Conhecer a cadeia
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </span>
+        </a>
+
+        <!-- 06: Apoio a Auditorias -->
+        <a href="/servicos/auditorias.html" class="service-card group">
+          <div class="service-card__top">
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            </div>
+            <span class="service-card__number">06</span>
+          </div>
+          <h3 class="service-card__title">Apoio Técnico a Auditorias</h3>
+          <p class="service-card__description">
+            Preparação do dossier metrológico, validação da conformidade de certificados, análise de lacunas (gap analysis) e suporte na justificação técnica de incertezas.
+          </p>
+          <span class="service-card__link">
+            Ver apoio técnico
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 05 — STORYTELLING DE ENGENHARIA             -->
+  <!-- ========================================== -->
+  <section class="section section--darker storytelling" id="storytelling">
+    <div class="storytelling__container">
+      <!-- Fixed Interactive Technical Blueprint Display -->
+      <div class="storytelling__visual">
+        <div class="storytelling__visual-card">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span id="storytelling-step-badge" class="text-xs font-mono font-bold text-[#35E0E8] tracking-wider">ETAPA 01 / 05</span>
+              <span id="storytelling-step-status" class="text-[0.65rem] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-[#2F80ED] border border-blue-500/30">RECEÇÃO E REGISTO</span>
+            </div>
+            <h3 id="storytelling-step-name" class="text-xl font-bold font-heading text-white mb-2">Triagem & Diagnóstico Inicial</h3>
+            <p id="storytelling-step-spec" class="text-sm text-[#93A4B5] leading-relaxed">
+              Inspeção visual, integridade mecânica e verificação de desvio preliminar para definir o plano de ensaio ótimo.
+            </p>
+          </div>
+
+          <!-- Dynamic SVG dial gauge -->
+          <div class="my-6 flex items-center justify-center">
+            <svg class="w-36 h-36" viewBox="0 0 100 100" aria-hidden="true">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="#112A45" stroke-width="4" />
+              <circle id="storytelling-gauge-path" cx="50" cy="50" r="42" fill="none" stroke="#2F80ED" stroke-width="4" stroke-dasharray="264" stroke-dashoffset="200" stroke-linecap="round" transform="rotate(-90 50 50)" />
+              <text x="50" y="47" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#35E0E8">METRI</text>
+              <text x="50" y="60" text-anchor="middle" font-family="monospace" font-size="8" fill="#93A4B5">NP EN 17025</text>
+            </svg>
+          </div>
+
+          <div class="flex justify-between items-center text-xs font-mono text-[#93A4B5] pt-4 border-t border-[#112A45]">
+            <span>Incerteza Tipo A + B</span>
+            <span class="text-[#35E0E8]">Rigor Científico</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scrolling Narrative Steps -->
+      <div class="storytelling__steps">
+        <!-- Step 1 -->
+        <div class="storytelling__step is-active">
+          <div class="storytelling__step-number">01</div>
+          <h3 class="storytelling__step-title">Diagnóstico & Triagem do Instrumento</h3>
+          <p class="storytelling__step-text">
+            Ao dar entrada nas instalações, cada equipamento é registado no sistema de rastreabilidade único, inspecionado visualmente e testado funcionalmente quanto à repetibilidade dos seus componentes móveis e estabilidade elétrica.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="storytelling__step">
+          <div class="storytelling__step-number">02</div>
+          <h3 class="storytelling__step-title">Calibração em Condições Laboratoriais Estritas</h3>
+          <p class="storytelling__step-text">
+            O ensaio decorre sob ambiente de atmosfera controlada (20 °C ± 1 °C, 45% a 60% UR). Os instrumentos de referência com calibração primária válida realizam a comparação ponto a ponto de acordo com as especificações do fabricante e os procedimentos normalizados.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="storytelling__step">
+          <div class="storytelling__step-number">03</div>
+          <h3 class="storytelling__step-title">Determinação da Incerteza segundo o GUM</h3>
+          <p class="storytelling__step-text">
+            Os dados brutos são processados através de formulações estatísticas rigorosas (ISO/IEC Guide 98-3), ponderando efeitos de repetibilidade, resolução, dilatação térmica e incerteza herdada do padrão, gerando a incerteza expandida com fator de abrangência k = 2.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="storytelling__step">
+          <div class="storytelling__step-number">04</div>
+          <h3 class="storytelling__step-title">Emissão de Certificado Metrológico Conforme</h3>
+          <p class="storytelling__step-text">
+            Produz-se o Certificado de Calibração digitalmente assinado, acompanhado da respetiva etiqueta de calibração inviolável e do mapa de desvios, explicitando as tolerâncias admitidas pelo processo do cliente.
+          </p>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="storytelling__step">
+          <div class="storytelling__step-number">05</div>
+          <h3 class="storytelling__step-title">Acompanhamento do Ciclo de Recalibração</h3>
+          <p class="storytelling__step-text">
+            O histórico metrológico do instrumento é arquivado e programado para aviso antecipado de vencimento. As organizações mantêm a garantia de conformidade contínua antes de auditorias internas ou externas de organismos de certificação.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 06 — EQUIPAMENTOS E GRANDEZAS               -->
+  <!-- ========================================== -->
+  <section class="section section--dark equipment-explorer" id="equipamentos">
+    <div class="section__container">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="section__label">Parque Instrumental</span>
+          <h2 class="section__title">Grandezas & Instrumentos Abrangidos</h2>
+          <p class="section__description mb-0">
+            Filtre por grandeza para consultar a gama típica e as normas aplicáveis à sua aparelhagem de medição.
+          </p>
+        </div>
+        <div id="equipment-count" class="text-sm font-mono text-[#35E0E8] mt-4 md:mt-0">
+          8 instrumentos listados
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="equipment-tabs" role="tablist" aria-label="Filtro de Grandezas Físicas">
+        <button class="equipment-tab is-active" data-filter="all" role="tab" aria-selected="true">Todas as Grandezas</button>
+        <button class="equipment-tab" data-filter="dimensional" role="tab" aria-selected="false">Dimensional</button>
+        <button class="equipment-tab" data-filter="pressao" role="tab" aria-selected="false">Pressão</button>
+        <button class="equipment-tab" data-filter="temperatura" role="tab" aria-selected="false">Temperatura & Humidade</button>
+        <button class="equipment-tab" data-filter="massa" role="tab" aria-selected="false">Massa & Força</button>
+        <button class="equipment-tab" data-filter="eletrica" role="tab" aria-selected="false">Grandeza Elétrica</button>
+      </div>
+
+      <!-- Equipment Cards Grid -->
+      <div class="equipment-grid">
+        <!-- Dimensional 1 -->
+        <div class="equipment-card" data-category="dimensional">
+          <span class="equipment-card__badge">Dimensional</span>
+          <h4 class="equipment-card__title">Micrómetros Exteriores & Digitais</h4>
+          <p class="equipment-card__desc">Verificação de planicidade e paralelismo dos topos, determinação do erro de indicação com blocos padrão de classe 0 ou 1.</p>
+          <div class="equipment-card__meta">
+            <span>Gama: 0 a 300 mm</span>
+            <span class="text-[#35E0E8] font-mono">U: 0.001 mm</span>
+          </div>
+        </div>
+
+        <!-- Dimensional 2 -->
+        <div class="equipment-card" data-category="dimensional">
+          <span class="equipment-card__badge">Dimensional</span>
+          <h4 class="equipment-card__title">Paquímetros Analógicos & Digitais</h4>
+          <p class="equipment-card__desc">Calibração de bocas de exteriores, orelhas de interiores e haste de profundidade segundo normas dimensionais de referência.</p>
+          <div class="equipment-card__meta">
+            <span>Gama: 0 a 1000 mm</span>
+            <span class="text-[#35E0E8] font-mono">U: 0.02 mm</span>
+          </div>
+        </div>
+
+        <!-- Pressao 1 -->
+        <div class="equipment-card" data-category="pressao">
+          <span class="equipment-card__badge">Pressão</span>
+          <h4 class="equipment-card__title">Manómetros Industriais & Padrão</h4>
+          <p class="equipment-card__desc">Ensaios comparativos hidráulicos ou pneumáticos em ciclos de carga e descarga para determinação de histerese e repetibilidade.</p>
+          <div class="equipment-card__meta">
+            <span>Gama: -1 a 700 bar</span>
+            <span class="text-[#35E0E8] font-mono">U: 0.05% FS</span>
+          </div>
+        </div>
+
+        <!-- Pressao 2 -->
+        <div class="equipment-card" data-category="pressao">
+          <span class="equipment-card__badge">Pressão</span>
+          <h4 class="equipment-card__title">Transmissores de Pressão 4-20 mA</h4>
+          <p class="equipment-card__desc">Calibração conjugada de pressão e sinal elétrico de saída com calibrador de processo multiparamétrico.</p>
+          <div class="equipment-card__meta">
+            <span>Gama: Vácuo a 400 bar</span>
+            <span class="text-[#35E0E8] font-mono">Sinal: 4-20 mA</span>
+          </div>
+        </div>
+
+        <!-- Temperatura 1 -->
+        <div class="equipment-card" data-category="temperatura">
+          <span class="equipment-card__badge">Temperatura</span>
+          <h4 class="equipment-card__title">Termómetros Digitais & Sondas PT100</h4>
+          <p class="equipment-card__desc">Imersão em banhos termostáticos de elevada homogeneidade ou poço seco com termómetro de resistência de platina padrão.</p>
+          <div class="equipment-card__meta">
+            <span>Gama: -40 °C a +400 °C</span>
+            <span class="text-[#35E0E8] font-mono">U: 0.08 °C</span>
+          </div>
+        </div>
+
+        <!-- Temperatura 2 -->
+        <div class="equipment-card" data-category="temperatura">
+          <span class="equipment-card__badge">Humidade</span>
+          <h4 class="equipment-card__title">Termohigrómetros Ambientais</h4>
+          <p class="equipment-card__desc">Calibração simultânea de temperatura e humidade relativa em câmara de geração climática monitorizada.</p>
+          <div class="equipment-card__meta">
+            <span>Gama: 10% a 95% UR</span>
+            <span class="text-[#35E0E8] font-mono">U: 1.5% UR</span>
+          </div>
+        </div>
+
+        <!-- Massa 1 -->
+        <div class="equipment-card" data-category="massa">
+          <span class="equipment-card__badge">Massa & Balanças</span>
+          <h4 class="equipment-card__title">Balanças Analíticas & de Precisão</h4>
+          <p class="equipment-card__desc">Ensaios in situ de repetibilidade, excentricidade de carga e erro de indicação utilizando massas padrão OIML classe E2 e F1.</p>
+          <div class="equipment-card__meta">
+            <span>Gama: 0.0001 g a 60 kg</span>
+            <span class="text-[#35E0E8] font-mono">OIML R 76</span>
+          </div>
+        </div>
+
+        <!-- Eletrica 1 -->
+        <div class="equipment-card" data-category="eletrica">
+          <span class="equipment-card__badge">Elétrica</span>
+          <h4 class="equipment-card__title">Multímetros Digitais (3½ a 6½ dígitos)</h4>
+          <p class="equipment-card__desc">Verificação de grandezas de tensão contínua/alternada (VDC/VAC), corrente (IDC/IAC) e resistência elétrica (Ohms).</p>
+          <div class="equipment-card__meta">
+            <span>Tensão até 1000 V</span>
+            <span class="text-[#35E0E8] font-mono">Corrente até 20 A</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 07 — SETORES DE ATIVIDADE                   -->
+  <!-- ========================================== -->
+  <section class="section section--darker" id="setores">
+    <div class="section__container">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="section__label">Aplicações Típicas</span>
+        <h2 class="section__title">Setores com Elevado Requisito de Controlo</h2>
+        <p class="section__description mx-auto">
+          A calibração e a qualificação térmica são exigências transversais. Apresentamos os principais contextos regulatórios setoriais exemplificativos.
+        </p>
+      </div>
+
+      <div class="sectors-grid">
+        <!-- 01: Metalomecânica -->
+        <div class="sector-card">
+          <div class="sector-card__image-wrap">
+            <img src="/images/sector-metalworking.jpg" alt="Indústria Metalomecânica e maquinagem de precisão" class="sector-card__image" loading="lazy" width="800" height="500">
+            <div class="sector-card__image-overlay"></div>
+            <span class="sector-card__badge">Indústria & Manufatura</span>
+          </div>
+          <div class="sector-card__body">
+            <h4 class="sector-card__title">Indústria Metalomecânica & Manufatura</h4>
+            <p class="sector-card__text">Controlo dimensional e calibração de torquímetros, manómetros e transdutores para garantia de tolerâncias mecânicas rigorosas em linhas de produção.</p>
+          </div>
+        </div>
+
+        <!-- 02: Farmacêutico -->
+        <div class="sector-card">
+          <div class="sector-card__image-wrap">
+            <img src="/images/sector-pharmaceutical.jpg" alt="Indústria Farmacêutica e fabrico de dispositivos médicos" class="sector-card__image" loading="lazy" width="800" height="500">
+            <div class="sector-card__image-overlay"></div>
+            <span class="sector-card__badge">Setor Farmacêutico</span>
+          </div>
+          <div class="sector-card__body">
+            <h4 class="sector-card__title">Farmacêutico & Dispositivos Médicos</h4>
+            <p class="sector-card__text">Qualificação térmica de autoclaves e validação de câmaras climáticas em estrita conformidade com as Boas Práticas de Fabrico (GMP EudraLex Anexo 15).</p>
+          </div>
+        </div>
+
+        <!-- 03: Saúde & Hospitalar -->
+        <div class="sector-card">
+          <div class="sector-card__image-wrap">
+            <img src="/images/sector-hospital.jpg" alt="Equipamento hospitalar e ambiente clínico de saúde" class="sector-card__image" loading="lazy" width="800" height="500">
+            <div class="sector-card__image-overlay"></div>
+            <span class="sector-card__badge">Saúde & Clínico</span>
+          </div>
+          <div class="sector-card__body">
+            <h4 class="sector-card__title">Saúde & Ambiente Hospitalar</h4>
+            <p class="sector-card__text">Garantia metrológica de equipamentos de esterilização e conservação de medicamentos termolábeis, vacinas e hemocomponentes.</p>
+          </div>
+        </div>
+
+        <!-- 04: Agroalimentar -->
+        <div class="sector-card">
+          <div class="sector-card__image-wrap">
+            <img src="/images/sector-food-coldchain.jpg" alt="Armazenamento refrigerado e cadeia de frio agroalimentar" class="sector-card__image" loading="lazy" width="800" height="500">
+            <div class="sector-card__image-overlay"></div>
+            <span class="sector-card__badge">Cadeia de Frio</span>
+          </div>
+          <div class="sector-card__body">
+            <h4 class="sector-card__title">Agroalimentar & Cadeia de Frio</h4>
+            <p class="sector-card__text">Monitorização e calibração de sondas de temperatura e túneis de congelamento para cumprimento dos referenciais HACCP, IFS e BRCGS.</p>
+          </div>
+        </div>
+
+        <!-- 05: Laboratórios R&D -->
+        <div class="sector-card">
+          <div class="sector-card__image-wrap">
+            <img src="/images/sector-laboratory.jpg" alt="Laboratório de ensaios analíticos e investigação" class="sector-card__image" loading="lazy" width="800" height="500">
+            <div class="sector-card__image-overlay"></div>
+            <span class="sector-card__badge">Laboratorial & I&D</span>
+          </div>
+          <div class="sector-card__body">
+            <h4 class="sector-card__title">Laboratórios de Ensaio e R&D</h4>
+            <p class="sector-card__text">Calibração de balanças analíticas e sistemas de medição para centros de ensaio e investigação em conformidade com NP EN ISO/IEC 17025.</p>
+          </div>
+        </div>
+
+        <!-- 06: Logística & Armazenamento -->
+        <div class="sector-card">
+          <div class="sector-card__image-wrap">
+            <img src="/images/sector-logistics.jpg" alt="Armazém logístico moderno com controlo de condições ambientais" class="sector-card__image" loading="lazy" width="800" height="500">
+            <div class="sector-card__image-overlay"></div>
+            <span class="sector-card__badge">Logística & GDP</span>
+          </div>
+          <div class="sector-card__body">
+            <h4 class="sector-card__title">Logística & Armazenamento</h4>
+            <p class="sector-card__text">Mapeamento térmico de armazéns e frotas de distribuição de acordo com as Diretrizes Europeias de Boas Práticas de Distribuição (GDP).</p>
+          </div>
+        </div>
+      </div>
+      
+      <p class="text-center text-xs text-[#6B7B8D] mt-8">
+        * Os setores acima identificados representam domínios de aplicação técnica e âmbitos regulamentares de referência, não constituindo lista de clientes contratados.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 08 — QUALIDADE E NORMAS EM PORTUGAL         -->
+  <!-- ========================================== -->
+  <section class="section section--dark" id="normas">
+    <div class="section__container">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="section__label">Enquadramento Regulamentar</span>
+        <h2 class="section__title">Normas, Metrologia & Conformidade</h2>
+        <p class="section__description mx-auto">
+          Distinga claramente entre acreditação laboratorial, certificação da qualidade e controlo metrológico legal. Disponibilizamos as ligações oficiais para consulta pública.
+        </p>
+      </div>
+
+      <div class="standards-grid">
+        <!-- 1: ISO 17025 -->
+        <div class="standard-card">
+          <div class="standard-card__code">Referencial Metrológico</div>
+          <h4 class="standard-card__title">NP EN ISO/IEC 17025</h4>
+          <p class="standard-card__text">
+            Requisitos gerais de competência para laboratórios de ensaio e calibração. É a norma internacional que valida a capacidade técnica de produzir resultados e incertezas tecnicamente válidos.
+          </p>
+          <a href="https://www.iso.org/standard/66912.html" target="_blank" rel="noopener noreferrer" class="standard-card__link">
+            Consultar norma ISO &rarr;
+          </a>
+        </div>
+
+        <!-- 2: DL 29/2022 -->
+        <div class="standard-card">
+          <div class="standard-card__code">Legislação Portuguesa</div>
+          <h4 class="standard-card__title">Decreto-Lei n.º 29/2022, de 7 de abril</h4>
+          <p class="standard-card__text">
+            Estabelece o regime geral do controlo metrológico legal de instrumentos de medição em Portugal, distinguindo a verificação legal da calibração industrial facultativa.
+          </p>
+          <a href="https://diariodarepublica.pt/dr/detalhe/decreto-lei/29-2022-181984283" target="_blank" rel="noopener noreferrer" class="standard-card__link">
+            Diário da República &rarr;
+          </a>
+        </div>
+
+        <!-- 3: Portaria 211/2022 -->
+        <div class="standard-card">
+          <div class="standard-card__code">Regulamento Nacional</div>
+          <h4 class="standard-card__title">Portaria n.º 211/2022, de 23 de agosto</h4>
+          <p class="standard-card__text">
+            Aprova o regulamento geral do controlo metrológico legal, definindo as condições aplicáveis à aprovação de modelo, primeira verificação e verificação periódica.
+          </p>
+          <a href="https://diariodarepublica.pt/dr/detalhe/portaria/211-2022-188497607" target="_blank" rel="noopener noreferrer" class="standard-card__link">
+            Diário da República &rarr;
+          </a>
+        </div>
+
+        <!-- 4: Regulamento CE 765/2008 -->
+        <div class="standard-card">
+          <div class="standard-card__code">Direito Europeu</div>
+          <h4 class="standard-card__title">Regulamento (CE) n.º 765/2008</h4>
+          <p class="standard-card__text">
+            Enquadramento europeu da acreditação e fiscalização do mercado. Estabelece o princípio de um único organismo nacional de acreditação por Estado-Membro (IPAC em Portugal).
+          </p>
+          <a href="https://eur-lex.europa.eu/legal-content/PT/TXT/?uri=celex%3A32008R0765" target="_blank" rel="noopener noreferrer" class="standard-card__link">
+            EUR-Lex Oficial &rarr;
+          </a>
+        </div>
+
+        <!-- 5: EudraLex Anexo 15 -->
+        <div class="standard-card">
+          <div class="standard-card__code">Boas Práticas de Fabrico (GMP)</div>
+          <h4 class="standard-card__title">EudraLex Volume 4, Anexo 15</h4>
+          <p class="standard-card__text">
+            Diretrizes europeias para a qualificação de equipamentos e validação de processos na indústria de medicamentos e produtos de saúde (DQ, IQ, OQ, PQ).
+          </p>
+          <a href="https://health.ec.europa.eu/medicinal-products/eudralex/eudralex-volume-4_en" target="_blank" rel="noopener noreferrer" class="standard-card__link">
+            Comissão Europeia &rarr;
+          </a>
+        </div>
+
+        <!-- 6: ISO 17665:2024 -->
+        <div class="standard-card">
+          <div class="standard-card__code">Esterilização Médica</div>
+          <h4 class="standard-card__title">ISO 17665:2024</h4>
+          <p class="standard-card__text">
+            Esterilização de produtos para cuidados de saúde através de calor húmido. Referencial para requisitos de desenvolvimento, validação e controlo de rotina em autoclaves.
+          </p>
+          <a href="https://www.iso.org/standard/86218.html" target="_blank" rel="noopener noreferrer" class="standard-card__link">
+            ISO Oficial &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 09 — PROCESSO DE TRABALHO                   -->
+  <!-- ========================================== -->
+  <section class="section section--darker" id="processo">
+    <div class="section__container">
+      <div class="mb-12">
+        <span class="section__label">Metodologia</span>
+        <h2 class="section__title">Como Decorre a Intervenção Metrológica</h2>
+        <p class="section__description">
+          Da solicitação inicial até à entrega do certificado assinado e atualização do plano preventivo.
+        </p>
+      </div>
+
+      <div class="process-timeline">
+        <div class="process-step">
+          <div class="process-step__number">01</div>
+          <h4 class="process-step__title">Levantamento de Requisitos</h4>
+          <p class="process-step__text">Definição dos pontos de medição, tolerâncias operacionais e enquadramento normativo do seu equipamento.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-step__number">02</div>
+          <h4 class="process-step__title">Triagem ou Intervenção In Situ</h4>
+          <p class="process-step__text">Realização do ensaio nas nossas instalações climatizadas ou deslocação da equipa técnica à sua unidade fabril.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-step__number">03</div>
+          <h4 class="process-step__title">Ensaio com Padrões Calibrados</h4>
+          <p class="process-step__text">Aplicação de procedimentos técnicos normalizados com padrões de referência com cadeia de rastreabilidade válida.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-step__number">04</div>
+          <h4 class="process-step__title">Cálculo de Incerteza & Conformidade</h4>
+          <p class="process-step__text">Aplicação de regras de decisão documentadas e apuramento dos limites de erro máximo admissível (EMA).</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-step__number">05</div>
+          <h4 class="process-step__title">Emissão & Gestão do Histórico</h4>
+          <p class="process-step__text">Disponibilização do certificado digital e integração do prazo de recalibração para monitorização preventiva.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 10 — CONTEÚDOS & ARTIGOS TÉCNICOS          -->
+  <!-- ========================================== -->
+  <section class="section section--darker" id="artigos">
+    <div class="section__container">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+        <div>
+          <span class="section__label">Conhecimento Técnico Especializado</span>
+          <h2 class="section__title">Artigos & Publicações Metrológicas</h2>
+          <p class="section__description mb-0 max-w-2xl">
+            Fundamentos de incerteza de medição, guias práticos sobre qualificação térmica em contexto regulamentado e análise da legislação portuguesa.
+          </p>
+        </div>
+        <a href="/artigos.html" class="btn btn--secondary mt-6 md:mt-0 self-start md:self-end">
+          <span>Ver Todas as Publicações</span>
+          <svg class="btn--icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <article class="p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/15 flex flex-col justify-between hover:border-[#35E0E8]/40 transition-all group">
+          <div>
+            <div class="rounded-xl overflow-hidden mb-5 h-48 relative">
+              <img src="/images/blog-uncertainty.jpg" alt="Gráficos de cálculo de incerteza de medição e análise estatística GUM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#07111F] via-transparent to-transparent"></div>
+              <span class="absolute bottom-3 left-3 text-[0.65rem] font-mono font-bold px-2 py-0.5 rounded bg-[#07111F]/80 text-[#35E0E8] border border-cyan-400/20">
+                GUM & INCERTEZA
+              </span>
+            </div>
+            <div class="flex items-center gap-3 text-xs font-mono text-[#93A4B5] mb-2">
+              <span>Leitura: 6 min</span>
+              <span>&bull;</span>
+              <span>ISO/IEC Guide 98-4</span>
+            </div>
+            <h3 class="text-lg font-bold font-heading text-white mb-2 group-hover:text-[#35E0E8] transition-colors">
+              Incerteza de Medição vs Tolerância: Como Evitar Decisões Falsas
+            </h3>
+            <p class="text-xs text-[#93A4B5] leading-relaxed mb-4">
+              Como delimitar a zona de guarda e ponderar a incerteza expandida na aceitação ou rejeição de peças fabricadas.
+            </p>
+          </div>
+          <a href="/artigos.html" class="pt-4 border-t border-[#112A45] flex items-center justify-between text-xs font-bold text-[#2F80ED] group-hover:text-[#35E0E8] transition-colors">
+            <span>Ler Artigo Técnico</span>
+            <span>&rarr;</span>
+          </a>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/15 flex flex-col justify-between hover:border-[#35E0E8]/40 transition-all group">
+          <div>
+            <div class="rounded-xl overflow-hidden mb-5 h-48 relative">
+              <img src="/images/blog-autoclave.jpg" alt="Autoclave industrial e câmara de ensaio térmico com registadores" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#07111F] via-transparent to-transparent"></div>
+              <span class="absolute bottom-3 left-3 text-[0.65rem] font-mono font-bold px-2 py-0.5 rounded bg-[#07111F]/80 text-[#35E0E8] border border-cyan-400/20">
+                GMP & AUTOCLAVES
+              </span>
+            </div>
+            <div class="flex items-center gap-3 text-xs font-mono text-[#93A4B5] mb-2">
+              <span>Leitura: 8 min</span>
+              <span>&bull;</span>
+              <span>EudraLex Anexo 15</span>
+            </div>
+            <h3 class="text-lg font-bold font-heading text-white mb-2 group-hover:text-[#35E0E8] transition-colors">
+              Qualificação Térmica em Autoclaves: O que Exige o Anexo 15 do EudraLex
+            </h3>
+            <p class="text-xs text-[#93A4B5] leading-relaxed mb-4">
+              Distribuição térmica em vazio vs penetração com carga crítica, cálculo de F0 e determinação do ponto mais frio.
+            </p>
+          </div>
+          <a href="/artigos.html" class="pt-4 border-t border-[#112A45] flex items-center justify-between text-xs font-bold text-[#2F80ED] group-hover:text-[#35E0E8] transition-colors">
+            <span>Ler Artigo Técnico</span>
+            <span>&rarr;</span>
+          </a>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/15 flex flex-col justify-between hover:border-[#35E0E8]/40 transition-all group">
+          <div>
+            <div class="rounded-xl overflow-hidden mb-5 h-48 relative">
+              <img src="/images/blog-legal-metrology.jpg" alt="Legislação metrológica portuguesa e Diário da República" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#07111F] via-transparent to-transparent"></div>
+              <span class="absolute bottom-3 left-3 text-[0.65rem] font-mono font-bold px-2 py-0.5 rounded bg-[#07111F]/80 text-[#35E0E8] border border-cyan-400/20">
+                LEGISLAÇÃO PORTUGUESA
+              </span>
+            </div>
+            <div class="flex items-center gap-3 text-xs font-mono text-[#93A4B5] mb-2">
+              <span>Leitura: 5 min</span>
+              <span>&bull;</span>
+              <span>DL n.º 29/2022</span>
+            </div>
+            <h3 class="text-lg font-bold font-heading text-white mb-2 group-hover:text-[#35E0E8] transition-colors">
+              Calibração Industrial vs Controlo Metrológico Legal em Portugal
+            </h3>
+            <p class="text-xs text-[#93A4B5] leading-relaxed mb-4">
+              Compreenda as fronteiras entre a verificação metrológica mandatada por lei e os ensaios de calibração para normas ISO.
+            </p>
+          </div>
+          <a href="/artigos.html" class="pt-4 border-t border-[#112A45] flex items-center justify-between text-xs font-bold text-[#2F80ED] group-hover:text-[#35E0E8] transition-colors">
+            <span>Ler Artigo Técnico</span>
+            <span>&rarr;</span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 11 — PERGUNTAS FREQUENTES (FAQ)             -->
+  <!-- ========================================== -->
+  <section class="section section--dark" id="faq">
+    <div class="section__container">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="section__label">Esclarecimentos Técnicos</span>
+        <h2 class="section__title">Perguntas Frequentes</h2>
+        <p class="section__description mx-auto">
+          Respostas claras com fundamentação no vocabulário metrológico e nos requisitos normativos aplicáveis em Portugal.
+        </p>
+      </div>
+
+      <div class="faq-list" role="region" aria-label="Acordeão de Perguntas Frequentes">
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button class="faq-item__trigger" aria-expanded="false">
+            <span>O que é a calibração de um instrumento de medição?</span>
+            <div class="faq-item__icon" aria-hidden="true"></div>
+          </button>
+          <div class="faq-item__content">
+            <div class="faq-item__answer">
+              Segundo o VIM (Vocabulário Internacional de Metrologia), a calibração é a operação que estabelece, sob condições especificadas, numa primeira etapa, uma relação entre os valores fornecidos por padrões com as respetivas incertezas associadas e as indicações correspondentes do instrumento em ensaio. Numa segunda etapa, utiliza esta informação para obter um resultado de medição a partir de uma indicação. A calibração não altera nem repara o instrumento; apenas determina as suas características metrológicas.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button class="faq-item__trigger" aria-expanded="false">
+            <span>Qual a diferença entre calibração e verificação metrológica legal?</span>
+            <div class="faq-item__icon" aria-hidden="true"></div>
+          </button>
+          <div class="faq-item__content">
+            <div class="faq-item__answer">
+              A <strong>calibração</strong> é um ato metrológico que quantifica o erro e a incerteza de medição de um instrumento, sendo aplicável a processos industriais e de controlo da qualidade. A <strong>verificação metrológica legal</strong> decorre de imposição do Estado (Decreto-Lei n.º 29/2022) e tem caráter obrigatório para instrumentos utilizados em transações comerciais (ex.: balanças de retalho), saúde pública ou fiscalização de trânsito, devendo ser executada exclusivamente por organismos qualificados pelo IPQ.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button class="faq-item__trigger" aria-expanded="false">
+            <span>Com que periodicidade devo recalibrar os meus instrumentos?</span>
+            <div class="faq-item__icon" aria-hidden="true"></div>
+          </button>
+          <div class="faq-item__content">
+            <div class="faq-item__answer">
+              Não existe uma periodicidade legal universal para a calibração industrial. O intervalo deve ser definido pela organização detentora do equipamento com base em: frequência de utilização, agressividade das condições ambientais, criticidade da medição no produto final e histórico de deriva do instrumento (documento OIML D 10). Aconselhamos os nossos clientes na determinação técnica desses intervalos.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button class="faq-item__trigger" aria-expanded="false">
+            <span>O que significa ter rastreabilidade metrológica?</span>
+            <div class="faq-item__icon" aria-hidden="true"></div>
+          </button>
+          <div class="faq-item__content">
+            <div class="faq-item__answer">
+              A rastreabilidade metrológica é a propriedade de um resultado de medição pela qual este pode ser relacionado com uma referência metrológica reconhecida (geralmente padrões nacionais ou internacionais do Sistema Internacional de Unidades - SI), através de uma cadeia ininterrupta e documentada de calibrações, cada uma contribuindo para a incerteza de medição.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <button class="faq-item__trigger" aria-expanded="false">
+            <span>Em que consiste a qualificação térmica de um equipamento?</span>
+            <div class="faq-item__icon" aria-hidden="true"></div>
+          </button>
+          <div class="faq-item__content">
+            <div class="faq-item__answer">
+              A qualificação térmica envolve a instalação de múltiplos sensores de temperatura calibrados em pontos estrategicamente distribuídos no interior da câmara (ex.: autoclave, estufa ou câmara fria). O ensaio avalia a uniformidade, a estabilidade, as flutuações e a taxa de recuperação após abertura de porta, quer em vazio quer com carga representativa, gerando um relatório em conformidade com as Boas Práticas de Fabrico (GMP).
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <button class="faq-item__trigger" aria-expanded="false">
+            <span>Como posso solicitar uma proposta de calibração ou qualificação?</span>
+            <div class="faq-item__icon" aria-hidden="true"></div>
+          </button>
+          <div class="faq-item__content">
+            <div class="faq-item__answer">
+              Basta utilizar o botão "Pedir Orçamento" disponível nesta página, selecionar os tipos de equipamento, a respetiva quantidade e os pontos de ensaio pretendidos para receber uma proposta técnica detalhada no próprio dia útil.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 11 — CTA CINEMATOGRÁFICO                   -->
+  <!-- ========================================== -->
+  <section class="cta-section" id="contacto-cta">
+    <div class="cta-section__bg">
+      <img src="/images/cta-precision.jpg" alt="Pormenor macro de tambor micrométrico de precisão em aço temperado" class="cta-section__bg-image" loading="lazy">
+      <div class="cta-section__bg-overlay"></div>
+    </div>
+
+    <div class="cta-section__content">
+      <span class="section__label justify-center">Rigor Sem Concessões</span>
+      <h2 class="cta-section__title text-white">Eleve o Padrão de Fiabilidade dos Seus Processos</h2>
+      <p class="cta-section__text">
+        Partilhe connosco a listagem dos seus equipamentos ou os requisitos de qualificação térmica das suas instalações. Apresentamos uma proposta técnica estruturada.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <button type="button" class="btn btn--primary btn-open-quote">
+          <span>Solicitar Proposta Metrológica</span>
+          <svg class="btn--icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+        <a href="/contactos.html" class="btn btn--secondary">
+          <span>Ver Canais de Contacto</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 12 — FOOTER                                 -->
+  <!-- ========================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="/" class="footer__logo">METRI<span class="text-[#35E0E8]">PRECISION</span></a>
+          <p class="footer__tagline">
+            Soluções especializadas em calibração, metrologia e qualificação térmica para organizações industriais e laboratoriais em Portugal.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer__heading">Serviços Técnicos</h4>
+          <ul class="footer__links">
+            <li><a href="/servicos/calibracao.html" class="footer__link">Calibração de Instrumentos</a></li>
+            <li><a href="/servicos/manutencao.html" class="footer__link">Manutenção & Ajuste</a></li>
+            <li><a href="/servicos/qualificacao-termica.html" class="footer__link">Qualificação Térmica</a></li>
+            <li><a href="/servicos/gestao-calibracoes.html" class="footer__link">Gestão de Calibrações</a></li>
+            <li><a href="/servicos/rastreabilidade.html" class="footer__link">Rastreabilidade Metrológica</a></li>
+            <li><a href="/servicos/auditorias.html" class="footer__link">Apoio a Auditorias</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer__heading">Institucional</h4>
+          <ul class="footer__links">
+            <li><a href="/sobre.html" class="footer__link">Sobre a Empresa</a></li>
+            <li><a href="/artigos.html" class="footer__link">Artigos & Publicações</a></li>
+            <li><a href="#normas" class="footer__link">Normas & Conformidade</a></li>
+            <li><a href="#equipamentos" class="footer__link">Parque Instrumental</a></li>
+            <li><a href="#faq" class="footer__link">Perguntas Frequentes</a></li>
+            <li><a href="/contactos.html" class="footer__link">Contactos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer__heading">Enquadramento Legal</h4>
+          <ul class="footer__links">
+            <li><a href="https://www.ipq.pt/" target="_blank" rel="noopener noreferrer" class="footer__link">Instituto Português da Qualidade (IPQ)</a></li>
+            <li><a href="https://www.ipac.pt/" target="_blank" rel="noopener noreferrer" class="footer__link">Instituto Português de Acreditação (IPAC)</a></li>
+            <li><a href="https://diariodarepublica.pt/" target="_blank" rel="noopener noreferrer" class="footer__link">Diário da República Eletrónico</a></li>
+            <li><a href="https://eur-lex.europa.eu/" target="_blank" rel="noopener noreferrer" class="footer__link">EUR-Lex Legislação Europeia</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="footer__copy">
+          &copy; 2026 MetriPrecision. Todos os direitos reservados.
+        </div>
+        <div class="footer__legal-links">
+          <a href="/privacidade.html" class="footer__legal-link">Política de Privacidade</a>
+          <a href="/cookies.html" class="footer__legal-link">Política de Cookies</a>
+          <a href="/contactos.html" class="footer__legal-link">Termos & Condições</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- MODAL DE PEDIDO DE ORÇAMENTO               -->
+  <!-- ========================================== -->
+  <div class="modal" id="quote-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal__backdrop"></div>
+    <div class="modal__card">
+      <button type="button" class="modal__close" aria-label="Fechar Modal">&times;</button>
+      
+      <div class="mb-6">
+        <span class="text-xs font-mono font-bold text-[#35E0E8] uppercase tracking-wider">Formulário de Engenharia</span>
+        <h3 id="modal-title" class="text-2xl font-bold font-heading text-white mt-1">Solicitar Orçamento Técnico</h3>
+        <p class="text-xs text-[#93A4B5] mt-1">
+          Indique as características dos instrumentos a calibrar ou qualificar.
+        </p>
+      </div>
+
+      <form id="quote-form" novalidate>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="form-group">
+            <label class="form-label" for="q-name">Nome Completo *</label>
+            <input type="text" id="q-name" name="name" class="form-input" placeholder="Ex.: Eng. Rui Silva" required>
+            <div id="error-name" class="form-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="q-company">Empresa / Organização *</label>
+            <input type="text" id="q-company" name="company" class="form-input" placeholder="Ex.: Indústrias Lda." required>
+            <div id="error-company" class="form-error"></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="form-group">
+            <label class="form-label" for="q-email">Email Corporativo *</label>
+            <input type="email" id="q-email" name="email" class="form-input" placeholder="rui.silva@empresa.pt" required>
+            <div id="error-email" class="form-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="q-phone">Telefone / Contacto</label>
+            <input type="tel" id="q-phone" name="phone" class="form-input" placeholder="+351 910 000 000">
+            <div id="error-phone" class="form-error"></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="form-group">
+            <label class="form-label" for="q-service">Serviço Pretendido *</label>
+            <select id="q-service" name="service" class="form-select" required>
+              <option value="">Selecione uma especialidade...</option>
+              <option value="calibracao">Calibração de Instrumentos</option>
+              <option value="manutencao">Manutenção & Ajuste</option>
+              <option value="qualificacao-termica">Qualificação Térmica</option>
+              <option value="gestao-calibracoes">Gestão do Parque Metrológico</option>
+              <option value="rastreabilidade">Rastreabilidade Metrológica</option>
+              <option value="auditorias">Apoio a Auditorias</option>
+            </select>
+            <div id="error-service" class="form-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="q-quantity">Quantidade de Instrumentos *</label>
+            <input type="number" id="q-quantity" name="quantity" min="1" value="1" class="form-input" required>
+            <div id="error-quantity" class="form-error"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="q-equipment">Tipo / Modelo do Equipamento *</label>
+          <input type="text" id="q-equipment" name="equipment" class="form-input" placeholder="Ex.: Manómetro digital 0-100 bar / Autoclave industrial 120L" required>
+          <div id="error-equipment" class="form-error"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="q-desc">Descrição das Necessidades & Tolerâncias</label>
+          <textarea id="q-desc" name="description" class="form-textarea" placeholder="Indique pontos de ensaio desejados, tolerância de aceitação ou norma interna aplicável..."></textarea>
+        </div>
+
+        <!-- Optional Document Upload -->
+        <div class="form-group">
+          <label class="form-label">Upload de Caderno de Encargos / Ficha Técnica (Opcional)</label>
+          <div class="border border-dashed border-[#2F80ED]/30 rounded-xl p-4 text-center hover:border-[#35E0E8]/60 transition-colors bg-[#07111F]/40 cursor-pointer">
+            <input type="file" id="quote-file" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx">
+            <label for="quote-file" class="cursor-pointer block text-xs text-[#93A4B5]">
+              <span class="text-[#35E0E8] font-semibold">Clique para anexar</span> ficheiro PDF ou Excel (máx. 10MB)
+            </label>
+            <div id="quote-file-name" class="text-xs text-white font-mono mt-2 hidden"></div>
+          </div>
+        </div>
+
+        <!-- RGPD Consent -->
+        <div class="form-group">
+          <label class="form-checkbox">
+            <input type="checkbox" name="consent" required>
+            <span class="form-checkbox-label">
+              Autorizo o tratamento dos dados recolhidos para efeitos de elaboração e resposta à proposta comercial, em conformidade com o Regulamento Geral sobre a Proteção de Dados (RGPD). *
+            </span>
+          </label>
+          <div id="error-consent" class="form-error"></div>
+        </div>
+
+        <div id="quote-feedback"></div>
+
+        <div class="pt-2">
+          <button type="submit" class="btn btn--primary w-full justify-center">
+            Submeter Pedido de Orçamento
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- COOKIE CONSENT BANNER (RGPD / LEI 41/2004)  -->
+  <!-- ========================================== -->
+  <aside class="cookie-banner" role="dialog" aria-label="Consentimento de Cookies">
+    <div class="cookie-banner__title">Privacidade & Cookies</div>
+    <p class="cookie-banner__text">
+      Utilizamos cookies estritamente necessários ao correto funcionamento desta plataforma e cookies analíticos opcionais para otimização contínua da experiência de navegação, em respeito ao RGPD e à Lei n.º 41/2004.
+    </p>
+    <div class="cookie-banner__actions">
+      <button type="button" id="cookie-accept-all" class="cookie-banner__btn cookie-banner__btn--accept">
+        Aceitar Todos
+      </button>
+      <button type="button" id="cookie-reject-optional" class="cookie-banner__btn cookie-banner__btn--reject">
+        Apenas Necessários
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========================================== -->
+  <!-- BACK TO TOP BUTTON                         -->
+  <!-- ========================================== -->
+  <button type="button" class="back-to-top" aria-label="Voltar ao início da página">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
