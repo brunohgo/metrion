@@ -15,9 +15,11 @@ export function initPreloader(onCompleteCallback) {
     return;
   }
 
-  // Accessibility: Immediate reveal if user prefers reduced motion
+  // Accessibility & Fast Return: Reduced motion or already visited in this session
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) {
+  const alreadySeen = sessionStorage.getItem('mp_preloader_seen');
+
+  if (prefersReduced || alreadySeen) {
     preloader.classList.add('is-hidden');
     setTimeout(() => {
       preloader.remove();
@@ -25,6 +27,7 @@ export function initPreloader(onCompleteCallback) {
     }, 40);
     return;
   }
+  sessionStorage.setItem('mp_preloader_seen', '1');
 
   const logo = preloader.querySelector('.preloader__logo');
   const svgContainer = preloader.querySelector('.preloader__svg-container');
@@ -34,8 +37,8 @@ export function initPreloader(onCompleteCallback) {
   const gaugeNeedle = preloader.querySelector('.gauge-needle');
   const valueDisplay = preloader.querySelector('.preloader__value');
 
-  let currentProgress = 15;
-  let targetProgress = 25;
+  let currentProgress = 20;
+  let targetProgress = 40;
   let isDone = false;
   let animFrameId = null;
 
@@ -73,7 +76,7 @@ export function initPreloader(onCompleteCallback) {
     const exitTl = gsap.timeline({
       onComplete: () => {
         preloader.classList.add('is-hidden');
-        setTimeout(() => preloader.remove(), 350);
+        setTimeout(() => preloader.remove(), 250);
       }
     });
 
@@ -82,20 +85,20 @@ export function initPreloader(onCompleteCallback) {
         opacity: 0,
         scale: 0.96,
         y: -10,
-        duration: 0.22,
-        stagger: 0.03,
+        duration: 0.18,
+        stagger: 0.02,
         ease: 'power2.in'
       })
       .to(preloader, {
         opacity: 0,
-        duration: 0.28,
+        duration: 0.22,
         ease: 'power2.inOut'
-      }, '-=0.06');
+      }, '-=0.04');
   };
 
-  // Continuous smooth interpolation ticker for the dial gauge
+  // Fluid smooth interpolation ticker for the dial gauge needle
   const tick = () => {
-    const delta = (targetProgress - currentProgress) * 0.12;
+    const delta = (targetProgress - currentProgress) * 0.18;
     currentProgress += delta;
     setProgressVisuals(currentProgress);
 
@@ -107,8 +110,12 @@ export function initPreloader(onCompleteCallback) {
   };
   animFrameId = requestAnimationFrame(tick);
 
-  // Background Preloader System:
-  // Preloads and decodes images into memory
+  // Quick progressive calibration steps: reaches 100% smoothly in 650ms
+  const stepTimer1 = setTimeout(() => { targetProgress = 65; }, 160);
+  const stepTimer2 = setTimeout(() => { targetProgress = 85; }, 360);
+  const stepTimer3 = setTimeout(() => { targetProgress = 100; }, 600);
+
+  // Background Asset Preloader (non-blocking)
   const preloadImage = (src) => {
     return new Promise((resolve) => {
       const img = new Image();
@@ -135,52 +142,13 @@ export function initPreloader(onCompleteCallback) {
   const criticalImages = [
     '/images/hero-laboratory.jpg',
     '/images/about-laboratory.jpg',
-    '/images/calibration-service.jpg',
-    '/images/sector-metalworking.jpg',
-    '/images/cta-precision.jpg'
+    '/images/calibration-service.jpg'
   ];
 
-  let loadedImagesCount = 0;
-  criticalImages.forEach((src) => {
-    preloadImage(src).then(() => {
-      loadedImagesCount++;
-      // Advance needle as images download and decode into memory
-      targetProgress = Math.max(targetProgress, 35 + (loadedImagesCount / criticalImages.length) * 45);
-    });
-  });
+  criticalImages.forEach(preloadImage);
 
-  // DOM interactive state
-  const domPromise = new Promise((resolve) => {
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      resolve();
-    } else {
-      document.addEventListener('DOMContentLoaded', resolve);
-    }
-  });
-
-  // Fonts ready state
-  const fontsPromise = document.fonts ? document.fonts.ready : Promise.resolve();
-
-  domPromise.then(() => {
-    targetProgress = Math.max(targetProgress, 45);
-  });
-
-  fontsPromise.then(() => {
-    targetProgress = Math.max(targetProgress, 70);
-  });
-
-  // When all assets are fully loaded and decoded in the background
-  Promise.all([
-    domPromise,
-    fontsPromise,
-    ...criticalImages.map(preloadImage)
-  ]).then(() => {
-    // Smooth final calibration snap to 100%
-    targetProgress = 100;
-  });
-
-  // Fallback safety timeout (1.5s) so user is never stalled if a network proxy delays
+  // Guaranteed exit fallback within 850ms
   setTimeout(() => {
     targetProgress = 100;
-  }, 1500);
+  }, 850);
 }

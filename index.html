@@ -165,16 +165,21 @@
   </div>
   <script>
     (function(){
+      if (sessionStorage.getItem('mp_preloader_seen')) {
+        var p = document.querySelector('.preloader');
+        if (p) p.style.display = 'none';
+        return;
+      }
       var v = document.querySelector('.preloader__value');
       var f = document.querySelector('.preloader__progress-fill');
       var n = document.querySelector('.gauge-needle');
       var c = document.querySelector('.gauge-progress');
-      if(v) v.textContent = '15%';
-      if(f) f.style.width = '15%';
-      if(n) n.setAttribute('transform', 'rotate(-63 50 50)');
+      if(v) v.textContent = '20%';
+      if(f) f.style.width = '20%';
+      if(n) n.setAttribute('transform', 'rotate(-54 50 50)');
       if(c) {
-        c.style.strokeDashoffset = '240';
-        c.setAttribute('stroke-dashoffset', '240');
+        c.style.strokeDashoffset = '226';
+        c.setAttribute('stroke-dashoffset', '226');
       }
     })();
   </script>
@@ -419,7 +424,7 @@
           </div>
         </div>
 
-        <div class="intro-split__image reveal-right">
+        <div class="intro-split__image skeleton-box reveal-right">
           <img src="/images/about-laboratory.jpg" alt="Instalações laboratoriais modernas e bancadas de ensaio metrológico" loading="lazy" decoding="async" width="800" height="600">
         </div>
       </div>
@@ -442,7 +447,9 @@
       <div class="services-grid">
         <!-- 01: Calibração (Featured 2x2) -->
         <a href="/servicos/calibracao.html" class="service-card service-card--featured group">
-          <img src="/images/calibration-service.jpg" alt="Calibração de manómetros e instrumentos de pressão em bancada laboratorial" class="service-card__image group-hover:scale-[1.02] transition-transform duration-500" loading="lazy" decoding="async">
+          <div class="service-card__image-wrap skeleton-box">
+            <img src="/images/calibration-service.jpg" alt="Calibração de manómetros e instrumentos de pressão em bancada laboratorial" class="service-card__image group-hover:scale-[1.02] transition-transform duration-500" loading="lazy" decoding="async">
+          </div>
           <div class="service-card__top">
             <div class="service-card__icon">
               <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M6 8l6-5 6 5M6 16l6 5 6-5"/></svg>
@@ -781,7 +788,7 @@
       <div class="sectors-grid">
         <!-- 01: Metalomecânica -->
         <div class="sector-card">
-          <div class="sector-card__image-wrap">
+          <div class="sector-card__image-wrap skeleton-box">
             <img src="/images/sector-metalworking.jpg" alt="Indústria Metalomecânica e maquinagem de precisão" class="sector-card__image" loading="lazy" width="800" height="500">
             <div class="sector-card__image-overlay"></div>
             <span class="sector-card__badge">Indústria & Manufatura</span>
@@ -794,7 +801,7 @@
 
         <!-- 02: Farmacêutico -->
         <div class="sector-card">
-          <div class="sector-card__image-wrap">
+          <div class="sector-card__image-wrap skeleton-box">
             <img src="/images/sector-pharmaceutical.jpg" alt="Indústria Farmacêutica e fabrico de dispositivos médicos" class="sector-card__image" loading="lazy" width="800" height="500">
             <div class="sector-card__image-overlay"></div>
             <span class="sector-card__badge">Setor Farmacêutico</span>
@@ -807,7 +814,7 @@
 
         <!-- 03: Saúde & Hospitalar -->
         <div class="sector-card">
-          <div class="sector-card__image-wrap">
+          <div class="sector-card__image-wrap skeleton-box">
             <img src="/images/sector-hospital.jpg" alt="Equipamento hospitalar e ambiente clínico de saúde" class="sector-card__image" loading="lazy" width="800" height="500">
             <div class="sector-card__image-overlay"></div>
             <span class="sector-card__badge">Saúde & Clínico</span>
@@ -820,7 +827,7 @@
 
         <!-- 04: Agroalimentar -->
         <div class="sector-card">
-          <div class="sector-card__image-wrap">
+          <div class="sector-card__image-wrap skeleton-box">
             <img src="/images/sector-food-coldchain.jpg" alt="Armazenamento refrigerado e cadeia de frio agroalimentar" class="sector-card__image" loading="lazy" width="800" height="500">
             <div class="sector-card__image-overlay"></div>
             <span class="sector-card__badge">Cadeia de Frio</span>
@@ -833,7 +840,7 @@
 
         <!-- 05: Laboratórios R&D -->
         <div class="sector-card">
-          <div class="sector-card__image-wrap">
+          <div class="sector-card__image-wrap skeleton-box">
             <img src="/images/sector-laboratory.jpg" alt="Laboratório de ensaios analíticos e investigação" class="sector-card__image" loading="lazy" width="800" height="500">
             <div class="sector-card__image-overlay"></div>
             <span class="sector-card__badge">Laboratorial & I&D</span>
@@ -846,7 +853,7 @@
 
         <!-- 06: Logística & Armazenamento -->
         <div class="sector-card">
-          <div class="sector-card__image-wrap">
+          <div class="sector-card__image-wrap skeleton-box">
             <img src="/images/sector-logistics.jpg" alt="Armazém logístico moderno com controlo de condições ambientais" class="sector-card__image" loading="lazy" width="800" height="500">
             <div class="sector-card__image-overlay"></div>
             <span class="sector-card__badge">Logística & GDP</span>
@@ -1026,7 +1033,7 @@
         <!-- Card 1 -->
         <article class="p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/15 flex flex-col justify-between hover:border-[#35E0E8]/40 transition-all group">
           <div>
-            <div class="rounded-xl overflow-hidden mb-5 h-48 relative">
+            <div class="rounded-xl overflow-hidden mb-5 h-48 relative skeleton-box">
               <img src="/images/blog-uncertainty.jpg" alt="Gráficos de cálculo de incerteza de medição e análise estatística GUM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-[#07111F] via-transparent to-transparent"></div>
               <span class="absolute bottom-3 left-3 text-[0.65rem] font-mono font-bold px-2 py-0.5 rounded bg-[#07111F]/80 text-[#35E0E8] border border-cyan-400/20">
@@ -1054,7 +1061,7 @@
         <!-- Card 2 -->
         <article class="p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/15 flex flex-col justify-between hover:border-[#35E0E8]/40 transition-all group">
           <div>
-            <div class="rounded-xl overflow-hidden mb-5 h-48 relative">
+            <div class="rounded-xl overflow-hidden mb-5 h-48 relative skeleton-box">
               <img src="/images/blog-autoclave.jpg" alt="Autoclave industrial e câmara de ensaio térmico com registadores" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-[#07111F] via-transparent to-transparent"></div>
               <span class="absolute bottom-3 left-3 text-[0.65rem] font-mono font-bold px-2 py-0.5 rounded bg-[#07111F]/80 text-[#35E0E8] border border-cyan-400/20">
@@ -1082,7 +1089,7 @@
         <!-- Card 3 -->
         <article class="p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/15 flex flex-col justify-between hover:border-[#35E0E8]/40 transition-all group">
           <div>
-            <div class="rounded-xl overflow-hidden mb-5 h-48 relative">
+            <div class="rounded-xl overflow-hidden mb-5 h-48 relative skeleton-box">
               <img src="/images/blog-legal-metrology.jpg" alt="Legislação metrológica portuguesa e Diário da República" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-[#07111F] via-transparent to-transparent"></div>
               <span class="absolute bottom-3 left-3 text-[0.65rem] font-mono font-bold px-2 py-0.5 rounded bg-[#07111F]/80 text-[#35E0E8] border border-cyan-400/20">
@@ -1209,7 +1216,7 @@
   <!-- 11 — CTA CINEMATOGRÁFICO                   -->
   <!-- ========================================== -->
   <section class="cta-section" id="contacto-cta">
-    <div class="cta-section__bg">
+    <div class="cta-section__bg skeleton-box">
       <img src="/images/cta-precision.jpg" alt="Pormenor macro de tambor micrométrico de precisão em aço temperado" class="cta-section__bg-image" loading="lazy">
       <div class="cta-section__bg-overlay"></div>
     </div>

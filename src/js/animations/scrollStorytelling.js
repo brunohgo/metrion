@@ -94,6 +94,17 @@ export function initScrollStorytelling() {
     updateVisualState(index);
   };
 
+  // Mobile: all steps active and immediately visible with zero scroll delay
+  const isMobile = window.innerWidth <= 768;
+  if (isMobile) {
+    steps.forEach((s) => {
+      s.classList.add('is-active');
+      s.style.opacity = '1';
+      s.style.transform = 'none';
+    });
+    return;
+  }
+
   // Initialize with step 0 active
   activateStep(0);
 

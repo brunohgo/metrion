@@ -1565,25 +1565,28 @@ body:has(.header.is-menu-open) .cookie-banner,
   }
 }
 
-/* ===== SKELETON LOADING ===== */
+/* ===== SKELETON LOADING & SHIMMER SYSTEM ===== */
 .skeleton {
   position: relative;
   overflow: hidden;
-  background: rgba(12, 32, 54, 0.6);
+  background: rgba(12, 32, 54, 0.7);
   border-radius: 8px;
 }
 
-.skeleton::after {
+.skeleton::after,
+.skeleton-box::before {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(47, 128, 237, 0.06) 50%,
+    rgba(53, 224, 232, 0.12) 50%,
     transparent 100%
   );
-  animation: skeleton-shimmer 1.5s infinite;
+  animation: skeleton-shimmer 1.4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  pointer-events: none;
 }
 
 @keyframes skeleton-shimmer {
@@ -1613,6 +1616,49 @@ body:has(.header.is-menu-open) .cookie-banner,
 .skeleton--card {
   height: 300px;
   border-radius: 16px;
+}
+
+/* Image Skeleton Wrapper */
+.skeleton-box {
+  position: relative;
+  overflow: hidden;
+  background: rgba(12, 32, 54, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(47, 128, 237, 0.12);
+  display: block;
+}
+
+.skeleton-box img {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.skeleton-box.is-loaded::before {
+  opacity: 0;
+  animation: none;
+}
+
+.skeleton-box.is-loaded img,
+.skeleton-box img.is-loaded {
+  opacity: 1 !important;
+}
+
+.service-card__image-wrap {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.service-card--featured .service-card__image-wrap {
+  height: 300px;
 }
 
 /* ===== COOKIE BANNER ===== */
@@ -2233,15 +2279,27 @@ body:has(.header.is-menu-open) .cookie-banner,
     grid-column: span 1;
     grid-row: span 1;
   }
-  .service-card--featured .service-card__image {
+  .service-card--featured .service-card__image,
+  .service-card__image-wrap,
+  .service-card--featured .service-card__image-wrap {
     height: 180px;
   }
   .intro-split {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+  .intro-split__image,
   .intro-split__image img {
     height: 240px;
+  }
+  .storytelling {
+    padding: 2.5rem 0;
+  }
+  .storytelling__step {
+    opacity: 1 !important;
+    transform: none !important;
+    min-height: auto !important;
+    padding: 1.25rem 0 !important;
   }
   .sectors-grid {
     grid-template-columns: 1fr;

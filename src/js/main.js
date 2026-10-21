@@ -15,6 +15,7 @@ import { initBackToTop } from './components/backToTop.js';
 import { initMagneticButtons } from './components/magneticButtons.js';
 import { initCounters } from './components/counterAnimation.js';
 import { initInteractiveGauge } from './components/interactiveGaugeCanvas.js';
+import { initSkeletonPlaceholders } from './components/skeletonLoader.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,7 +44,7 @@ gsap.ticker.lagSmoothing(500, 33);
 
 // Non-blocking scroll reveal animations for sections
 function initScrollReveals() {
-  if (prefersReduced) {
+  if (prefersReduced || isMobileOrTouch) {
     document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale, .service-card').forEach((el) => {
       el.style.opacity = '1';
       el.style.transform = 'none';
@@ -55,14 +56,14 @@ function initScrollReveals() {
   const revealElements = document.querySelectorAll('.reveal-up');
   revealElements.forEach((el) => {
     gsap.from(el, {
-      opacity: 0.4,
-      y: 20,
-      duration: 0.5,
+      opacity: 0.75,
+      y: 15,
+      duration: 0.4,
       ease: 'power2.out',
       clearProps: 'all',
       scrollTrigger: {
         trigger: el,
-        start: 'top 92%',
+        start: 'top 95%',
         once: true,
       }
     });
@@ -71,14 +72,14 @@ function initScrollReveals() {
   // Reveal Left (Section 03 text content)
   document.querySelectorAll('.reveal-left').forEach((el) => {
     gsap.from(el, {
-      opacity: 0.4,
-      x: -20,
-      duration: 0.5,
+      opacity: 0.75,
+      x: -15,
+      duration: 0.4,
       ease: 'power2.out',
       clearProps: 'all',
       scrollTrigger: {
         trigger: el,
-        start: 'top 92%',
+        start: 'top 95%',
         once: true,
       }
     });
@@ -87,14 +88,14 @@ function initScrollReveals() {
   // Reveal Right (Section 03 lab image)
   document.querySelectorAll('.reveal-right').forEach((el) => {
     gsap.from(el, {
-      opacity: 0.4,
-      x: 20,
-      duration: 0.5,
+      opacity: 0.75,
+      x: 15,
+      duration: 0.4,
       ease: 'power2.out',
       clearProps: 'all',
       scrollTrigger: {
         trigger: el,
-        start: 'top 92%',
+        start: 'top 95%',
         once: true,
       }
     });
@@ -103,14 +104,14 @@ function initScrollReveals() {
   // Reveal Scale
   document.querySelectorAll('.reveal-scale').forEach((el) => {
     gsap.from(el, {
-      opacity: 0.5,
-      scale: 0.98,
-      duration: 0.5,
+      opacity: 0.8,
+      scale: 0.99,
+      duration: 0.4,
       ease: 'power2.out',
       clearProps: 'all',
       scrollTrigger: {
         trigger: el,
-        start: 'top 92%',
+        start: 'top 95%',
         once: true,
       }
     });
@@ -125,23 +126,23 @@ function initScrollReveals() {
       c.style.transform = 'none';
     });
     gsap.from(cards, {
-      opacity: 0.5,
-      y: 20,
-      duration: 0.45,
-      stagger: 0.08,
+      opacity: 0.75,
+      y: 15,
+      duration: 0.35,
+      stagger: 0.06,
       ease: 'power2.out',
       clearProps: 'all',
       scrollTrigger: {
         trigger: bentoGrid,
-        start: 'top 92%',
+        start: 'top 95%',
         once: true,
       }
     });
   }
 }
 
-// DOM Ready initialization
-document.addEventListener('DOMContentLoaded', () => {
+// Robust execution whether DOM is loading or already ready
+function start() {
   initHeader();
   initFaqAccordion();
   initEquipmentExplorer();
@@ -151,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMagneticButtons();
   initCounters();
   initInteractiveGauge();
+  initSkeletonPlaceholders();
 
   // Run preloader, then trigger hero entrance and scroll triggers
   initPreloader(() => {
@@ -159,7 +161,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveals();
     ScrollTrigger.refresh();
   });
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', start);
+} else {
+  start();
+}
 
 window.addEventListener('load', () => {
   ScrollTrigger.refresh();
