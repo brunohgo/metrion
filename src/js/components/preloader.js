@@ -1,9 +1,12 @@
 import gsap from 'gsap';
 
 /**
- * High-Precision Preloader Sequence
- * Features an animated dial gauge, needle deflection, percentage readout,
- * and high-tech calibration sweep. Optimized for zero perceived lag.
+ * High-Precision Background Asset Preloader
+ * 
+ * Preloads and decodes critical hero assets (images, webfonts, DOM)
+ * in the background while displaying an animated dial gauge needle.
+ * Unveils the page only when assets are fully loaded and rendered,
+ * ensuring zero pop-in, zero layout shift, and instant visual fidelity.
  */
 export function initPreloader(onCompleteCallback) {
   const preloader = document.querySelector('.preloader');
@@ -12,7 +15,7 @@ export function initPreloader(onCompleteCallback) {
     return;
   }
 
-  // Accessibility: Respect reduced motion immediately
+  // Accessibility: Immediate reveal if user prefers reduced motion
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) {
     preloader.classList.add('is-hidden');
@@ -31,106 +34,146 @@ export function initPreloader(onCompleteCallback) {
   const gaugeNeedle = preloader.querySelector('.gauge-needle');
   const valueDisplay = preloader.querySelector('.preloader__value');
 
-  // Check if user already saw the preloader in this session
-  const alreadyVisited = sessionStorage.getItem('metri_preloaded') === 'true';
-
-  let progress = { value: 0 };
+  let currentProgress = 15;
+  let targetProgress = 25;
   let isDone = false;
+  let animFrameId = null;
 
   const setProgressVisuals = (val) => {
-    const rounded = Math.round(val);
+    const rounded = Math.min(100, Math.round(val));
     if (progressFill) progressFill.style.width = `${rounded}%`;
     if (valueDisplay) valueDisplay.textContent = `${rounded}%`;
 
     // Gauge ring circle: circumference 283
     if (gaugeProgress) {
-      const offset = 283 - (283 * (val / 100));
+      const offset = 283 - (283 * (rounded / 100));
       gaugeProgress.style.strokeDashoffset = offset;
     }
 
     // Needle rotation: -90deg to +90deg (180deg sweep)
     if (gaugeNeedle) {
-      const rotation = -90 + (val / 100) * 180;
+      const rotation = -90 + (rounded / 100) * 180;
       gaugeNeedle.setAttribute('transform', `rotate(${rotation} 50 50)`);
     }
   };
 
-  const finishAndReveal = (duration = 0.25) => {
+  const revealSite = () => {
     if (isDone) return;
     isDone = true;
+    if (animFrameId) cancelAnimationFrame(animFrameId);
+    setProgressVisuals(100);
 
-    sessionStorage.setItem('metri_preloaded', 'true');
+    // Trigger hero & UI initialization in parallel as preloader begins exit
+    if (typeof onCompleteCallback === 'function') onCompleteCallback();
 
-    gsap.to(progress, {
-      value: 100,
-      duration,
-      ease: 'power2.out',
-      onUpdate: () => setProgressVisuals(progress.value),
+    const exitTl = gsap.timeline({
       onComplete: () => {
-        // Trigger hero reveal immediately as preloader starts fading!
-        if (typeof onCompleteCallback === 'function') onCompleteCallback();
+        preloader.classList.add('is-hidden');
+        setTimeout(() => preloader.remove(), 350);
+      }
+    });
 
-        // High-tech exit sequence
-        const exitTl = gsap.timeline({
-          onComplete: () => {
-            preloader.classList.add('is-hidden');
-            setTimeout(() => preloader.remove(), 250);
+    exitTl
+      .to([logo, svgContainer, progressBar, valueDisplay], {
+        opacity: 0,
+        scale: 0.96,
+        y: -10,
+        duration: 0.22,
+        stagger: 0.03,
+        ease: 'power2.in'
+      })
+      .to(preloader, {
+        opacity: 0,
+        duration: 0.28,
+        ease: 'power2.inOut'
+      }, '-=0.06');
+  };
+
+  // Continuous smooth interpolation ticker for the dial gauge
+  const tick = () => {
+    const delta = (targetProgress - currentProgress) * 0.1;
+    currentProgress += delta;
+    setProgressVisuals(currentProgress);
+
+    if (currentProgress < 99.2) {
+      animFrameId = requestAnimationFrame(tick);
+    } else {
+      revealSite();
+    }
+  };
+  animFrameId = requestAnimationFrame(tick);
+
+  // Background Preloader System:
+  // Preloads and decodes images into memory
+  const preloadImage = (src) => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.src = src;
+      if (img.complete) {
+        if (img.decode) {
+          img.decode().then(resolve).catch(resolve);
+        } else {
+          resolve();
+        }
+      } else {
+        img.onload = () => {
+          if (img.decode) {
+            img.decode().then(resolve).catch(resolve);
+          } else {
+            resolve();
           }
-        });
-
-        exitTl.to([logo, svgContainer, progressBar], {
-          opacity: 0,
-          scale: 0.96,
-          y: -10,
-          duration: 0.18,
-          stagger: 0.03,
-          ease: 'power2.in'
-        })
-        .to(preloader, {
-          opacity: 0,
-          duration: 0.22,
-          ease: 'power2.inOut'
-        }, '-=0.06');
+        };
+        img.onerror = resolve;
       }
     });
   };
 
-  if (alreadyVisited) {
-    // Returning visitor: Snappy 250ms calibration pulse
-    gsap.set([logo, svgContainer, progressBar], { opacity: 1, scale: 1 });
-    gsap.to(progress, {
-      value: 100,
-      duration: 0.25,
-      ease: 'power3.inOut',
-      onUpdate: () => setProgressVisuals(progress.value),
-      onComplete: () => finishAndReveal(0.15)
+  const criticalImages = [
+    '/images/hero-laboratory.jpg',
+    '/images/about-laboratory.jpg'
+  ];
+
+  let loadedImagesCount = 0;
+  criticalImages.forEach((src) => {
+    preloadImage(src).then(() => {
+      loadedImagesCount++;
+      // Advance needle as images download and decode into memory
+      targetProgress = Math.max(targetProgress, 35 + (loadedImagesCount / criticalImages.length) * 45);
     });
-    return;
-  }
-
-  // First time visitor: Smooth & punchy high-precision calibration sweep (~650ms total)
-  const entryTl = gsap.timeline();
-  entryTl
-    .to(logo, { opacity: 1, duration: 0.2, ease: 'power2.out' })
-    .to(svgContainer, { opacity: 1, scale: 1, duration: 0.25, ease: 'back.out(1.2)' }, '-=0.1')
-    .to(progressBar, { opacity: 1, duration: 0.15 }, '-=0.1');
-
-  // Fast initial sweep to 72%
-  gsap.to(progress, {
-    value: 72,
-    duration: 0.35,
-    ease: 'power2.out',
-    onUpdate: () => setProgressVisuals(progress.value)
   });
 
-  // When DOM is ready, complete to 100% briskly
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(() => finishAndReveal(0.25), 320);
-  } else {
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => finishAndReveal(0.25), 250);
-    });
-    // Safety fallback: maximum 900ms
-    setTimeout(() => finishAndReveal(0.25), 900);
-  }
+  // DOM interactive state
+  const domPromise = new Promise((resolve) => {
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      resolve();
+    } else {
+      document.addEventListener('DOMContentLoaded', resolve);
+    }
+  });
+
+  // Fonts ready state
+  const fontsPromise = document.fonts ? document.fonts.ready : Promise.resolve();
+
+  domPromise.then(() => {
+    targetProgress = Math.max(targetProgress, 45);
+  });
+
+  fontsPromise.then(() => {
+    targetProgress = Math.max(targetProgress, 70);
+  });
+
+  // When all assets are fully loaded and decoded in the background
+  Promise.all([
+    domPromise,
+    fontsPromise,
+    ...criticalImages.map(preloadImage)
+  ]).then(() => {
+    // Smooth final calibration snap to 100%
+    targetProgress = 100;
+  });
+
+  // Fallback safety timeout (1.8s) so user is never stalled if a network proxy delays
+  setTimeout(() => {
+    targetProgress = 100;
+  }, 1800);
 }

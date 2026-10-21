@@ -20,6 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+  <link rel="preload" as="image" href="/images/hero-laboratory.jpg" fetchpriority="high">
 
   <!-- Structured Data JSON-LD (Schema.org) -->
   <script type="application/ld+json">
@@ -144,6 +145,18 @@
     </div>
     <div class="text-[0.7rem] font-mono text-[#93A4B5] tracking-widest mt-3 preloader__value">0%</div>
   </div>
+  <script>
+    (function(){
+      var v = document.querySelector('.preloader__value');
+      var f = document.querySelector('.preloader__progress-fill');
+      var n = document.querySelector('.gauge-needle');
+      var c = document.querySelector('.gauge-progress');
+      if(v) v.textContent = '15%';
+      if(f) f.style.width = '15%';
+      if(n) n.setAttribute('transform', 'rotate(-63 50 50)');
+      if(c) c.style.strokeDashoffset = '240';
+    })();
+  </script>
 
   <!-- ========================================== -->
   <!-- 01 — HEADER INTELIGENTE                     -->
