@@ -10,7 +10,7 @@ export const COMPANY = {
   description: 'Soluções especializadas em calibração, metrologia e qualificação térmica para organizações que exigem rigor, fiabilidade e controlo dos seus processos.',
   
   contact: {
-    email: 'contacto@exemplo.invalid',
+    email: import.meta.env.VITE_CONTACT_EMAIL || 'contacto@exemplo.invalid',
     phone: null, // A DEFINIR — não apresentar no website até configuração
     phoneDisplay: null,
     whatsapp: null, // NÃO CONFIGURADO
@@ -34,8 +34,9 @@ export const COMPANY = {
   },
 
   website: {
-    url: 'https://www.exemplo.invalid',
-    domain: 'exemplo.invalid',
+    // Injectados no build a partir de site.config.js — não editar aqui.
+    url: import.meta.env.VITE_SITE_URL || 'https://www.exemplo.invalid',
+    domain: import.meta.env.VITE_SITE_DOMAIN || 'exemplo.invalid',
   },
 
   // Horário demonstrativo
