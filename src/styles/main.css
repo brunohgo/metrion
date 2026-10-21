@@ -104,6 +104,15 @@
   justify-content: center;
   background: var(--color-navy-950);
   transition: opacity 0.5s ease;
+  /* Isolates the preloader subtree from the rest of the document.
+     Without this, every per-frame update of the progress bar invalidates the
+     layout of the whole page (20k px tall on mobile), which turned a 1.2s
+     animation into ~11s of blocked main thread. */
+  contain: strict;
+  /* Promotes the preloader to its own compositor layer. Without it, each
+     animated frame repainted the whole document underneath (hero glows,
+     blurred backdrops), which blocked the main thread for seconds on mobile. */
+  will-change: transform, opacity;
 }
 
 .preloader.is-hidden {
@@ -172,11 +181,14 @@
 }
 
 .preloader__progress-fill {
-  width: 0%;
+  width: 100%;
   height: 100%;
   background: linear-gradient(90deg, var(--color-blue-electric), var(--color-cyan-tech));
   border-radius: 1px;
-  transition: width 0.3s ease;
+  /* Animated with scaleX() instead of width so the per-frame update stays on
+     the compositor and never triggers a document layout. */
+  transform: scaleX(0);
+  transform-origin: left center;
 }
 
 .preloader__lines {
@@ -527,12 +539,15 @@ body:has(.header.is-menu-open) .cookie-banner,
   background: linear-gradient(to top, var(--color-navy-950), transparent);
 }
 
+/* A soft glow made with a radial gradient instead of `filter: blur(150px)`.
+   The blur forced a 600x600 Gaussian blur to be re-rastered (1800x1800 at
+   3x DPR) every time the hero region repainted, which was one of the main
+   causes of the long main-thread block on mobile. */
 .hero__glow {
   position: absolute;
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  filter: blur(150px);
   opacity: 0.08;
   pointer-events: none;
 }
@@ -540,14 +555,14 @@ body:has(.header.is-menu-open) .cookie-banner,
 .hero__glow--blue {
   top: -200px;
   right: -100px;
-  background: var(--color-blue-electric);
+  background: radial-gradient(circle closest-side, var(--color-blue-electric) 0%, transparent 100%);
   opacity: 0.08;
 }
 
 .hero__glow--cyan {
   bottom: -200px;
   left: -100px;
-  background: var(--color-cyan-tech);
+  background: radial-gradient(circle closest-side, var(--color-cyan-tech) 0%, transparent 100%);
   opacity: 0.05;
 }
 

@@ -72,6 +72,12 @@
       align-items: center;
       justify-content: center;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      /* Keep the preloader's layout self-contained so per-frame updates of the
+         progress bar never invalidate the layout of the whole page. */
+      contain: strict;
+      /* Own compositor layer: animated frames must not repaint the document
+         underneath (hero glows, blurred backdrops). */
+      will-change: transform, opacity;
     }
     .preloader__logo {
       font-size: 1.25rem;
@@ -131,10 +137,12 @@
       opacity: 1 !important;
     }
     .preloader__progress-fill {
-      width: 0%;
+      width: 100%;
       height: 100%;
       background: linear-gradient(90deg, #2F80ED, #35E0E8);
       border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: left center;
     }
   </style>
 </head>
@@ -175,7 +183,7 @@
       var n = document.querySelector('.gauge-needle');
       var c = document.querySelector('.gauge-progress');
       if(v) v.textContent = '20%';
-      if(f) f.style.width = '20%';
+      if(f) f.style.transform = 'scaleX(0.2)';
       if(n) n.setAttribute('transform', 'rotate(-54 50 50)');
       if(c) {
         c.style.strokeDashoffset = '226';

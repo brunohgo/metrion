@@ -38,14 +38,27 @@ export function initPreloader(onCompleteCallback) {
   const valueDisplay = preloader.querySelector('.preloader__value');
 
   let currentProgress = 20;
-  let targetProgress = 40;
   let isDone = false;
   let animFrameId = null;
+  let lastRendered = -1;
+  let lastDisplayed = -1;
 
   const setProgressVisuals = (val) => {
     const rounded = Math.min(100, Math.round(val));
-    if (progressFill) progressFill.style.width = `${rounded}%`;
-    if (valueDisplay) valueDisplay.textContent = `${rounded}%`;
+
+    // Skip redundant writes: each style/attribute write used to invalidate
+    // layout on the whole document, so only touch the DOM when it changes.
+    if (rounded === lastRendered) return;
+    lastRendered = rounded;
+
+    // Progress bar: transform (compositor-only) instead of width (layout).
+    if (progressFill) progressFill.style.transform = `scaleX(${(rounded / 100).toFixed(3)})`;
+
+    // Percentage readout: text is only rewritten when the integer changes.
+    if (valueDisplay && rounded !== lastDisplayed) {
+      lastDisplayed = rounded;
+      valueDisplay.textContent = `${rounded}%`;
+    }
 
     // Gauge ring circle: circumference 283
     if (gaugeProgress) {
@@ -96,24 +109,50 @@ export function initPreloader(onCompleteCallback) {
       }, '-=0.04');
   };
 
-  // Fluid smooth interpolation ticker for the dial gauge needle
+  // Fluid smooth interpolation ticker for the dial gauge needle.
+  // The progress is derived from elapsed time instead of a per-frame
+  // interpolation: on a slow device (few frames per second) a per-frame
+  // approach needed dozens of frames to converge and stretched a 0.9s
+  // animation into several seconds of blocked main thread.
+  const ANIMATION_DURATION = 900;
+  const startedAt = performance.now();
+
+  const progressAt = (elapsed) => {
+    // Stepped calibration curve (ms -> %): mirrors the original step timers
+    // but is independent of the frame rate.
+    const steps = [
+      { at: 0, from: 20, to: 40 },
+      { at: 160, from: 40, to: 65 },
+      { at: 360, from: 65, to: 85 },
+      { at: 600, from: 85, to: 100 },
+      { at: ANIMATION_DURATION, from: 100, to: 100 },
+    ];
+    for (let i = steps.length - 1; i > 0; i--) {
+      if (elapsed >= steps[i - 1].at) {
+        const a = steps[i - 1];
+        const b = steps[i];
+        const span = b.at - a.at;
+        const t = span > 0 ? Math.min(1, (elapsed - a.at) / span) : 1;
+        // ease-out cubic keeps the motion fluid
+        const eased = 1 - Math.pow(1 - t, 3);
+        return a.from + (b.to - a.from) * eased;
+      }
+    }
+    return steps[0].from;
+  };
+
   const tick = () => {
-    const delta = (targetProgress - currentProgress) * 0.18;
-    currentProgress += delta;
+    const elapsed = performance.now() - startedAt;
+    currentProgress = progressAt(elapsed);
     setProgressVisuals(currentProgress);
 
-    if (currentProgress < 99.2) {
+    if (elapsed < ANIMATION_DURATION) {
       animFrameId = requestAnimationFrame(tick);
     } else {
       revealSite();
     }
   };
   animFrameId = requestAnimationFrame(tick);
-
-  // Quick progressive calibration steps: reaches 100% smoothly in 650ms
-  const stepTimer1 = setTimeout(() => { targetProgress = 65; }, 160);
-  const stepTimer2 = setTimeout(() => { targetProgress = 85; }, 360);
-  const stepTimer3 = setTimeout(() => { targetProgress = 100; }, 600);
 
   // Background Asset Preloader (non-blocking)
   const preloadImage = (src) => {
@@ -147,9 +186,4 @@ export function initPreloader(onCompleteCallback) {
   ];
 
   criticalImages.forEach(preloadImage);
-
-  // Guaranteed exit fallback within 850ms
-  setTimeout(() => {
-    targetProgress = 100;
-  }, 850);
 }
