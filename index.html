@@ -80,6 +80,7 @@
       color: #F6FAFD;
       margin-bottom: 1.5rem;
       text-transform: uppercase;
+      opacity: 1 !important;
     }
     .preloader__svg-container {
       width: 120px;
@@ -91,16 +92,19 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 1.5rem;
+      opacity: 1 !important;
     }
     .preloader__svg {
       width: 120px !important;
       height: 120px !important;
       max-width: 120px !important;
       max-height: 120px !important;
+      display: block !important;
+      opacity: 1 !important;
     }
     .gauge-ring {
       fill: none !important;
-      stroke: rgba(47, 128, 237, 0.2) !important;
+      stroke: rgba(47, 128, 237, 0.25) !important;
       stroke-width: 3.5;
     }
     .gauge-progress {
@@ -110,11 +114,13 @@
       stroke-linecap: round;
       stroke-dasharray: 283;
       stroke-dashoffset: 283;
+      transform-origin: 50px 50px;
     }
     .gauge-needle {
       stroke: #35E0E8 !important;
       stroke-width: 2.5;
       stroke-linecap: round;
+      transform-origin: 50px 50px;
     }
     .preloader__progress-bar {
       width: 200px;
@@ -122,6 +128,13 @@
       background: #112A45;
       border-radius: 2px;
       overflow: hidden;
+      opacity: 1 !important;
+    }
+    .preloader__progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #2F80ED, #35E0E8);
+      border-radius: 2px;
     }
   </style>
 </head>
@@ -134,16 +147,21 @@
     <div class="preloader__logo">MetriPrecision</div>
     <div class="preloader__svg-container">
       <svg class="preloader__svg" width="120" height="120" style="width:120px; height:120px; max-width:120px; max-height:120px;" viewBox="0 0 100 100" aria-label="A carregar instrumento metrológico">
-        <circle class="gauge-ring" cx="50" cy="50" r="45" fill="none" stroke="rgba(47, 128, 237, 0.2)" stroke-width="3.5" />
+        <circle class="gauge-ring" cx="50" cy="50" r="45" fill="none" stroke="rgba(47, 128, 237, 0.25)" stroke-width="3.5" />
         <circle class="gauge-progress" cx="50" cy="50" r="45" fill="none" stroke="#35E0E8" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" transform="rotate(-90 50 50)" />
-        <line class="gauge-needle" x1="50" y1="50" x2="50" y2="18" stroke="#35E0E8" stroke-width="2.5" stroke-linecap="round" />
-        <circle cx="50" cy="50" r="5" fill="#2F80ED" />
+        <line x1="50" y1="8" x2="50" y2="14" stroke="rgba(147, 164, 181, 0.45)" stroke-width="1.5" />
+        <line x1="92" y1="50" x2="86" y2="50" stroke="rgba(147, 164, 181, 0.45)" stroke-width="1.5" />
+        <line x1="50" y1="92" x2="50" y2="86" stroke="rgba(147, 164, 181, 0.45)" stroke-width="1.5" />
+        <line x1="8" y1="50" x2="14" y2="50" stroke="rgba(147, 164, 181, 0.45)" stroke-width="1.5" />
+        <line class="gauge-needle" x1="50" y1="50" x2="50" y2="16" stroke="#35E0E8" stroke-width="2.5" stroke-linecap="round" />
+        <circle cx="50" cy="50" r="4.5" fill="#2F80ED" />
+        <circle cx="50" cy="50" r="2" fill="#F6FAFD" />
       </svg>
     </div>
     <div class="preloader__progress-bar">
       <div class="preloader__progress-fill"></div>
     </div>
-    <div class="text-[0.7rem] font-mono text-[#93A4B5] tracking-widest mt-3 preloader__value">0%</div>
+    <div class="text-[0.7rem] font-mono text-[#93A4B5] tracking-widest mt-3 preloader__value">15%</div>
   </div>
   <script>
     (function(){
@@ -154,7 +172,10 @@
       if(v) v.textContent = '15%';
       if(f) f.style.width = '15%';
       if(n) n.setAttribute('transform', 'rotate(-63 50 50)');
-      if(c) c.style.strokeDashoffset = '240';
+      if(c) {
+        c.style.strokeDashoffset = '240';
+        c.setAttribute('stroke-dashoffset', '240');
+      }
     })();
   </script>
 

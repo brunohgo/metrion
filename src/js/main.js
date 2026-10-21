@@ -41,106 +41,102 @@ if (!prefersReduced && !isMobileOrTouch) {
 // Healthy lag smoothing prevents abrupt jumps
 gsap.ticker.lagSmoothing(500, 33);
 
-// Scroll reveal animations for sections
+// Non-blocking scroll reveal animations for sections
 function initScrollReveals() {
   if (prefersReduced) {
-    document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale').forEach((el) => {
+    document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale, .service-card').forEach((el) => {
       el.style.opacity = '1';
       el.style.transform = 'none';
     });
     return;
   }
 
+  // Smooth gentle reveals without hiding content
   const revealElements = document.querySelectorAll('.reveal-up');
   revealElements.forEach((el) => {
-    gsap.fromTo(el, 
-      { opacity: 0, y: 35 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-        }
+    gsap.from(el, {
+      opacity: 0.4,
+      y: 20,
+      duration: 0.5,
+      ease: 'power2.out',
+      clearProps: 'all',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 92%',
+        once: true,
       }
-    );
+    });
   });
 
   // Reveal Left (Section 03 text content)
   document.querySelectorAll('.reveal-left').forEach((el) => {
-    gsap.fromTo(el, 
-      { opacity: 0, x: -35 },
-      {
-        opacity: 1,
-        x: 0,
-        duration: 0.85,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-        }
+    gsap.from(el, {
+      opacity: 0.4,
+      x: -20,
+      duration: 0.5,
+      ease: 'power2.out',
+      clearProps: 'all',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 92%',
+        once: true,
       }
-    );
+    });
   });
 
   // Reveal Right (Section 03 lab image)
   document.querySelectorAll('.reveal-right').forEach((el) => {
-    gsap.fromTo(el, 
-      { opacity: 0, x: 35 },
-      {
-        opacity: 1,
-        x: 0,
-        duration: 0.85,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-        }
+    gsap.from(el, {
+      opacity: 0.4,
+      x: 20,
+      duration: 0.5,
+      ease: 'power2.out',
+      clearProps: 'all',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 92%',
+        once: true,
       }
-    );
+    });
   });
 
   // Reveal Scale
   document.querySelectorAll('.reveal-scale').forEach((el) => {
-    gsap.fromTo(el, 
-      { opacity: 0, scale: 0.95 },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 0.85,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-        }
+    gsap.from(el, {
+      opacity: 0.5,
+      scale: 0.98,
+      duration: 0.5,
+      ease: 'power2.out',
+      clearProps: 'all',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 92%',
+        once: true,
       }
-    );
+    });
   });
 
-  // Staggered Bento Cards
+  // Staggered Bento Cards (cards start 100% visible, smoothly lift on scroll)
   const bentoGrid = document.querySelector('.services-grid');
   if (bentoGrid) {
     const cards = bentoGrid.querySelectorAll('.service-card');
-    gsap.fromTo(cards,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: bentoGrid,
-          start: 'top 80%',
-        }
+    cards.forEach((c) => {
+      c.style.opacity = '1';
+      c.style.transform = 'none';
+    });
+    gsap.from(cards, {
+      opacity: 0.5,
+      y: 20,
+      duration: 0.45,
+      stagger: 0.08,
+      ease: 'power2.out',
+      clearProps: 'all',
+      scrollTrigger: {
+        trigger: bentoGrid,
+        start: 'top 92%',
+        once: true,
       }
-    );
+    });
   }
 }
 
@@ -163,4 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveals();
     ScrollTrigger.refresh();
   });
+});
+
+window.addEventListener('load', () => {
+  ScrollTrigger.refresh();
 });

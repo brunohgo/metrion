@@ -84,6 +84,8 @@ export function initHeroAnimation() {
     let currentX = 0;
     let currentY = 0;
     let isMoving = false;
+    let isHeroVisible = true;
+    let parallaxRaf = null;
     const renderParallax = () => {
       if (!isHeroVisible) {
         isMoving = false;

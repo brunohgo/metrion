@@ -48,14 +48,18 @@ export function initPreloader(onCompleteCallback) {
     if (gaugeProgress) {
       const offset = 283 - (283 * (rounded / 100));
       gaugeProgress.style.strokeDashoffset = offset;
+      gaugeProgress.setAttribute('stroke-dashoffset', offset);
     }
 
     // Needle rotation: -90deg to +90deg (180deg sweep)
     if (gaugeNeedle) {
       const rotation = -90 + (rounded / 100) * 180;
-      gaugeNeedle.setAttribute('transform', `rotate(${rotation} 50 50)`);
+      gaugeNeedle.setAttribute('transform', `rotate(${rotation.toFixed(1)} 50 50)`);
     }
   };
+
+  // Render initial visual state immediately
+  setProgressVisuals(currentProgress);
 
   const revealSite = () => {
     if (isDone) return;
@@ -91,7 +95,7 @@ export function initPreloader(onCompleteCallback) {
 
   // Continuous smooth interpolation ticker for the dial gauge
   const tick = () => {
-    const delta = (targetProgress - currentProgress) * 0.1;
+    const delta = (targetProgress - currentProgress) * 0.12;
     currentProgress += delta;
     setProgressVisuals(currentProgress);
 
@@ -130,7 +134,10 @@ export function initPreloader(onCompleteCallback) {
 
   const criticalImages = [
     '/images/hero-laboratory.jpg',
-    '/images/about-laboratory.jpg'
+    '/images/about-laboratory.jpg',
+    '/images/calibration-service.jpg',
+    '/images/sector-metalworking.jpg',
+    '/images/cta-precision.jpg'
   ];
 
   let loadedImagesCount = 0;
@@ -172,8 +179,8 @@ export function initPreloader(onCompleteCallback) {
     targetProgress = 100;
   });
 
-  // Fallback safety timeout (1.8s) so user is never stalled if a network proxy delays
+  // Fallback safety timeout (1.5s) so user is never stalled if a network proxy delays
   setTimeout(() => {
     targetProgress = 100;
-  }, 1800);
+  }, 1500);
 }
