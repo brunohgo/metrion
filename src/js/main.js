@@ -151,8 +151,46 @@ function initScrollReveals() {
   }
 }
 
+function initOriginalLogo() {
+  document.querySelectorAll('img[src="/brand/metrion-original.jpg"]').forEach((image) => {
+    image.classList.add('logo-image--processing');
+    const source = new Image();
+    source.decoding = 'async';
+    source.onload = () => {
+      const canvas = document.createElement('canvas');
+      const scale = Math.min(1, 900 / source.naturalWidth);
+      canvas.width = Math.round(source.naturalWidth * scale);
+      canvas.height = Math.round(source.naturalHeight * scale);
+      const context = canvas.getContext('2d', { willReadFrequently: true });
+      context.drawImage(source, 0, 0, canvas.width, canvas.height);
+      const pixels = context.getImageData(0, 0, canvas.width, canvas.height);
+
+      for (let index = 0; index < pixels.data.length; index += 4) {
+        const red = pixels.data[index];
+        const green = pixels.data[index + 1];
+        const blue = pixels.data[index + 2];
+        const brightness = (red + green + blue) / 3;
+        const saturation = Math.max(red, green, blue) - Math.min(red, green, blue);
+        if (brightness > 232 && saturation < 34) {
+          pixels.data[index + 3] = 0;
+        } else if (brightness < 145 && saturation < 65) {
+          pixels.data[index] = 255;
+          pixels.data[index + 1] = 255;
+          pixels.data[index + 2] = 255;
+        }
+      }
+
+      context.putImageData(pixels, 0, 0);
+      image.src = canvas.toDataURL('image/webp', 0.82);
+      image.classList.remove('logo-image--processing');
+    };
+    source.src = image.src;
+  });
+}
+
 // Robust execution whether DOM is loading or already ready
 function start() {
+  initOriginalLogo();
   initHeader();
   initFaqAccordion();
   initEquipmentExplorer();
