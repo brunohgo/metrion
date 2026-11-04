@@ -11,7 +11,7 @@
     <path d="M352 173c-63 25-154 34-232 18-48-10-79-29-92-54" stroke-width="9"/>
   </g>
   <path d="M91 152 119 65h31l47 56 48-56h31l-29 87h-39l14-48-35 42h-20l-35-42-15 48z" fill="url(#orange)"/>
-  <g fill="#292b30" font-family="Arial, Helvetica, sans-serif" font-weight="700" letter-spacing="-5">
+  <g fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-weight="700" letter-spacing="-5">
     <text x="270" y="151" font-size="104">etrio</text>
     <path d="M681 77h18v75h-18z"/>
     <path d="M668 113h44v17h-44z"/>
