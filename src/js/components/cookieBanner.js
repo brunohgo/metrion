@@ -7,7 +7,7 @@ export function initCookieBanner() {
   const banner = document.querySelector('.cookie-banner');
   if (!banner) return;
 
-  const storageKey = 'metriprecision_cookie_consent';
+  const storageKey = 'metrion_cookie_consent';
   const currentConsent = localStorage.getItem(storageKey);
 
   if (!currentConsent) {

@@ -77,8 +77,8 @@ export function initScrollStorytelling() {
 
     if (visualCard) {
       gsap.fromTo(visualCard, 
-        { scale: 0.98, borderColor: 'rgba(53, 224, 232, 0.4)' },
-        { scale: 1, borderColor: 'rgba(47, 128, 237, 0.2)', duration: 0.5, ease: 'power2.out' }
+        { scale: 0.98, borderColor: 'rgba(255, 157, 61, 0.4)' },
+        { scale: 1, borderColor: 'rgba(255, 106, 0, 0.2)', duration: 0.5, ease: 'power2.out' }
       );
     }
   };

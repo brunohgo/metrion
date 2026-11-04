@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 — Página Não Encontrada | MetriPrecision</title>
+  <title>404 — Página Não Encontrada | Metrion</title>
   <meta name="description" content="A página solicitada não foi localizada nos nossos registos metrológicos.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232F80ED'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5v-3h3v-2h-3v-3h-2v3H8v2h3v3h2z'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="/brand/metrion-mark.svg">
     <!-- Preconnect & Asynchronous Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,11 +13,11 @@
   <link rel="stylesheet" href="/src/styles/main.css">
   <style>
     /* Critical FOUC Shield + Skeleton */
-    html, body { background-color: #07111F !important; margin: 0; padding: 0; }
-    .skeleton-loader { position: fixed; inset: 0; z-index: 999999; background: #07111F; display: flex; flex-direction: column; }
+    html, body { background-color: #121212 !important; margin: 0; padding: 0; }
+    .skeleton-loader { position: fixed; inset: 0; z-index: 999999; background: #121212; display: flex; flex-direction: column; }
     .skeleton-loader.is-hidden { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
-    .skel-header { height: 72px; border-bottom: 1px solid #112A45; display: flex; align-items: center; padding: 0 2rem; gap: 2rem; }
-    .skel-bar { background: linear-gradient(90deg, #112A45 25%, #1a3a5c 50%, #112A45 75%); background-size: 200% 100%; animation: skel-shimmer 1.5s ease-in-out infinite; border-radius: 6px; }
+    .skel-header { height: 72px; border-bottom: 1px solid #343434; display: flex; align-items: center; padding: 0 2rem; gap: 2rem; }
+    .skel-bar { background: linear-gradient(90deg, #343434 25%, #1a3a5c 50%, #343434 75%); background-size: 200% 100%; animation: skel-shimmer 1.5s ease-in-out infinite; border-radius: 6px; }
     .skel-hero { padding: 6rem 2rem 3rem; max-width: 900px; }
     .skel-content { padding: 2rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; max-width: 1200px; flex: 1; }
     .skel-col { display: flex; flex-direction: column; gap: 1rem; }
@@ -25,7 +25,7 @@
     @media (max-width: 768px) { .skel-content { grid-template-columns: 1fr; } .skel-hero { padding: 4rem 1.5rem 2rem; } }
   </style>
 </head>
-<body class="bg-[#07111F] text-[#F6FAFD] min-h-screen flex flex-col justify-between antialiased selection:bg-[#2F80ED] selection:text-white">
+<body class="bg-[#121212] text-[#fffaf4] min-h-screen flex flex-col justify-between antialiased selection:bg-[#ff6a00] selection:text-white">
   <!-- Skeleton Loader -->
   <div class="skeleton-loader" id="skeleton-loader" aria-hidden="true">
     <div class="skel-header">
@@ -76,7 +76,7 @@
   <!-- Header -->
   <header class="header is-scrolled" role="banner">
     <div class="header__inner">
-      <a href="/" class="header__logo">METRI<span class="text-[#35E0E8]">PRECISION</span></a>
+      <a href="/" class="header__logo" aria-label="Metrion Homepage"><img src="/brand/metrion-logo.svg" alt="Metrion" width="190" height="55"></a>
       <a href="/" class="header__cta">Voltar ao Início</a>
     </div>
   </header>
@@ -84,11 +84,11 @@
   <!-- 404 Hero -->
   <main class="flex-grow flex items-center justify-center py-32 px-6">
     <div class="max-w-md w-full text-center">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#112A45] text-xs font-mono text-[#35E0E8] mb-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#343434] text-xs font-mono text-[#ff9d3d] mb-4">
         <span>ERRO DE LEITURA METROLÓGICA</span>
       </div>
 
-      <div class="text-8xl md:text-9xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-[#2F80ED] to-[#35E0E8] tracking-tight mb-2">
+      <div class="text-8xl md:text-9xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#ff9d3d] tracking-tight mb-2">
         404
       </div>
 
@@ -96,7 +96,7 @@
         Desvio Fora de Escala
       </h1>
 
-      <p class="text-sm text-[#93A4B5] leading-relaxed mb-8">
+      <p class="text-sm text-[#b7b2aa] leading-relaxed mb-8">
         O endereço que tentou aceder não corresponde a qualquer grandeza ou parâmetro existente no nosso catálogo de páginas.
       </p>
 
@@ -112,9 +112,9 @@
   </main>
 
   <!-- Footer -->
-  <footer class="footer py-8 border-t border-[#112A45]">
-    <div class="max-w-4xl mx-auto px-6 text-center text-xs text-[#6B7B8D]">
-      &copy; 2026 MetriPrecision. Todos os direitos reservados.
+  <footer class="footer py-8 border-t border-[#343434]">
+    <div class="max-w-4xl mx-auto px-6 text-center text-xs text-[#8f8a83]">
+      &copy; 2026 Metrion. Todos os direitos reservados.
     </div>
   </footer>
 

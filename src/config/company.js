@@ -4,7 +4,7 @@
  * Os dados marcados como "A DEFINIR" são demonstrativos.
  */
 export const COMPANY = {
-  name: 'MetriPrecision',
+  name: 'Metrion',
   legalName: 'NOME_DA_EMPRESA, Lda.',
   tagline: 'Precisão que Transforma Resultados',
   description: 'Soluções especializadas em calibração, metrologia e qualificação térmica para organizações que exigem rigor, fiabilidade e controlo dos seus processos.',

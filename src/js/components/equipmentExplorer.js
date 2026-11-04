@@ -22,7 +22,7 @@ export function initEquipmentExplorer() {
     skeletonContainer.className = 'equipment-skeletons hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5';
     for (let i = 0; i < 4; i++) {
       const sk = document.createElement('div');
-      sk.className = 'p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/10 flex flex-col justify-between h-[210px] relative overflow-hidden';
+      sk.className = 'p-6 rounded-2xl bg-[#242424]/50 border border-[#ff6a00]/10 flex flex-col justify-between h-[210px] relative overflow-hidden';
       sk.innerHTML = `
         <div>
           <div class="skeleton skeleton--text w-24 h-4 mb-3"></div>
@@ -30,7 +30,7 @@ export function initEquipmentExplorer() {
           <div class="skeleton skeleton--text w-full h-3 mb-2"></div>
           <div class="skeleton skeleton--text w-3/4 h-3"></div>
         </div>
-        <div class="pt-4 border-t border-[#112A45] flex justify-between">
+        <div class="pt-4 border-t border-[#343434] flex justify-between">
           <div class="skeleton skeleton--text w-20 h-3"></div>
           <div class="skeleton skeleton--text w-16 h-3"></div>
         </div>

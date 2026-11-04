@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Qualificação Térmica & Mapeamento de Temperatura — MetriPrecision</title>
+  <title>Qualificação Térmica & Mapeamento de Temperatura — Metrion</title>
   <meta name="description" content="Serviço de qualificação térmica em Portugal: mapeamento de autoclaves, estufas, câmaras frigoríficas e armazéns segundo EudraLex Anexo 15 e ISO 17665:2024.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232F80ED'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5v-3h3v-2h-3v-3h-2v3H8v2h3v3h2z'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="/brand/metrion-mark.svg">
     <!-- Preconnect & Asynchronous Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,11 +13,11 @@
   <link rel="stylesheet" href="/src/styles/main.css">
   <style>
     /* Critical FOUC Shield + Skeleton */
-    html, body { background-color: #07111F !important; margin: 0; padding: 0; }
-    .skeleton-loader { position: fixed; inset: 0; z-index: 999999; background: #07111F; display: flex; flex-direction: column; }
+    html, body { background-color: #121212 !important; margin: 0; padding: 0; }
+    .skeleton-loader { position: fixed; inset: 0; z-index: 999999; background: #121212; display: flex; flex-direction: column; }
     .skeleton-loader.is-hidden { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
-    .skel-header { height: 72px; border-bottom: 1px solid #112A45; display: flex; align-items: center; padding: 0 2rem; gap: 2rem; }
-    .skel-bar { background: linear-gradient(90deg, #112A45 25%, #1a3a5c 50%, #112A45 75%); background-size: 200% 100%; animation: skel-shimmer 1.5s ease-in-out infinite; border-radius: 6px; }
+    .skel-header { height: 72px; border-bottom: 1px solid #343434; display: flex; align-items: center; padding: 0 2rem; gap: 2rem; }
+    .skel-bar { background: linear-gradient(90deg, #343434 25%, #1a3a5c 50%, #343434 75%); background-size: 200% 100%; animation: skel-shimmer 1.5s ease-in-out infinite; border-radius: 6px; }
     .skel-hero { padding: 6rem 2rem 3rem; max-width: 900px; }
     .skel-content { padding: 2rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; max-width: 1200px; flex: 1; }
     .skel-col { display: flex; flex-direction: column; gap: 1rem; }
@@ -25,7 +25,7 @@
     @media (max-width: 768px) { .skel-content { grid-template-columns: 1fr; } .skel-hero { padding: 4rem 1.5rem 2rem; } }
   </style>
 </head>
-<body class="bg-[#07111F] text-[#F6FAFD] antialiased selection:bg-[#2F80ED] selection:text-white">
+<body class="bg-[#121212] text-[#fffaf4] antialiased selection:bg-[#ff6a00] selection:text-white">
   <!-- Skeleton Loader -->
   <div class="skeleton-loader" id="skeleton-loader" aria-hidden="true">
     <div class="skel-header">
@@ -76,7 +76,7 @@
   <!-- Header -->
   <header class="header is-scrolled" role="banner">
     <div class="header__inner">
-      <a href="/" class="header__logo">METRI<span class="text-[#35E0E8]">PRECISION</span></a>
+      <a href="/" class="header__logo" aria-label="Metrion Homepage"><img src="/brand/metrion-logo.svg" alt="Metrion" width="190" height="55"></a>
       <nav class="header__nav">
         <a href="/" class="header__nav-link">Início</a>
         <a href="/sobre.html" class="header__nav-link">Sobre</a>
@@ -122,15 +122,15 @@
   </header>
 
   <!-- Service Hero -->
-  <section class="pt-36 pb-20 bg-gradient-to-b from-[#0C2036]/80 to-[#07111F] border-b border-[#112A45]">
+  <section class="pt-36 pb-20 bg-gradient-to-b from-[#242424]/80 to-[#121212] border-b border-[#343434]">
     <div class="max-w-5xl mx-auto px-6">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#112A45] text-xs font-mono text-[#35E0E8] mb-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#343434] text-xs font-mono text-[#ff9d3d] mb-4">
         <span>MAPEAMENTO TÉRMICO</span> &bull; <span>GMP & EudraLex ANEXO 15</span>
       </div>
       <h1 class="text-4xl md:text-5xl font-bold font-heading text-white mb-4">
         Qualificação Térmica & Mapeamento de Temperatura
       </h1>
-      <p class="text-lg text-[#93A4B5] max-w-3xl leading-relaxed">
+      <p class="text-lg text-[#b7b2aa] max-w-3xl leading-relaxed">
         Comprovação documental e ensaios empíricos de uniformidade, estabilidade e distribuição térmica em equipamentos críticos para os setores farmacêutico, hospitalar, alimentar e logístico em Portugal.
       </p>
     </div>
@@ -141,13 +141,13 @@
     <div class="section__container">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
         <div class="lg:col-span-2 space-y-8">
-          <div class="rounded-2xl overflow-hidden border border-[#2F80ED]/20 shadow-xl mb-8">
+          <div class="rounded-2xl overflow-hidden border border-[#ff6a00]/20 shadow-xl mb-8">
             <img src="/images/thermal-qualification.jpg" alt="Autoclave industrial e câmara de ensaio com sensores múltiplos de temperatura e dataloggers" class="w-full h-auto object-cover" fetchpriority="high" decoding="async">
           </div>
 
           <div>
             <h2 class="text-2xl font-bold font-heading text-white mb-4">O que é a Qualificação Térmica?</h2>
-            <div class="text-[#93A4B5] space-y-4 leading-relaxed text-sm md:text-base">
+            <div class="text-[#b7b2aa] space-y-4 leading-relaxed text-sm md:text-base">
               <p>
                 A qualificação térmica consiste num conjunto rigoroso de ensaios realizados in situ num equipamento termicamente controlado para demonstrar e documentar, com evidência estatística, que o sistema atinge e mantém a temperatura pretendida em todos os pontos do seu volume útil.
               </p>
@@ -161,32 +161,32 @@
           <div>
             <h3 class="text-xl font-bold font-heading text-white mb-4">Equipamentos Habitualmente Qualificados</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+              <div class="p-4 rounded-lg bg-[#242424]/30 border border-[#343434]">
                 <h4 class="font-bold text-white text-sm">Autoclaves & Esterilizadores</h4>
-                <p class="text-xs text-[#93A4B5] mt-1">Esterilização por vapor húmido. Verificação de letalidade térmica (F0), tempo de exposição e penetração de calor.</p>
+                <p class="text-xs text-[#b7b2aa] mt-1">Esterilização por vapor húmido. Verificação de letalidade térmica (F0), tempo de exposição e penetração de calor.</p>
               </div>
-              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+              <div class="p-4 rounded-lg bg-[#242424]/30 border border-[#343434]">
                 <h4 class="font-bold text-white text-sm">Câmaras Frigoríficas & Walk-in</h4>
-                <p class="text-xs text-[#93A4B5] mt-1">Armazenamento entre +2 °C e +8 °C. Mapeamento 24h a 72h contínuas com ensaios sazonais de verão/inverno.</p>
+                <p class="text-xs text-[#b7b2aa] mt-1">Armazenamento entre +2 °C e +8 °C. Mapeamento 24h a 72h contínuas com ensaios sazonais de verão/inverno.</p>
               </div>
-              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+              <div class="p-4 rounded-lg bg-[#242424]/30 border border-[#343434]">
                 <h4 class="font-bold text-white text-sm">Estufas de Secagem & Despirogenação</h4>
-                <p class="text-xs text-[#93A4B5] mt-1">Processos térmicos até 250 °C / 300 °C. Avaliação de homogeneidade e taxa de fluxo de convecção.</p>
+                <p class="text-xs text-[#b7b2aa] mt-1">Processos térmicos até 250 °C / 300 °C. Avaliação de homogeneidade e taxa de fluxo de convecção.</p>
               </div>
-              <div class="p-4 rounded-lg bg-[#0C2036]/30 border border-[#112A45]">
+              <div class="p-4 rounded-lg bg-[#242424]/30 border border-[#343434]">
                 <h4 class="font-bold text-white text-sm">Ultracongeladores (-80 °C / -20 °C)</h4>
-                <p class="text-xs text-[#93A4B5] mt-1">Conservação de biológicos e vacinas. Testes de falha de energia e tempo de elevação de temperatura.</p>
+                <p class="text-xs text-[#b7b2aa] mt-1">Conservação de biológicos e vacinas. Testes de falha de energia e tempo de elevação de temperatura.</p>
               </div>
             </div>
           </div>
 
           <!-- Enquadramento Normativo Ponderado -->
-          <div class="p-6 rounded-xl bg-[#0C2036]/60 border border-[#2F80ED]/30">
-            <h3 class="text-lg font-bold text-[#35E0E8] mb-2">Referenciais Técnicos Aplicáveis</h3>
-            <p class="text-xs text-[#93A4B5] leading-relaxed mb-3">
+          <div class="p-6 rounded-xl bg-[#242424]/60 border border-[#ff6a00]/30">
+            <h3 class="text-lg font-bold text-[#ff9d3d] mb-2">Referenciais Técnicos Aplicáveis</h3>
+            <p class="text-xs text-[#b7b2aa] leading-relaxed mb-3">
               Consoante o setor e o tipo de equipamento ensaiado, são aplicáveis os seguintes referenciais (cuja obrigatoriedade é estritamente setorial):
             </p>
-            <ul class="text-xs text-[#93A4B5] space-y-2">
+            <ul class="text-xs text-[#b7b2aa] space-y-2">
               <li><strong class="text-white">EudraLex Volume 4, Anexo 15:</strong> Qualificação e validação no contexto das Boas Práticas de Fabrico (GMP) para a indústria farmacêutica.</li>
               <li><strong class="text-white">ISO 17665:2024:</strong> Requisitos para validação e controlo de rotina da esterilização por calor húmido de dispositivos médicos.</li>
               <li><strong class="text-white">Diretrizes de Boas Práticas de Distribuição (GDP):</strong> Quando aplicáveis a cadeias de conservação de medicamentos e vacinas.</li>
@@ -226,9 +226,9 @@
 
         <!-- Sidebar -->
         <div class="space-y-6">
-          <div class="p-6 rounded-2xl bg-[#0C2036]/50 border border-[#2F80ED]/20">
+          <div class="p-6 rounded-2xl bg-[#242424]/50 border border-[#ff6a00]/20">
             <h3 class="font-bold text-white text-lg mb-2">Agendar Qualificação</h3>
-            <p class="text-xs text-[#93A4B5] mb-4">
+            <p class="text-xs text-[#b7b2aa] mb-4">
               Indique as dimensões do equipamento e a gama de temperatura de trabalho.
             </p>
             <button type="button" class="btn btn--primary w-full justify-center btn-open-quote" data-service="qualificacao-termica">
@@ -236,14 +236,14 @@
             </button>
           </div>
 
-          <div class="p-6 rounded-2xl bg-[#0C2036]/30 border border-[#112A45] space-y-3">
+          <div class="p-6 rounded-2xl bg-[#242424]/30 border border-[#343434] space-y-3">
             <h4 class="font-bold text-white text-sm uppercase tracking-wider">Conteúdo do Relatório</h4>
-            <ul class="text-xs text-[#93A4B5] space-y-2">
-              <li class="flex items-center gap-2"><span class="text-[#35E0E8]">✓</span> Protocolo pré-aprovado de ensaio</li>
-              <li class="flex items-center gap-2"><span class="text-[#35E0E8]">✓</span> Esquema 3D do posicionamento de sondas</li>
-              <li class="flex items-center gap-2"><span class="text-[#35E0E8]">✓</span> Gráficos térmicos e análise estatística</li>
-              <li class="flex items-center gap-2"><span class="text-[#35E0E8]">✓</span> Determinação de pontos críticos (hot/cold)</li>
-              <li class="flex items-center gap-2"><span class="text-[#35E0E8]">✓</span> Certificados de calibração pré e pós-ensaio</li>
+            <ul class="text-xs text-[#b7b2aa] space-y-2">
+              <li class="flex items-center gap-2"><span class="text-[#ff9d3d]">✓</span> Protocolo pré-aprovado de ensaio</li>
+              <li class="flex items-center gap-2"><span class="text-[#ff9d3d]">✓</span> Esquema 3D do posicionamento de sondas</li>
+              <li class="flex items-center gap-2"><span class="text-[#ff9d3d]">✓</span> Gráficos térmicos e análise estatística</li>
+              <li class="flex items-center gap-2"><span class="text-[#ff9d3d]">✓</span> Determinação de pontos críticos (hot/cold)</li>
+              <li class="flex items-center gap-2"><span class="text-[#ff9d3d]">✓</span> Certificados de calibração pré e pós-ensaio</li>
             </ul>
           </div>
         </div>
@@ -255,7 +255,7 @@
   <footer class="footer">
     <div class="footer__container">
       <div class="footer__bottom">
-        <div class="footer__copy">&copy; 2026 MetriPrecision. Todos os direitos reservados.</div>
+        <div class="footer__copy">&copy; 2026 Metrion. Todos os direitos reservados.</div>
         <div class="footer__legal-links">
           <a href="/privacidade.html" class="footer__legal-link">Privacidade</a>
           <a href="/cookies.html" class="footer__legal-link">Cookies</a>

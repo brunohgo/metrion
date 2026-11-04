@@ -13,9 +13,9 @@ export const QUOTE_MODAL_MARKUP = `
     <button type="button" class="modal__close" aria-label="Fechar Modal">&times;</button>
 
     <div class="mb-6">
-      <span class="text-xs font-mono font-bold text-[#35E0E8] uppercase tracking-wider">Formulário de Engenharia</span>
+      <span class="text-xs font-mono font-bold text-[#ff9d3d] uppercase tracking-wider">Formulário de Engenharia</span>
       <h3 id="modal-title" class="text-2xl font-bold font-heading text-white mt-1">Solicitar Orçamento Técnico</h3>
-      <p class="text-xs text-[#93A4B5] mt-1">
+      <p class="text-xs text-[#b7b2aa] mt-1">
         Indique as características dos instrumentos a calibrar ou qualificar.
       </p>
     </div>
@@ -84,10 +84,10 @@ export const QUOTE_MODAL_MARKUP = `
 
       <div class="form-group">
         <label class="form-label" for="quote-file">Upload de Caderno de Encargos / Ficha Técnica (Opcional)</label>
-        <div class="border border-dashed border-[#2F80ED]/30 rounded-xl p-4 text-center hover:border-[#35E0E8]/60 transition-colors bg-[#07111F]/40 cursor-pointer">
+        <div class="border border-dashed border-[#ff6a00]/30 rounded-xl p-4 text-center hover:border-[#ff9d3d]/60 transition-colors bg-[#121212]/40 cursor-pointer">
           <input type="file" id="quote-file" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx">
-          <label for="quote-file" class="cursor-pointer block text-xs text-[#93A4B5]">
-            <span class="text-[#35E0E8] font-semibold">Clique para anexar</span> ficheiro PDF ou Excel (máx. 10MB)
+          <label for="quote-file" class="cursor-pointer block text-xs text-[#b7b2aa]">
+            <span class="text-[#ff9d3d] font-semibold">Clique para anexar</span> ficheiro PDF ou Excel (máx. 10MB)
           </label>
           <div id="quote-file-name" class="text-xs text-white font-mono mt-2 hidden"></div>
         </div>

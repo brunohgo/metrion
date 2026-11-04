@@ -43,23 +43,23 @@ export function initInteractiveGauge(canvasId = 'hero-gauge-canvas') {
 
     // 1. Outer Dark Dial Body
     const grad = offCtx.createRadialGradient(centerX, centerY, radius * 0.4, centerX, centerY, radius);
-    grad.addColorStop(0, '#0C2036');
-    grad.addColorStop(0.85, '#07111F');
-    grad.addColorStop(1, '#112A45');
+    grad.addColorStop(0, '#242424');
+    grad.addColorStop(0.85, '#121212');
+    grad.addColorStop(1, '#343434');
 
     offCtx.beginPath();
     offCtx.arc(centerX, centerY, radius, 0, Math.PI * 2);
     offCtx.fillStyle = grad;
     offCtx.fill();
     offCtx.lineWidth = 2;
-    offCtx.strokeStyle = 'rgba(47, 128, 237, 0.4)';
+    offCtx.strokeStyle = 'rgba(255, 106, 0, 0.4)';
     offCtx.stroke();
 
     // Subtle inner glowing border
     offCtx.beginPath();
     offCtx.arc(centerX, centerY, radius * 0.94, 0, Math.PI * 2);
     offCtx.lineWidth = 1;
-    offCtx.strokeStyle = 'rgba(53, 224, 232, 0.2)';
+    offCtx.strokeStyle = 'rgba(255, 157, 61, 0.2)';
     offCtx.stroke();
 
     // 2. Graduation Ticks (60 divisions)
@@ -81,7 +81,7 @@ export function initInteractiveGauge(canvasId = 'hero-gauge-canvas') {
       offCtx.moveTo(x1, y1);
       offCtx.lineTo(x2, y2);
       offCtx.lineWidth = isSuperMajor ? 2.5 : isMajor ? 1.5 : 1;
-      offCtx.strokeStyle = isSuperMajor ? '#35E0E8' : isMajor ? '#2F80ED' : 'rgba(147, 164, 181, 0.4)';
+      offCtx.strokeStyle = isSuperMajor ? '#ff9d3d' : isMajor ? '#ff6a00' : 'rgba(183, 178, 170, 0.4)';
       offCtx.stroke();
 
       // Numerical labels on major ticks
@@ -92,7 +92,7 @@ export function initInteractiveGauge(canvasId = 'hero-gauge-canvas') {
         offCtx.font = '700 9px monospace';
         offCtx.textAlign = 'center';
         offCtx.textBaseline = 'middle';
-        offCtx.fillStyle = isSuperMajor ? '#35E0E8' : 'rgba(147, 164, 181, 0.8)';
+        offCtx.fillStyle = isSuperMajor ? '#ff9d3d' : 'rgba(183, 178, 170, 0.8)';
         offCtx.fillText(String(i * 10), tx, ty);
       }
     }
@@ -101,10 +101,10 @@ export function initInteractiveGauge(canvasId = 'hero-gauge-canvas') {
     offCtx.font = '700 10px "Space Grotesk", sans-serif';
     offCtx.textAlign = 'center';
     offCtx.fillStyle = '#FFFFFF';
-    offCtx.fillText('METRIPRECISION', centerX, centerY - radius * 0.32);
+    offCtx.fillText('METRION', centerX, centerY - radius * 0.32);
 
     offCtx.font = '500 8px monospace';
-    offCtx.fillStyle = '#35E0E8';
+    offCtx.fillStyle = '#ff9d3d';
     offCtx.fillText('0.001 mm / RES', centerX, centerY - radius * 0.2);
   };
 
@@ -179,13 +179,13 @@ export function initInteractiveGauge(canvasId = 'hero-gauge-canvas') {
     ctx.lineTo(1, -radius * 0.85);
     ctx.lineTo(-1, -radius * 0.85);
     ctx.closePath();
-    ctx.fillStyle = '#35E0E8';
+    ctx.fillStyle = '#ff9d3d';
     ctx.fill();
 
     // Counterweight tail
     ctx.beginPath();
     ctx.arc(0, 12, 4.5, 0, Math.PI * 2);
-    ctx.fillStyle = '#2F80ED';
+    ctx.fillStyle = '#ff6a00';
     ctx.fill();
 
     ctx.restore();
@@ -193,12 +193,12 @@ export function initInteractiveGauge(canvasId = 'hero-gauge-canvas') {
     // Center Pivot Cap
     ctx.beginPath();
     ctx.arc(centerX, centerY, 7, 0, Math.PI * 2);
-    ctx.fillStyle = '#F6FAFD';
+    ctx.fillStyle = '#fffaf4';
     ctx.fill();
 
     ctx.beginPath();
     ctx.arc(centerX, centerY, 3.5, 0, Math.PI * 2);
-    ctx.fillStyle = '#07111F';
+    ctx.fillStyle = '#121212';
     ctx.fill();
 
     rafId = requestAnimationFrame(draw);

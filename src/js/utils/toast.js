@@ -18,10 +18,10 @@ export function showToast(message, type = 'info', duration = 4000) {
   const toast = document.createElement('div');
   
   const colors = {
-    info: 'border-cyan-400/40 bg-[#0C2036]/95 text-cyan-300',
-    success: 'border-emerald-400/40 bg-[#0C2036]/95 text-emerald-300',
-    warning: 'border-amber-400/40 bg-[#0C2036]/95 text-amber-300',
-    error: 'border-red-400/40 bg-[#0C2036]/95 text-red-300',
+    info: 'border-cyan-400/40 bg-[#242424]/95 text-cyan-300',
+    success: 'border-emerald-400/40 bg-[#242424]/95 text-emerald-300',
+    warning: 'border-amber-400/40 bg-[#242424]/95 text-amber-300',
+    error: 'border-red-400/40 bg-[#242424]/95 text-red-300',
   };
 
   const icons = {

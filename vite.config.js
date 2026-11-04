@@ -13,7 +13,7 @@ const rootDir = import.meta.dirname || process.cwd();
  */
 function seoFilesPlugin() {
   return {
-    name: 'metriprecision-seo-files',
+    name: 'metrion-seo-files',
     generateBundle() {
       for (const [file, source] of [
         ['sitemap.xml', resolve(rootDir, 'src/seo/sitemap.xml')],
