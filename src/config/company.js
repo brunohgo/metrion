@@ -15,8 +15,8 @@ export const COMPANY = {
     phoneDisplay: null,
     whatsapp: null, // NÃO CONFIGURADO
     address: {
-      street: 'MORADA A DEFINIR',
-      city: 'A DEFINIR',
+      street: 'Lisboa',
+      city: 'Lisboa',
       postalCode: 'XXXX-XXX',
       country: 'Portugal',
     },

@@ -54,7 +54,7 @@ export function initPreloader(onCompleteCallback) {
   const inner = preloader.querySelector('.preloader__inner');
   const progressFill = preloader.querySelector('.preloader__progress-fill');
   const gaugeProgress = preloader.querySelector('.gauge-progress');
-  const gaugeNeedle = preloader.querySelector('.gauge-needle');
+    const gaugePointer = preloader.querySelector('.gauge-pointer');
   const ticksGroup = preloader.querySelector('.gauge-ticks');
   const valueDisplay = preloader.querySelector('.preloader__value');
   const statusDisplay = preloader.querySelector('.preloader__status');
@@ -103,10 +103,10 @@ export function initPreloader(onCompleteCallback) {
       gaugeProgress.setAttribute('stroke-dashoffset', offset);
     }
 
-    // The needle tip always sits on the leading edge of the filled ring.
-    if (gaugeNeedle) {
-      gaugeNeedle.setAttribute('transform', `rotate(${(percent * 3.6).toFixed(1)} 50 50)`);
-    }
+    // The index marker always sits on the leading edge of the filled ring.
+        if (gaugePointer) {
+          gaugePointer.setAttribute('transform', `rotate(${(percent * 3.6).toFixed(1)} 50 50)`);
+        }
 
     preloader.setAttribute('aria-valuenow', String(percent));
 
@@ -222,7 +222,7 @@ function buildTicks(group) {
     const angle = (index / tickCount) * 360 - 90;
     const radians = (angle * Math.PI) / 180;
     const outer = 49.4;
-    const inner = isMajor ? 46.8 : 47.8;
+        const inner = isMajor ? 46.8 : 47.8;
 
     const line = document.createElementNS(namespace, 'line');
     line.setAttribute('x1', (center + Math.cos(radians) * inner).toFixed(2));

@@ -216,43 +216,37 @@
 
 .preloader__svg .gauge-ring {
   fill: none;
-  stroke: rgba(255, 106, 0, 0.18);
-  stroke-width: 2.4;
+  stroke: rgba(255, 106, 0, 0.22);
+  stroke-width: 1.2;
 }
 
 .preloader__svg .gauge-progress {
   fill: none;
   stroke: var(--color-blue-electric);
-  stroke-width: 2.4;
+  stroke-width: 2.8;
   stroke-linecap: round;
   stroke-dasharray: 283;
   stroke-dashoffset: 283;
-  transform-origin: 50px 50px;
+  /* The rotation lives in the SVG attribute (rotate(-90 50 50)). Declaring a
+     CSS transform-origin here would apply that origin a second time and
+     displace the whole arc, so it stays at the SVG default of 0 0. */
+  transform-origin: 0 0;
 }
 
 .preloader__svg .gauge-tick {
-  stroke: rgba(183, 178, 170, 0.28);
-  stroke-width: 0.7;
+  stroke: rgba(183, 178, 170, 0.35);
+  stroke-width: 0.8;
 }
 
 .preloader__svg .gauge-tick--major {
-  stroke: rgba(255, 157, 61, 0.6);
-  stroke-width: 1;
+  stroke: rgba(255, 157, 61, 0.75);
+  stroke-width: 1.2;
 }
 
-.preloader__svg .gauge-needle {
+.preloader__svg .gauge-pointer {
   stroke: var(--color-cyan-tech);
-  stroke-width: 1.6;
+  stroke-width: 2.2;
   stroke-linecap: round;
-  transform-origin: 50px 50px;
-}
-
-.preloader__svg .gauge-hub {
-  fill: var(--color-blue-electric);
-}
-
-.preloader__svg .gauge-hub-core {
-  fill: var(--color-white-ice);
 }
 
 .preloader__gauge-readout {
@@ -266,22 +260,22 @@
 
 .preloader__value {
   font-family: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
-  font-size: 1.7rem;
-  font-weight: 600;
+  font-size: 2.05rem;
+  font-weight: 500;
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   font-variant-numeric: tabular-nums;
   color: var(--color-white-ice);
 }
 
 .preloader__gauge-unit {
-  margin-left: 0.15rem;
+  margin-left: 0.2rem;
   font-family: var(--font-body);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  color: rgba(183, 178, 170, 0.8);
+  color: rgba(255, 157, 61, 0.9);
   /* Superscript position without disturbing the row's vertical centring. */
-  transform: translateY(-0.5rem);
+  transform: translateY(-0.62rem);
 }
 
 /* --- Meter --- */
