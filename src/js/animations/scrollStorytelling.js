@@ -94,25 +94,25 @@ export function initScrollStorytelling() {
     updateVisualState(index);
   };
 
-  // Mobile: all steps active and immediately visible with zero scroll delay
+  // Mobile: all steps visible immediately, but the visual card still tracks
+  // which step is in view so the gauge / badge stays in sync with the scroll.
   const isMobile = window.innerWidth <= 768;
   if (isMobile) {
     steps.forEach((s) => {
-      s.classList.add('is-active');
+      s.classList.remove('is-active');
       s.style.opacity = '1';
       s.style.transform = 'none';
     });
-    return;
+    activateStep(0);
+  } else {
+    activateStep(0);
   }
-
-  // Initialize with step 0 active
-  activateStep(0);
 
   steps.forEach((step, index) => {
     ScrollTrigger.create({
       trigger: step,
-      start: 'top 60%',
-      end: 'bottom 40%',
+      start: 'top 55%',
+      end: 'bottom 45%',
       onEnter: () => activateStep(index),
       onEnterBack: () => activateStep(index),
     });

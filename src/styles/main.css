@@ -1259,6 +1259,7 @@ body:has(.header.is-menu-open) .cookie-banner,
   .storytelling__container {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    padding: 0 1.25rem;
   }
   .storytelling__visual {
     position: relative;
@@ -1268,12 +1269,12 @@ body:has(.header.is-menu-open) .cookie-banner,
     margin-bottom: 1.5rem;
   }
   .storytelling__visual-card {
-    padding: 1.5rem;
+    padding: 1.25rem;
     max-height: none;
   }
   .storytelling__step {
     min-height: auto;
-    padding: 2.25rem 0;
+    padding: 2rem 1.25rem;
     border-bottom: 1px solid rgba(255, 106, 0, 0.1);
     opacity: 0.6;
     transform: none;
@@ -1282,7 +1283,7 @@ body:has(.header.is-menu-open) .cookie-banner,
     opacity: 1;
   }
   .storytelling__step-number {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 0.5rem;
   }
   .storytelling__step-title {
