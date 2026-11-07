@@ -97,12 +97,12 @@
 .preloader {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 99999;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--color-navy-950);
+  background: #121212;
+  color: var(--color-white-ice);
   transition: opacity 0.5s ease;
   /* Isolates the preloader subtree from the rest of the document.
      Without this, every per-frame update of the progress bar invalidates the
@@ -115,28 +115,93 @@
   will-change: transform, opacity;
 }
 
+/* Warm ambient glow behind the dial (radial gradient instead of a blurred
+   element, so no large Gaussian blur is re-rastered every frame). */
+.preloader::before {
+  content: "";
+  position: absolute;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  background: radial-gradient(circle closest-side, rgba(255, 106, 0, 0.14) 0%, transparent 72%);
+  pointer-events: none;
+}
+
 .preloader.is-hidden {
   opacity: 0;
   pointer-events: none;
 }
 
-.preloader__logo {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-white-ice);
-  margin-bottom: 1.5rem;
-  opacity: 1;
+.preloader__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.25rem;
+  padding: 2rem;
+  /* No `fill-mode`: once the entrance ends the styles must revert so the GSAP
+     exit timeline can animate opacity/transform freely. */
+  animation: preloader-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+@keyframes preloader-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Brand --- */
+.preloader__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.preloader__brand-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3.2vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: 0.34em;
+  /* Compensates the trailing letter-spacing so the wordmark stays optically
+     centred above the dial. */
+  text-indent: 0.34em;
+  text-transform: uppercase;
+  color: var(--color-white-ice);
+}
+
+.preloader__brand-rule {
+  width: 32px;
+  height: 1px;
+  margin: 0.85rem 0 0.7rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-blue-electric) 20%,
+    var(--color-cyan-tech) 80%,
+    transparent
+  );
+}
+
+.preloader__brand-sub {
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(183, 178, 170, 0.75);
+}
+
+/* --- Dial gauge --- */
 .preloader__svg-container {
-  width: 120px;
-  height: 120px;
-  margin-bottom: 1.5rem;
-  opacity: 1;
   position: relative;
+  width: 168px;
+  height: 168px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,63 +211,141 @@
   width: 100%;
   height: 100%;
   display: block;
+  overflow: visible;
 }
 
 .preloader__svg .gauge-ring {
   fill: none;
-  stroke: rgba(255, 106, 0, 0.2);
-  stroke-width: 3.5;
+  stroke: rgba(255, 106, 0, 0.18);
+  stroke-width: 2.4;
 }
 
 .preloader__svg .gauge-progress {
   fill: none;
-  stroke: var(--color-cyan-tech);
-  stroke-width: 3.5;
+  stroke: var(--color-blue-electric);
+  stroke-width: 2.4;
   stroke-linecap: round;
   stroke-dasharray: 283;
   stroke-dashoffset: 283;
   transform-origin: 50px 50px;
 }
 
+.preloader__svg .gauge-tick {
+  stroke: rgba(183, 178, 170, 0.28);
+  stroke-width: 0.7;
+}
+
+.preloader__svg .gauge-tick--major {
+  stroke: rgba(255, 157, 61, 0.6);
+  stroke-width: 1;
+}
+
 .preloader__svg .gauge-needle {
   stroke: var(--color-cyan-tech);
-  stroke-width: 2.5;
+  stroke-width: 1.6;
   stroke-linecap: round;
   transform-origin: 50px 50px;
 }
 
+.preloader__svg .gauge-hub {
+  fill: var(--color-blue-electric);
+}
+
+.preloader__svg .gauge-hub-core {
+  fill: var(--color-white-ice);
+}
+
+.preloader__gauge-readout {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.preloader__value {
+  font-family: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-white-ice);
+}
+
+.preloader__gauge-unit {
+  margin-left: 0.15rem;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(183, 178, 170, 0.8);
+  /* Superscript position without disturbing the row's vertical centring. */
+  transform: translateY(-0.5rem);
+}
+
+/* --- Meter --- */
+.preloader__meter {
+  width: min(280px, 68vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
 .preloader__progress-bar {
-  width: 200px;
-  height: 2px;
-  background: var(--color-navy-700);
-  border-radius: 2px;
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
   overflow: hidden;
-  opacity: 1;
 }
 
 .preloader__progress-fill {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, var(--color-blue-electric), var(--color-cyan-tech));
-  border-radius: 1px;
+  border-radius: 999px;
+  overflow: hidden;
   /* Animated with scaleX() instead of width so the per-frame update stays on
      the compositor and never triggers a document layout. */
   transform: scaleX(0);
   transform-origin: left center;
 }
 
-.preloader__lines {
+.preloader__progress-fill::after {
+  content: "";
   position: absolute;
   inset: 0;
-  overflow: hidden;
-  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.45),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: preloader-shine 1.8s ease-in-out infinite;
 }
 
-.preloader__line {
-  position: absolute;
-  background: linear-gradient(90deg, transparent, var(--color-navy-700), transparent);
-  height: 1px;
-  opacity: 0.3;
+@keyframes preloader-shine {
+  0% { transform: translateX(-100%); }
+  60%, 100% { transform: translateX(100%); }
+}
+
+.preloader__status {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(183, 178, 170, 0.75);
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader__inner { animation: none; }
+  .preloader__progress-fill::after { animation: none; opacity: 0; }
 }
 
 /* ===== HEADER ===== */

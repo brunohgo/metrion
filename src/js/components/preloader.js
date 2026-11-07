@@ -1,13 +1,35 @@
 import gsap from 'gsap';
 
 /**
- * High-Precision Background Asset Preloader
- * 
- * Preloads and decodes critical hero assets (images, webfonts, DOM)
- * in the background while displaying an animated dial gauge needle.
- * Unveils the page only when assets are fully loaded and rendered,
- * ensuring zero pop-in, zero layout shift, and instant visual fidelity.
+ * Branded, measurement-inspired page preloader.
+ *
+ * The readout is driven by real loading signals (boot, webfonts, hero image,
+ * window load), so the 0–100 counter only advances when there is something to
+ * wait for. A minimum display time keeps the animation from flickering on fast
+ * connections, and a hard stop guarantees the page is never trapped.
  */
+
+const MIN_VISIBLE_MS = 1500;
+const MAX_VISIBLE_MS = 6000;
+const HARD_STOP_MS = 8000;
+
+// Each signal contributes a share of the 100%. "boot" is already satisfied when
+// this module runs, so the counter starts moving immediately.
+const SIGNAL_WEIGHTS = {
+  boot: 15,
+  fonts: 25,
+  hero: 40,
+  load: 20,
+};
+
+const STATUS_BANDS = [
+  { upTo: 25, label: 'A inicializar instrumentos' },
+  { upTo: 55, label: 'A carregar referências metrológicas' },
+  { upTo: 80, label: 'A calibrar escalas' },
+  { upTo: 99, label: 'A verificar incerteza' },
+  { upTo: 101, label: 'Pronto' },
+];
+
 export function initPreloader(onCompleteCallback) {
   const preloader = document.querySelector('.preloader');
   if (!preloader) {
@@ -15,75 +37,94 @@ export function initPreloader(onCompleteCallback) {
     return;
   }
 
-  // Accessibility & Fast Return: Reduced motion or already visited in this session
+  // Accessibility & fast return: reduced motion or already seen this session.
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const alreadySeen = sessionStorage.getItem('mp_preloader_seen');
 
   if (prefersReduced || alreadySeen) {
     preloader.classList.add('is-hidden');
-    setTimeout(() => {
-      preloader.remove();
-      if (typeof onCompleteCallback === 'function') onCompleteCallback();
-    }, 40);
+    preloader.remove();
+    if (typeof onCompleteCallback === 'function') onCompleteCallback();
     return;
   }
-  sessionStorage.setItem('mp_preloader_seen', '1');
 
-  const logo = preloader.querySelector('.preloader__logo');
-  const svgContainer = preloader.querySelector('.preloader__svg-container');
-  const progressBar = preloader.querySelector('.preloader__progress-bar');
+  sessionStorage.setItem('mp_preloader_seen', '1');
+  preloader.dataset.booted = '1';
+
+  const inner = preloader.querySelector('.preloader__inner');
   const progressFill = preloader.querySelector('.preloader__progress-fill');
   const gaugeProgress = preloader.querySelector('.gauge-progress');
   const gaugeNeedle = preloader.querySelector('.gauge-needle');
+  const ticksGroup = preloader.querySelector('.gauge-ticks');
   const valueDisplay = preloader.querySelector('.preloader__value');
+  const statusDisplay = preloader.querySelector('.preloader__status');
 
-  let currentProgress = 20;
+  buildTicks(ticksGroup);
+
+  const completed = {
+    boot: true,
+    fonts: false,
+    hero: false,
+    load: false,
+  };
+
+  let displayed = 0;
+  let lastRendered = -1;
+  let lastStatus = '';
   let isDone = false;
   let animFrameId = null;
-  let lastRendered = -1;
-  let lastDisplayed = -1;
+  let lastFrameAt = performance.now();
+  const startedAt = lastFrameAt;
 
-  const setProgressVisuals = (val) => {
-    const rounded = Math.min(100, Math.round(val));
+  const signalTotal = () =>
+    Object.keys(SIGNAL_WEIGHTS).reduce(
+      (total, key) => total + (completed[key] ? SIGNAL_WEIGHTS[key] : 0),
+      0
+    );
 
-    // Skip redundant writes: each style/attribute write used to invalidate
-    // layout on the whole document, so only touch the DOM when it changes.
-    if (rounded === lastRendered) return;
-    lastRendered = rounded;
+  const allSignalsReady = () => completed.fonts && completed.hero && completed.load;
+
+  const render = (value) => {
+    const percent = Math.max(0, Math.min(100, Math.round(value)));
+    if (percent === lastRendered) return;
+    lastRendered = percent;
 
     // Progress bar: transform (compositor-only) instead of width (layout).
-    if (progressFill) progressFill.style.transform = `scaleX(${(rounded / 100).toFixed(3)})`;
-
-    // Percentage readout: text is only rewritten when the integer changes.
-    if (valueDisplay && rounded !== lastDisplayed) {
-      lastDisplayed = rounded;
-      valueDisplay.textContent = `${rounded}%`;
+    if (progressFill) {
+      progressFill.style.transform = `scaleX(${(percent / 100).toFixed(3)})`;
     }
 
-    // Gauge ring circle: circumference 283
+    if (valueDisplay) valueDisplay.textContent = String(percent);
+
+    // Gauge ring: circumference 2·π·45 ≈ 283.
     if (gaugeProgress) {
-      const offset = 283 - (283 * (rounded / 100));
+      const offset = 283 - 283 * (percent / 100);
       gaugeProgress.style.strokeDashoffset = offset;
       gaugeProgress.setAttribute('stroke-dashoffset', offset);
     }
 
-    // Needle rotation: -90deg to +90deg (180deg sweep)
+    // The needle tip always sits on the leading edge of the filled ring.
     if (gaugeNeedle) {
-      const rotation = -90 + (rounded / 100) * 180;
-      gaugeNeedle.setAttribute('transform', `rotate(${rotation.toFixed(1)} 50 50)`);
+      gaugeNeedle.setAttribute('transform', `rotate(${(percent * 3.6).toFixed(1)} 50 50)`);
+    }
+
+    preloader.setAttribute('aria-valuenow', String(percent));
+
+    const band = STATUS_BANDS.find((entry) => percent < entry.upTo) || STATUS_BANDS[STATUS_BANDS.length - 1];
+    if (statusDisplay && band.label !== lastStatus) {
+      lastStatus = band.label;
+      statusDisplay.textContent = band.label;
     }
   };
-
-  // Render initial visual state immediately
-  setProgressVisuals(currentProgress);
 
   const revealSite = () => {
     if (isDone) return;
     isDone = true;
     if (animFrameId) cancelAnimationFrame(animFrameId);
-    setProgressVisuals(100);
 
-    // Trigger hero & UI initialization in parallel as preloader begins exit
+    render(100);
+
+    // Trigger hero & UI initialization in parallel as preloader begins exit.
     if (typeof onCompleteCallback === 'function') onCompleteCallback();
 
     const exitTl = gsap.timeline({
@@ -94,96 +135,125 @@ export function initPreloader(onCompleteCallback) {
     });
 
     exitTl
-      .to([logo, svgContainer, progressBar, valueDisplay], {
+      .to(inner, {
         opacity: 0,
-        scale: 0.96,
-        y: -10,
-        duration: 0.18,
-        stagger: 0.02,
-        ease: 'power2.in'
+        y: -14,
+        duration: 0.28,
+        ease: 'power2.inOut'
       })
       .to(preloader, {
         opacity: 0,
-        duration: 0.22,
+        scale: 1.03,
+        duration: 0.45,
         ease: 'power2.inOut'
-      }, '-=0.04');
+      }, '-=0.12');
   };
 
-  // Fluid smooth interpolation ticker for the dial gauge needle.
-  // The progress is derived from elapsed time instead of a per-frame
-  // interpolation: on a slow device (few frames per second) a per-frame
-  // approach needed dozens of frames to converge and stretched a 0.9s
-  // animation into several seconds of blocked main thread.
-  const ANIMATION_DURATION = 900;
-  const startedAt = performance.now();
+  const tick = (now) => {
+    // Clamped delta keeps the smoothing stable after a long frame or a
+    // background-tab resume.
+    const delta = Math.min(80, now - lastFrameAt);
+    lastFrameAt = now;
+    const elapsed = now - startedAt;
 
-  const progressAt = (elapsed) => {
-    // Stepped calibration curve (ms -> %): mirrors the original step timers
-    // but is independent of the frame rate.
-    const steps = [
-      { at: 0, from: 20, to: 40 },
-      { at: 160, from: 40, to: 65 },
-      { at: 360, from: 65, to: 85 },
-      { at: 600, from: 85, to: 100 },
-      { at: ANIMATION_DURATION, from: 100, to: 100 },
-    ];
-    for (let i = steps.length - 1; i > 0; i--) {
-      if (elapsed >= steps[i - 1].at) {
-        const a = steps[i - 1];
-        const b = steps[i];
-        const span = b.at - a.at;
-        const t = span > 0 ? Math.min(1, (elapsed - a.at) / span) : 1;
-        // ease-out cubic keeps the motion fluid
-        const eased = 1 - Math.pow(1 - t, 3);
-        return a.from + (b.to - a.from) * eased;
-      }
+    // Real signals decide how much there is left to wait for; the minimum
+    // display time avoids a one-frame flash on fast connections.
+    const canExit =
+      elapsed >= MIN_VISIBLE_MS && (allSignalsReady() || elapsed >= MAX_VISIBLE_MS);
+    const target = canExit ? 100 : signalTotal();
+
+    // Exponential approach: monotonic, frame-rate independent, never overshoots.
+    if (displayed < target) {
+      const step = (target - displayed) * (1 - Math.exp(-delta / 150));
+      displayed = Math.min(target, displayed + step);
     }
-    return steps[0].from;
-  };
 
-  const tick = () => {
-    const elapsed = performance.now() - startedAt;
-    currentProgress = progressAt(elapsed);
-    setProgressVisuals(currentProgress);
+    render(displayed);
 
-    if (elapsed < ANIMATION_DURATION) {
-      animFrameId = requestAnimationFrame(tick);
-    } else {
+    if (canExit && displayed >= 99.5) {
       revealSite();
+      return;
     }
+    if (elapsed >= HARD_STOP_MS) {
+      revealSite();
+      return;
+    }
+    animFrameId = requestAnimationFrame(tick);
   };
+
+  render(0);
   animFrameId = requestAnimationFrame(tick);
 
-  // Background Asset Preloader (non-blocking)
-  const preloadImage = (src) => {
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.src = src;
-      if (img.complete) {
-        if (img.decode) {
-          img.decode().then(resolve).catch(resolve);
-        } else {
-          resolve();
-        }
-      } else {
-        img.onload = () => {
-          if (img.decode) {
-            img.decode().then(resolve).catch(resolve);
-          } else {
-            resolve();
-          }
-        };
-        img.onerror = resolve;
-      }
-    });
+  // --- Real loading signals -------------------------------------------------
+
+  const markSignal = (key) => {
+    if (completed[key]) return;
+    completed[key] = true;
   };
 
-  // Only the LCP image is worth fetching eagerly. The remaining below-the-fold
-  // images are `loading="lazy"` on purpose: fetching them here would steal
-  // mobile bandwidth from the hero and from the content the user is scrolling to.
-  const criticalImages = [
-    '/images/hero-laboratory.jpg'
-  ];
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => markSignal('fonts')).catch(() => markSignal('fonts'));
+  } else {
+    markSignal('fonts');
+  }
 
-  criticalImages.forEach(preloadImage);
+  preloadImage('/images/hero-laboratory.jpg').then(() => markSignal('hero'));
+
+  if (document.readyState === 'complete') {
+    markSignal('load');
+  } else {
+    window.addEventListener('load', () => markSignal('load'), { once: true });
+  }
+}
+
+/**
+ * Draws the dial's tick marks (one every 10°, longer every 30°) directly into
+ * the SVG so the markup stays readable.
+ */
+function buildTicks(group) {
+  if (!group) return;
+
+  const namespace = 'http://www.w3.org/2000/svg';
+  const center = 50;
+  const tickCount = 36;
+
+  for (let index = 0; index < tickCount; index += 1) {
+    const isMajor = index % 3 === 0;
+    const angle = (index / tickCount) * 360 - 90;
+    const radians = (angle * Math.PI) / 180;
+    const outer = 49.4;
+    const inner = isMajor ? 46.8 : 47.8;
+
+    const line = document.createElementNS(namespace, 'line');
+    line.setAttribute('x1', (center + Math.cos(radians) * inner).toFixed(2));
+    line.setAttribute('y1', (center + Math.sin(radians) * inner).toFixed(2));
+    line.setAttribute('x2', (center + Math.cos(radians) * outer).toFixed(2));
+    line.setAttribute('y2', (center + Math.sin(radians) * outer).toFixed(2));
+    line.setAttribute('class', isMajor ? 'gauge-tick gauge-tick--major' : 'gauge-tick');
+    group.appendChild(line);
+  }
+}
+
+/**
+ * Fetches and decodes an image, resolving either way so a missing asset never
+ * blocks the counter.
+ */
+function preloadImage(src) {
+  return new Promise((resolve) => {
+    const image = new Image();
+    const finish = () => {
+      if (image.decode) {
+        image.decode().then(resolve).catch(resolve);
+      } else {
+        resolve();
+      }
+    };
+    image.src = src;
+    if (image.complete) {
+      finish();
+    } else {
+      image.onload = finish;
+      image.onerror = resolve;
+    }
+  });
 }

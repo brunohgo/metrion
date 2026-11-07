@@ -62,87 +62,19 @@
       padding: 0;
       overflow-x: clip;
     }
+    /* Only the flash-of-unstyled-content shield lives here: the full preloader
+       design is defined in src/styles/main.css so there is a single source of
+       truth for it. */
     .preloader {
       position: fixed;
       inset: 0;
       background: #121212 !important;
       z-index: 99999;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      /* Keep the preloader's layout self-contained so per-frame updates of the
-         progress bar never invalidate the layout of the whole page. */
       contain: strict;
-      /* Own compositor layer: animated frames must not repaint the document
-         underneath (hero glows, blurred backdrops). */
       will-change: transform, opacity;
-    }
-    .preloader__logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      color: #fffaf4;
-      margin-bottom: 1.5rem;
-      text-transform: uppercase;
-      opacity: 1 !important;
-    }
-    .preloader__svg-container {
-      width: 120px;
-      height: 120px;
-      max-width: 120px;
-      max-height: 120px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      opacity: 1 !important;
-    }
-    .preloader__svg {
-      width: 120px !important;
-      height: 120px !important;
-      max-width: 120px !important;
-      max-height: 120px !important;
-      display: block !important;
-      opacity: 1 !important;
-    }
-    .gauge-ring {
-      fill: none !important;
-      stroke: rgba(255, 106, 0, 0.25) !important;
-      stroke-width: 3.5;
-    }
-    .gauge-progress {
-      fill: none !important;
-      stroke: #ff9d3d !important;
-      stroke-width: 3.5;
-      stroke-linecap: round;
-      stroke-dasharray: 283;
-      stroke-dashoffset: 283;
-      transform-origin: 50px 50px;
-    }
-    .gauge-needle {
-      stroke: #ff9d3d !important;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      transform-origin: 50px 50px;
-    }
-    .preloader__progress-bar {
-      width: 200px;
-      height: 2px;
-      background: #343434;
-      border-radius: 2px;
-      overflow: hidden;
-      opacity: 1 !important;
-    }
-    .preloader__progress-fill {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, #ff6a00, #ff9d3d);
-      border-radius: 2px;
-      transform: scaleX(0);
-      transform-origin: left center;
     }
   </style>
 </head>
@@ -151,44 +83,53 @@
   <!-- ========================================== -->
   <!-- PRELOADER CINEMATOGRÁFICO                   -->
   <!-- ========================================== -->
-  <div class="preloader" aria-hidden="true">
-    <div class="preloader__logo">Metrion</div>
-    <div class="preloader__svg-container">
-      <svg class="preloader__svg" width="120" height="120" style="width:120px; height:120px; max-width:120px; max-height:120px;" viewBox="0 0 100 100" aria-label="A carregar instrumento metrológico">
-        <circle class="gauge-ring" cx="50" cy="50" r="45" fill="none" stroke="rgba(255, 106, 0, 0.25)" stroke-width="3.5" />
-        <circle class="gauge-progress" cx="50" cy="50" r="45" fill="none" stroke="#ff9d3d" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" transform="rotate(-90 50 50)" />
-        <line x1="50" y1="8" x2="50" y2="14" stroke="rgba(183, 178, 170, 0.45)" stroke-width="1.5" />
-        <line x1="92" y1="50" x2="86" y2="50" stroke="rgba(183, 178, 170, 0.45)" stroke-width="1.5" />
-        <line x1="50" y1="92" x2="50" y2="86" stroke="rgba(183, 178, 170, 0.45)" stroke-width="1.5" />
-        <line x1="8" y1="50" x2="14" y2="50" stroke="rgba(183, 178, 170, 0.45)" stroke-width="1.5" />
-        <line class="gauge-needle" x1="50" y1="50" x2="50" y2="16" stroke="#ff9d3d" stroke-width="2.5" stroke-linecap="round" />
-        <circle cx="50" cy="50" r="4.5" fill="#ff6a00" />
-        <circle cx="50" cy="50" r="2" fill="#fffaf4" />
-      </svg>
+  <div class="preloader" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="A carregar a página">
+    <div class="preloader__inner" aria-hidden="true">
+      <div class="preloader__brand">
+        <span class="preloader__brand-name">Metrion</span>
+        <span class="preloader__brand-rule"></span>
+        <span class="preloader__brand-sub">Metrologia &amp; Qualificação Térmica</span>
+      </div>
+
+      <div class="preloader__svg-container">
+        <svg class="preloader__svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+          <circle class="gauge-ring" cx="50" cy="50" r="45" />
+          <g class="gauge-ticks"></g>
+          <circle class="gauge-progress" cx="50" cy="50" r="45" transform="rotate(-90 50 50)" />
+          <line class="gauge-needle" x1="50" y1="50" x2="50" y2="12" />
+          <circle class="gauge-hub" cx="50" cy="50" r="4" />
+          <circle class="gauge-hub-core" cx="50" cy="50" r="1.6" />
+        </svg>
+        <div class="preloader__gauge-readout">
+          <span class="preloader__value">0</span>
+          <span class="preloader__gauge-unit">%</span>
+        </div>
+      </div>
+
+      <div class="preloader__meter">
+        <div class="preloader__progress-bar">
+          <div class="preloader__progress-fill"></div>
+        </div>
+        <span class="preloader__status">A inicializar instrumentos</span>
+      </div>
     </div>
-    <div class="preloader__progress-bar">
-      <div class="preloader__progress-fill"></div>
-    </div>
-    <div class="text-[0.7rem] font-mono text-[#b7b2aa] tracking-widest mt-3 preloader__value">15%</div>
   </div>
+
   <script>
     (function(){
       if (sessionStorage.getItem('mp_preloader_seen')) {
-        var p = document.querySelector('.preloader');
-        if (p) p.style.display = 'none';
+        var preloaderSeen = document.querySelector('.preloader');
+        if (preloaderSeen) preloaderSeen.style.display = 'none';
         return;
       }
-      var v = document.querySelector('.preloader__value');
-      var f = document.querySelector('.preloader__progress-fill');
-      var n = document.querySelector('.gauge-needle');
-      var c = document.querySelector('.gauge-progress');
-      if(v) v.textContent = '20%';
-      if(f) f.style.transform = 'scaleX(0.2)';
-      if(n) n.setAttribute('transform', 'rotate(-54 50 50)');
-      if(c) {
-        c.style.strokeDashoffset = '226';
-        c.setAttribute('stroke-dashoffset', '226');
-      }
+      // Failsafe: if the module script never boots, never trap the visitor
+      // behind a frozen overlay.
+      window.setTimeout(function(){
+        var pending = document.querySelector('.preloader');
+        if (pending && !pending.dataset.booted) {
+          pending.style.display = 'none';
+        }
+      }, 9000);
     })();
   </script>
 
