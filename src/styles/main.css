@@ -279,10 +279,6 @@
   }
 }
 
-.logo-image--processing {
-  opacity: 0;
-}
-
 .header__nav {
   display: flex;
   align-items: center;
