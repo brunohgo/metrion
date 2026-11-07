@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-PT" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Calibrações & Parque Instrumental — Metrion</title>
+  <meta name="description" content="Gestão global do ciclo de vida metrológico em Portugal: inventário digital, planeamento de recalibrações, alertas de vencimento e custódia documental segundo a ISO 10012 e OIML D 10.">
+  <link rel="icon" type="image/svg+xml" href="/brand/metrion-mark.svg">
+    <!-- Preconnect & Asynchronous Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <style>
+    /* Critical FOUC Shield + Skeleton */
+    html, body { background-color: #121212 !important; margin: 0; padding: 0; }
+    .skeleton-loader { position: fixed; inset: 0; z-index: 999999; background: #121212; display: flex; flex-direction: column; }
+    .skeleton-loader.is-hidden { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+    .skel-header { height: 72px; border-bottom: 1px solid #343434; display: flex; align-items: center; padding: 0 2rem; gap: 2rem; }
+    .skel-bar { background: linear-gradient(90deg, #343434 25%, #1a3a5c 50%, #343434 75%); background-size: 200% 100%; animation: skel-shimmer 1.5s ease-in-out infinite; border-radius: 6px; }
+    .skel-hero { padding: 6rem 2rem 3rem; max-width: 900px; }
+    .skel-content { padding: 2rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; max-width: 1200px; flex: 1; }
+    .skel-col { display: flex; flex-direction: column; gap: 1rem; }
+    @keyframes skel-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    @media (max-width: 768px) { .skel-content { grid-template-columns: 1fr; } .skel-hero { padding: 4rem 1.5rem 2rem; } }
+  </style>
+</head>
+<body class="bg-[#121212] text-[#fffaf4] antialiased selection:bg-[#ff6a00] selection:text-white">
+  <!-- Skeleton Loader -->
+  <div class="skeleton-loader" id="skeleton-loader" aria-hidden="true">
+    <div class="skel-header">
+      <div class="skel-bar" style="width:140px;height:20px;"></div>
+      <div class="skel-bar" style="width:80px;height:12px;margin-left:auto;"></div>
+      <div class="skel-bar" style="width:60px;height:12px;"></div>
+      <div class="skel-bar" style="width:100px;height:34px;border-radius:20px;"></div>
+    </div>
+    <div class="skel-hero">
+      <div class="skel-bar" style="width:180px;height:14px;margin-bottom:1rem;"></div>
+      <div class="skel-bar" style="width:85%;height:36px;margin-bottom:0.75rem;"></div>
+      <div class="skel-bar" style="width:70%;height:16px;"></div>
+    </div>
+    <div class="skel-content">
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:220px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:60%;height:20px;"></div>
+        <div class="skel-bar" style="width:100%;height:12px;"></div>
+        <div class="skel-bar" style="width:90%;height:12px;"></div>
+        <div class="skel-bar" style="width:95%;height:12px;"></div>
+        <div class="skel-bar" style="width:80%;height:12px;"></div>
+      </div>
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:120px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:70%;height:14px;"></div>
+        <div class="skel-bar" style="width:100%;height:10px;"></div>
+        <div class="skel-bar" style="width:85%;height:10px;"></div>
+      </div>
+    </div>
+  </div>
+    <script>
+    (function(){
+      var s = document.getElementById('skeleton-loader');
+      if(!s) return;
+      function hide(){
+        s.classList.add('is-hidden');
+        setTimeout(function(){ if(s.parentNode) s.remove(); }, 300);
+      }
+      if(document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(hide, 100);
+      } else {
+        document.addEventListener('DOMContentLoaded', function(){ setTimeout(hide, 100); });
+      }
+      setTimeout(hide, 600);
+    })();
+  </script>
+
+  <!-- Header -->
+  <header class="header is-scrolled" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo" aria-label="Metrion Homepage"><img src="/brand/metrion-logo.png" alt="Metrion" width="190" height="55"></a>
+      <nav class="header__nav">
+        <a href="/" class="header__nav-link">Início</a>
+        <a href="/sobre.html" class="header__nav-link">Sobre</a>
+        <a href="/servicos/calibracao.html" class="header__nav-link">Calibração</a>
+        <a href="/servicos/qualificacao-termica.html" class="header__nav-link">Qualificação</a>
+        <a href="/servicos/gestao-calibracoes.html" class="header__nav-link is-active">Gestão</a>
+        <a href="/servicos/rastreabilidade.html" class="header__nav-link">Rastreabilidade</a>
+        <a href="/servicos/auditorias.html" class="header__nav-link">Auditorias</a>
+        <a href="/artigos.html" class="header__nav-link">Artigos</a>
+        <a href="/contactos.html" class="header__nav-link">Contactos</a>
+      </nav>
+            <!-- Action & Mobile Toggle Buttons -->
+      <div class="flex items-center gap-4">
+        <button type="button" class="header__cta desktop-only btn-open-quote">Pedir Orçamento</button>
+        <button class="header__mobile-toggle" aria-label="Abrir Menu de Navegação" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="header__mobile-menu" aria-label="Menu Mobile">
+      <a href="/" class="header__mobile-link">Início</a>
+      <a href="/sobre.html" class="header__mobile-link">A Empresa</a>
+      <a href="/servicos/calibracao.html" class="header__mobile-link">Calibração</a>
+      <a href="/servicos/manutencao.html" class="header__mobile-link">Manutenção</a>
+      <a href="/servicos/qualificacao-termica.html" class="header__mobile-link">Qualificação Térmica</a>
+      <a href="/servicos/gestao-calibracoes.html" class="header__mobile-link">Gestão de Calibrações</a>
+      <a href="/servicos/rastreabilidade.html" class="header__mobile-link">Rastreabilidade Metrológica</a>
+      <a href="/servicos/auditorias.html" class="header__mobile-link">Apoio a Auditorias</a>
+      <a href="/artigos.html" class="header__mobile-link">Artigos Técnicos</a>
+      <a href="/contactos.html" class="header__mobile-link">Contactos</a>
+      
+      <div class="pt-6">
+        <button type="button" class="btn btn--primary w-full justify-center btn-open-quote">
+          Solicitar Proposta Metrológica
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Service Hero -->
+  <section class="pt-36 pb-20 bg-gradient-to-b from-[#242424]/80 to-[#121212] border-b border-[#343434]">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#343434] text-xs font-mono text-[#ff9d3d] mb-4">
+        <span>GESTÃO METROLÓGICA</span> &bull; <span>CONTROLO DE CICLO DE VIDA (ISO 10012)</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold font-heading text-white mb-4">
+        Gestão Integral do Parque Instrumental
+      </h1>
+      <p class="text-lg text-[#b7b2aa] max-w-3xl leading-relaxed">
+        Inventariação técnica, planeamento pró-ativo de prazos, custódia de certificados e controlo de histórico para eliminar riscos de utilização de aparelhagem caducada em fábrica.
+      </p>
+    </div>
+  </section>
+
+  <!-- Conteúdo Principal -->
+  <section class="section section--dark">
+    <div class="section__container">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
+        <div class="lg:col-span-2 space-y-8">
+          <div class="rounded-2xl overflow-hidden border border-[#ff6a00]/20 shadow-xl mb-8">
+            <img src="/images/management-service.jpg" alt="Ambiente técnico com monitorização de indicadores metrológicos e gestão de parque de calibração" class="w-full h-auto object-cover" fetchpriority="high" decoding="async">
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold font-heading text-white mb-4">Controlo sem Sobressaltos no Parque Metrológico</h2>
+            <div class="text-[#b7b2aa] space-y-4 leading-relaxed text-sm md:text-base">
+              <p>
+                A gestão do parque de instrumentos de medição é frequentemente um desafio logístico e documental nas organizações industriais. A dispersão de certificados em papel, a falta de histórico de desvios e o esquecimento de prazos de recalibração são causas frequentes de não conformidades em auditorias de certificação.
+              </p>
+              <p>
+                O nosso serviço de gestão metrológica assume a organização estruturada de todo o seu parque de equipamentos: identificação individual unívoca, determinação criteriosa de intervalos com base em histórico (métodos estatísticos OIML D 10), aviso antecipado com 30 e 60 dias de antecedência e recolha programada sem interrupções da produção.
+              </p>
+            </div>
+          </div>
+
+          <!-- Dashboard Demonstrativo Visual Mockup -->
+          <div class="p-6 rounded-2xl bg-[#242424]/80 border border-[#ff6a00]/30 space-y-4">
+            <div class="flex items-center justify-between border-b border-[#343434] pb-3">
+              <div class="flex items-center gap-3">
+                <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-mono text-xs text-white font-bold">PAINEL METROLÓGICO [DEMONSTRAÇÃO ILUSTRATIVA]</span>
+              </div>
+              <span class="text-[0.65rem] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-[#ff9d3d]">MOCKUP VISUAL</span>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div class="p-3 rounded-lg bg-[#121212]/60 border border-[#343434]">
+                <div class="text-xs text-[#b7b2aa]">Total Instrumentos</div>
+                <div class="text-xl font-bold font-mono text-white mt-1">148</div>
+              </div>
+              <div class="p-3 rounded-lg bg-[#121212]/60 border border-[#343434]">
+                <div class="text-xs text-[#b7b2aa]">Calibrados & Conformes</div>
+                <div class="text-xl font-bold font-mono text-emerald-400 mt-1">141</div>
+              </div>
+              <div class="p-3 rounded-lg bg-[#121212]/60 border border-[#343434]">
+                <div class="text-xs text-[#b7b2aa]">A Vencer (30 dias)</div>
+                <div class="text-xl font-bold font-mono text-amber-400 mt-1">7</div>
+              </div>
+              <div class="p-3 rounded-lg bg-[#121212]/60 border border-[#343434]">
+                <div class="text-xs text-[#b7b2aa]">Caducados em Linha</div>
+                <div class="text-xl font-bold font-mono text-cyan-400 mt-1">0</div>
+              </div>
+            </div>
+
+            <p class="text-[0.7rem] text-[#8f8a83] italic pt-2">
+              * A interface acima é meramente ilustrativa das métricas geridas pelo serviço e não representa um software de gestão comercial de terceiros.
+            </p>
+          </div>
+
+          <!-- Funcionalidades Centrais -->
+          <div>
+            <h3 class="text-xl font-bold font-heading text-white mb-4">Componentes do Serviço</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-4 rounded-lg bg-[#242424]/30 border border-[#343434]">
+                <h4 class="font-bold text-white text-sm">Inventário & Matriz de Criticidade</h4>
+                <p class="text-xs text-[#b7b2aa] mt-1">Classificação de instrumentos por posto de trabalho, tolerância e risco operacional.</p>
+              </div>
+              <div class="p-4 rounded-lg bg-[#242424]/30 border border-[#343434]">
+                <h4 class="font-bold text-white text-sm">Cronograma Dinâmico Escalonado</h4>
+                <p class="text-xs text-[#b7b2aa] mt-1">Planeamento de envios espaçados para evitar a desguarnição de bancadas em fábrica.</p>
+              </div>
+              <div class="p-4 rounded-lg bg-[#242424]/30 border border-[#343434]">
+                <h4 class="font-bold text-white text-sm">Custódia Documental Digital</h4>
+                <p class="text-xs text-[#b7b2aa] mt-1">Acesso imediato a todos os certificados em formato PDF pesquisável e histórico arquivado.</p>
+              </div>
+              <div class="p-4 rounded-lg bg-[#242424]/30 border border-[#343434]">
+                <h4 class="font-bold text-white text-sm">Análise de Tendência de Deriva</h4>
+                <p class="text-xs text-[#b7b2aa] mt-1">Acompanhamento gráfico do desvio ao longo dos anos para antecipar desgastes e ajustar frequências.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Referenciais Normativos -->
+          <div class="p-6 rounded-xl bg-[#242424]/60 border border-[#ff6a00]/30">
+            <h3 class="text-lg font-bold text-[#ff9d3d] mb-2">Referenciais de Gestão Metrológica</h3>
+            <ul class="text-xs text-[#b7b2aa] space-y-2">
+              <li><strong class="text-white">NP EN ISO 10012:</strong> Sistemas de gestão da medição — Requisitos para os processos de medição e equipamentos de medição.</li>
+              <li><strong class="text-white">Documento Internacional OIML D 10:</strong> Diretrizes para a determinação dos intervalos de calibração dos equipamentos de medição.</li>
+              <li><strong class="text-white">ISO 9001 (Secção 7.1.5):</strong> Recursos de monitorização e medição — rastreabilidade e validade das medições.</li>
+            </ul>
+          </div>
+
+          <!-- FAQ Específico do Serviço -->
+          <div>
+            <h3 class="text-xl font-bold font-heading text-white mb-4">Perguntas Frequentes sobre Gestão</h3>
+            <div class="faq-list">
+              <div class="faq-item">
+                <button class="faq-item__trigger" aria-expanded="false">
+                  <span>Como são calculados os intervalos de calibração?</span>
+                  <div class="faq-item__icon" aria-hidden="true"></div>
+                </button>
+                <div class="faq-item__content">
+                  <div class="faq-item__answer">
+                    Aplicamos as metodologias recomendadas pelo documento OIML D 10 (ex.: tempo de calendário escalonado, carta de controlo de deriva e tempo de utilização efetiva). Se um instrumento demonstrar elevada estabilidade durante sucessivas calibrações, o intervalo pode ser prolongado com fundamentação estatística documentada, reduzindo custos.
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-item__trigger" aria-expanded="false">
+                  <span>O que acontece se um instrumento for reprovado no ensaio?</span>
+                  <div class="faq-item__icon" aria-hidden="true"></div>
+                </button>
+                <div class="faq-item__content">
+                  <div class="faq-item__answer">
+                    É emitido um alerta técnico imediato para a equipa da qualidade do cliente, acompanhado da identificação do desvio verificado. O instrumento é segregado com etiqueta de não conformidade, e emitimos recomendações para intervenção de manutenção mecânica/ajuste ou substituição.
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-item__trigger" aria-expanded="false">
+                  <span>É necessário instalar software adicional na nossa empresa?</span>
+                  <div class="faq-item__icon" aria-hidden="true"></div>
+                </button>
+                <div class="faq-item__content">
+                  <div class="faq-item__answer">
+                    Não. A gestão pode ser executada em regime de serviço externo com relatórios periódicos em formatos abertos (PDF/Excel), integrando diretamente com os sistemas de gestão da qualidade já existentes na sua organização (ERP/QMS).
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="p-6 rounded-2xl bg-[#242424]/50 border border-[#ff6a00]/20">
+            <h3 class="font-bold text-white text-lg mb-2">Otimizar o Seu Parque</h3>
+            <p class="text-xs text-[#b7b2aa] mb-4">
+              Consulte como podemos estruturar o plano metrológico da sua empresa com paragens mínimas.
+            </p>
+            <button type="button" class="btn btn--primary w-full justify-center btn-open-quote" data-service="gestao-calibracoes">
+              Solicitar Proposta
+            </button>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#242424]/30 border border-[#343434] space-y-4">
+            <h4 class="font-bold text-white text-sm uppercase tracking-wider">Principais Vantagens</h4>
+            <ul class="text-xs text-[#b7b2aa] space-y-2">
+              <li class="flex items-center gap-2">
+                <span class="text-[#ff9d3d]">✓</span> Zero instrumentos caducados em auditorias
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#ff9d3d]">✓</span> Redução de custos por calibrações desnecessárias
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#ff9d3d]">✓</span> Histórico centralizado e rastreável
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#ff9d3d]">✓</span> Avisos automáticos de vencimento
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__bottom">
+        <div class="footer__copy">&copy; 2026 Metrion. Todos os direitos reservados.</div>
+        <div class="footer__legal-links">
+          <a href="/privacidade.html" class="footer__legal-link">Privacidade</a>
+          <a href="/cookies.html" class="footer__legal-link">Cookies</a>
+          <a href="/artigos.html" class="footer__legal-link">Artigos</a>
+          <a href="/" class="footer__legal-link">Início</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

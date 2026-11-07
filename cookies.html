@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-PT" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Cookies — Metrion</title>
+  <meta name="description" content="Informação sobre a utilização de cookies no website da Metrion, em conformidade com a Lei n.º 41/2004 e a Diretiva ePrivacy.">
+  <link rel="icon" type="image/svg+xml" href="/brand/metrion-mark.svg">
+    <!-- Preconnect & Asynchronous Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <style>
+    /* Critical FOUC Shield + Skeleton */
+    html, body { background-color: #121212 !important; margin: 0; padding: 0; }
+    .skeleton-loader { position: fixed; inset: 0; z-index: 999999; background: #121212; display: flex; flex-direction: column; }
+    .skeleton-loader.is-hidden { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+    .skel-header { height: 72px; border-bottom: 1px solid #343434; display: flex; align-items: center; padding: 0 2rem; gap: 2rem; }
+    .skel-bar { background: linear-gradient(90deg, #343434 25%, #1a3a5c 50%, #343434 75%); background-size: 200% 100%; animation: skel-shimmer 1.5s ease-in-out infinite; border-radius: 6px; }
+    .skel-hero { padding: 6rem 2rem 3rem; max-width: 900px; }
+    .skel-content { padding: 2rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; max-width: 1200px; flex: 1; }
+    .skel-col { display: flex; flex-direction: column; gap: 1rem; }
+    @keyframes skel-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    @media (max-width: 768px) { .skel-content { grid-template-columns: 1fr; } .skel-hero { padding: 4rem 1.5rem 2rem; } }
+  </style>
+</head>
+<body class="bg-[#121212] text-[#fffaf4] antialiased selection:bg-[#ff6a00] selection:text-white">
+  <!-- Skeleton Loader -->
+  <div class="skeleton-loader" id="skeleton-loader" aria-hidden="true">
+    <div class="skel-header">
+      <div class="skel-bar" style="width:140px;height:20px;"></div>
+      <div class="skel-bar" style="width:80px;height:12px;margin-left:auto;"></div>
+      <div class="skel-bar" style="width:60px;height:12px;"></div>
+      <div class="skel-bar" style="width:100px;height:34px;border-radius:20px;"></div>
+    </div>
+    <div class="skel-hero">
+      <div class="skel-bar" style="width:180px;height:14px;margin-bottom:1rem;"></div>
+      <div class="skel-bar" style="width:85%;height:36px;margin-bottom:0.75rem;"></div>
+      <div class="skel-bar" style="width:70%;height:16px;"></div>
+    </div>
+    <div class="skel-content">
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:220px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:60%;height:20px;"></div>
+        <div class="skel-bar" style="width:100%;height:12px;"></div>
+        <div class="skel-bar" style="width:90%;height:12px;"></div>
+        <div class="skel-bar" style="width:95%;height:12px;"></div>
+        <div class="skel-bar" style="width:80%;height:12px;"></div>
+      </div>
+      <div class="skel-col">
+        <div class="skel-bar" style="width:100%;height:120px;border-radius:12px;"></div>
+        <div class="skel-bar" style="width:70%;height:14px;"></div>
+        <div class="skel-bar" style="width:100%;height:10px;"></div>
+        <div class="skel-bar" style="width:85%;height:10px;"></div>
+      </div>
+    </div>
+  </div>
+    <script>
+    (function(){
+      var s = document.getElementById('skeleton-loader');
+      if(!s) return;
+      function hide(){
+        s.classList.add('is-hidden');
+        setTimeout(function(){ if(s.parentNode) s.remove(); }, 300);
+      }
+      if(document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(hide, 100);
+      } else {
+        document.addEventListener('DOMContentLoaded', function(){ setTimeout(hide, 100); });
+      }
+      setTimeout(hide, 600);
+    })();
+  </script>
+
+  <!-- Header -->
+  <header class="header is-scrolled" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo" aria-label="Metrion Homepage"><img src="/brand/metrion-logo.png" alt="Metrion" width="190" height="55"></a>
+      <nav class="header__nav">
+        <a href="/" class="header__nav-link">Início</a>
+        <a href="/sobre.html" class="header__nav-link">Sobre</a>
+        <a href="/servicos/calibracao.html" class="header__nav-link">Calibração</a>
+        <a href="/contactos.html" class="header__nav-link">Contactos</a>
+      </nav>
+      <a href="/contactos.html" class="header__cta">Contactos</a>
+    </div>
+  </header>
+
+  <!-- Legal Hero -->
+  <section class="pt-36 pb-16 bg-gradient-to-b from-[#242424]/80 to-[#121212] border-b border-[#343434]">
+    <div class="max-w-4xl mx-auto px-6">
+      <span class="text-xs font-mono font-bold text-[#ff9d3d] uppercase tracking-wider">Diretiva ePrivacy & Lei 41/2004</span>
+      <h1 class="text-3xl md:text-4xl font-bold font-heading text-white mt-2 mb-2">Política de Cookies</h1>
+      <p class="text-xs text-[#b7b2aa]">Modelo preliminar de informação sobre tecnologias de armazenamento local e cookies.</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="section section--dark">
+    <div class="max-w-4xl mx-auto px-6 text-[#b7b2aa] text-sm leading-relaxed space-y-8">
+      <div>
+        <h2 class="text-xl font-bold text-white mb-2">1. O que são Cookies?</h2>
+        <p>
+          Cookies são pequenos ficheiros de texto transferidos para o computador ou dispositivo móvel do utilizador quando este acede a determinadas páginas web. Permitem que o sítio reconheça o dispositivo numa visita futura, memorizando preferências e opções técnicas de navegação.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-white mb-2">2. Enquadramento Legal em Portugal</h2>
+        <p>
+          A colocação de cookies e a utilização de mecanismos de armazenamento local rege-se pela <strong>Lei n.º 41/2004, de 18 de agosto</strong> (na sua redação atual conferida pela Lei n.º 46/2012), que transpõe para a ordem jurídica interna a Diretiva 2002/58/CE relativa à privacidade e comunicações eletrónicas.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-white mb-2">3. Tipos de Cookies Utilizados</h2>
+        <div class="space-y-4 mt-3">
+          <div class="p-4 rounded-xl bg-[#242424]/50 border border-[#343434]">
+            <h3 class="text-white font-bold text-sm">Cookies Estritamente Necessários</h3>
+            <p class="text-xs text-[#b7b2aa] mt-1">Essenciais para o funcionamento básico da plataforma (gestão da sessão, estado do preloader e registo de consentimento). Não requerem consentimento prévio nos termos do artigo 5.º da Lei 41/2004.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#242424]/50 border border-[#343434]">
+            <h3 class="text-white font-bold text-sm">Cookies Analíticos & de Desempenho (Opcionais)</h3>
+            <p class="text-xs text-[#b7b2aa] mt-1">Permitem quantificar visitas e fontes de tráfego de modo anónimo para avaliar o desempenho das páginas. Apenas são ativados mediante aceitação expressa no banner de cookies.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-white mb-2">4. Como Configurar no Seu Navegador</h2>
+        <p>
+          O utilizador pode a qualquer momento aceitar, recusar ou eliminar cookies através das definições do seu navegador web (Google Chrome, Mozilla Firefox, Microsoft Edge ou Apple Safari). A recusa de cookies necessários pode limitar o funcionamento de algumas funcionalidades interativas do website.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__bottom">
+        <div class="footer__copy">&copy; 2026 Metrion. Modelo preliminar de cookies.</div>
+        <div class="footer__legal-links">
+          <a href="/privacidade.html" class="footer__legal-link">Privacidade</a>
+          <a href="/cookies.html" class="footer__legal-link">Cookies</a>
+          <a href="/" class="footer__legal-link">Início</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
