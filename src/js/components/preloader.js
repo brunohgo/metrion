@@ -9,7 +9,7 @@ import gsap from 'gsap';
  * connections, and a hard stop guarantees the page is never trapped.
  */
 
-const MIN_VISIBLE_MS = 1500;
+const MIN_VISIBLE_MS = 500;
 const MAX_VISIBLE_MS = 6000;
 const HARD_STOP_MS = 8000;
 
