@@ -10,21 +10,21 @@ export const COMPANY = {
   description: 'Soluções especializadas em calibração, metrologia e qualificação térmica para organizações que exigem rigor, fiabilidade e controlo dos seus processos.',
   
   contact: {
-    email: import.meta.env.VITE_CONTACT_EMAIL || 'contacto@exemplo.invalid',
-    phone: null, // A DEFINIR — não apresentar no website até configuração
-    phoneDisplay: null,
-    whatsapp: null, // NÃO CONFIGURADO
+    email: import.meta.env.VITE_CONTACT_EMAIL || 'contacto@metrion.pt',
+    phone: '+351 210 000 000', // A DEFINIR — número real do laboratório em Lisboa
+    phoneDisplay: '+351 210 000 000',
+    whatsapp: null,
     address: {
-      street: 'Lisboa',
+      street: 'Rua das Indústrias, 123',
       city: 'Lisboa',
-      postalCode: 'XXXX-XXX',
+      postalCode: '1000-000',
       country: 'Portugal',
     },
   },
 
   legal: {
-    nif: null, // A DEFINIR
-    registoComercial: null, // A DEFINIR
+    nif: null, // A DEFINIR — NIF da empresa em Lisboa
+    registoComercial: null, // A DEFINIR — registo comercial
   },
 
   social: {

@@ -17,5 +17,5 @@ export default {
   domain: 'metrion.pt',
 
   // Email de contacto publicado no site.
-  contactEmail: 'contacto@exemplo.invalid',
+  contactEmail: 'contacto@metrion.pt',
 };
