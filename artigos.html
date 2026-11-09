@@ -177,9 +177,7 @@
 
           <div class="pt-4 border-t border-[#343434] flex items-center justify-between">
             <span class="text-xs text-[#b7b2aa] font-mono">Artigo Técnico #MP-01</span>
-            <button type="button" class="btn-read-article text-xs font-bold text-[#ff6a00] hover:text-[#ff9d3d] inline-flex items-center gap-1" data-article="1">
-              Ler Análise Completa &rarr;
-            </button>
+            <a href="/artigos/incerteza-medicao-tolerancia.html" class="text-xs font-bold text-[#ff6a00] hover:text-[#ff9d3d] inline-flex items-center gap-1">Ler Análise Completa &rarr;</a>
           </div>
         </article>
 
@@ -211,9 +209,7 @@
 
           <div class="pt-4 border-t border-[#343434] flex items-center justify-between">
             <span class="text-xs text-[#b7b2aa] font-mono">Artigo Técnico #MP-02</span>
-            <button type="button" class="btn-read-article text-xs font-bold text-[#ff6a00] hover:text-[#ff9d3d] inline-flex items-center gap-1" data-article="2">
-              Ler Análise Completa &rarr;
-            </button>
+            <a href="/artigos/qualificacao-termica-autoclaves.html" class="text-xs font-bold text-[#ff6a00] hover:text-[#ff9d3d] inline-flex items-center gap-1">Ler Análise Completa &rarr;</a>
           </div>
         </article>
 
@@ -245,9 +241,7 @@
 
           <div class="pt-4 border-t border-[#343434] flex items-center justify-between">
             <span class="text-xs text-[#b7b2aa] font-mono">Artigo Técnico #MP-03</span>
-            <button type="button" class="btn-read-article text-xs font-bold text-[#ff6a00] hover:text-[#ff9d3d] inline-flex items-center gap-1" data-article="3">
-              Ler Análise Completa &rarr;
-            </button>
+            <a href="/artigos/calibracao-vs-verificacao-legal.html" class="text-xs font-bold text-[#ff6a00] hover:text-[#ff9d3d] inline-flex items-center gap-1">Ler Análise Completa &rarr;</a>
           </div>
         </article>
 
@@ -279,25 +273,12 @@
 
           <div class="pt-4 border-t border-[#343434] flex items-center justify-between">
             <span class="text-xs text-[#b7b2aa] font-mono">Artigo Técnico #MP-04</span>
-            <button type="button" class="btn-read-article text-xs font-bold text-[#ff6a00] hover:text-[#ff9d3d] inline-flex items-center gap-1" data-article="4">
-              Ler Análise Completa &rarr;
-            </button>
+            <a href="/artigos/intervalos-calibracao-oiml-d10.html" class="text-xs font-bold text-[#ff6a00] hover:text-[#ff9d3d] inline-flex items-center gap-1">Ler Análise Completa &rarr;</a>
           </div>
         </article>
       </div>
     </div>
   </section>
-
-  <!-- Modal do Leitor de Artigo -->
-  <div class="modal" id="article-reader-modal" role="dialog" aria-modal="true" aria-labelledby="article-modal-title">
-    <div class="modal__backdrop"></div>
-    <div class="modal__card max-w-3xl">
-      <button type="button" class="modal__close" aria-label="Fechar Leitor">&times;</button>
-      <div id="article-modal-content" class="text-sm text-[#b7b2aa] leading-relaxed space-y-4">
-        <!-- Injetado dinamicamente via JS -->
-      </div>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer class="footer">
@@ -355,7 +336,8 @@
       },
       {
         "@type": "Article",
-        "@id": "https://metrion.pt/artigos.html#article-mp01",
+        "@id": "https://metrion.pt/artigos/incerteza-medicao-tolerancia.html#article",
+        "url": "https://metrion.pt/artigos/incerteza-medicao-tolerancia.html",
         "headline": "Incerteza de Medição vs Tolerância de Processo: Como Evitar Decisões Falsas",
         "author": {
           "@type": "Organization",
@@ -374,7 +356,8 @@
       },
       {
         "@type": "Article",
-        "@id": "https://metrion.pt/artigos.html#article-mp02",
+        "@id": "https://metrion.pt/artigos/qualificacao-termica-autoclaves.html#article",
+        "url": "https://metrion.pt/artigos/qualificacao-termica-autoclaves.html",
         "headline": "Qualificação Térmica em Autoclaves: O que Exige o Anexo 15 do EudraLex",
         "author": {
           "@type": "Organization",
@@ -393,7 +376,8 @@
       },
       {
         "@type": "Article",
-        "@id": "https://metrion.pt/artigos.html#article-mp03",
+        "@id": "https://metrion.pt/artigos/calibracao-vs-verificacao-legal.html#article",
+        "url": "https://metrion.pt/artigos/calibracao-vs-verificacao-legal.html",
         "headline": "Calibração Industrial vs Verificação Metrológica Legal em Portugal",
         "author": {
           "@type": "Organization",
@@ -412,7 +396,8 @@
       },
       {
         "@type": "Article",
-        "@id": "https://metrion.pt/artigos.html#article-mp04",
+        "@id": "https://metrion.pt/artigos/intervalos-calibracao-oiml-d10.html#article",
+        "url": "https://metrion.pt/artigos/intervalos-calibracao-oiml-d10.html",
         "headline": "Como Definir Intervalos de Calibração com Base no Documento OIML D 10",
         "author": {
           "@type": "Organization",
@@ -464,110 +449,6 @@
       initCookieBanner();
       initMagneticButtons();
 
-      const articlesData = {
-        '1': {
-          title: 'Incerteza de Medição vs Tolerância de Processo: Como Evitar Decisões Falsas',
-          tag: 'INCERTEZA & GUM (ISO/IEC Guide 98-4)',
-          author: 'Equipa de Engenharia Metrológica Metrion',
-          body: `
-            <p class="text-base text-white font-medium">Na indústria moderna, o resultado de uma medição não é apenas um número: é uma tomada de decisão sobre conformidade ou rejeição.</p>
-            <p>Quando um instrumento indica um valor próximo do limite de tolerância superior (LTS) ou inferior (LTI), a incerteza expandida de medição ($U$) determina a probabilidade de estarmos a aceitar uma peça defeituosa (risco do consumidor) ou a rejeitar uma peça conforme (risco do produtor).</p>
-            <h4 class="text-white font-bold text-base mt-4">1. A Regra de Decisão com Zona de Guarda</h4>
-            <p>De acordo com o referencial ISO/IEC Guide 98-4, a aplicação de uma zona de guarda (guard band $w$) reduz o intervalo de aceitação: $w = r \\cdot U$, onde $r$ é o multiplicador de guarda. Isto assegura que mesmo no pior cenário de deriva metrológica, a peça instalada no cliente final cumpre as especificações nominais.</p>
-            <h4 class="text-white font-bold text-base mt-4">2. Recomendações para os Gestores de Qualidade</h4>
-            <p>Antes de definir a periodicidade de calibração, certifique-se de que a razão de capacidade de medição (TUR - Test Uncertainty Ratio) é de pelo menos 4:1 face à tolerância do seu processo produtivo.</p>
-          `
-        },
-        '2': {
-          title: 'Qualificação Térmica em Autoclaves: O que Exige o Anexo 15 do EudraLex',
-          tag: 'QUALIFICAÇÃO TÉRMICA & GMP',
-          author: 'Especialista em Ensaios Térmicos',
-          body: `
-            <p class="text-base text-white font-medium">A qualificação de autoclaves na indústria farmacêutica e de dispositivos médicos requer uma abordagem multifásica rigorosa.</p>
-            <p>O Anexo 15 das Boas Práticas de Fabrico (GMP) europeias estipula que a qualificação deve demonstrar homogeneidade térmica em todo o volume útil da câmara de esterilização.</p>
-            <h4 class="text-white font-bold text-base mt-4">1. Distribuição em Vazio vs Penetração de Calor com Carga</h4>
-            <p>Não basta qualificar a câmara vazia. É obrigatório executar o mapeamento térmico com a carga máxima e o padrão de empilhamento mais desfavorável (worst-case), inserindo sensores flexíveis de temperatura no interior dos artigos mais densos para confirmar que a temperatura de 121 °C é mantida durante o tempo estipulado.</p>
-            <h4 class="text-white font-bold text-base mt-4">2. Cálculo do Fator de Letalidade F0</h4>
-            <p>O valor $F_0$ acumula matematicamente a letalidade biológica do ciclo: $F_0 = \\Delta t \\cdot \\sum 10^{(T - 121)/z}$, garantindo a inativação fiável de microrganismos e esporos termorresistentes.</p>
-          `
-        },
-        '3': {
-          title: 'Calibração Industrial vs Verificação Metrológica Legal em Portugal',
-          tag: 'LEGISLAÇÃO METROLÓGICA (DL 29/2022)',
-          author: 'Consultoria Regulamentar Metrológica',
-          body: `
-            <p class="text-base text-white font-medium">Existe frequente confusão entre a calibração facultativa no âmbito da ISO 9001 e o controlo metrológico legal estatuído pelo Estado Português.</p>
-            <h4 class="text-white font-bold text-base mt-4">1. Decreto-Lei n.º 29/2022 e Portaria n.º 211/2022</h4>
-            <p>A metrologia legal aplica-se estritamente aos instrumentos de medição utilizados em operações comerciais (ex.: pesagem de produtos pré-embalados, bombas de combustível), proteção do ambiente, segurança e fiscalização rodoviária, ou saúde. Estes instrumentos necessitam de aprovação de modelo e operações de verificação periódica anual realizadas por entidades delegadas pelo IPQ.</p>
-            <h4 class="text-white font-bold text-base mt-4">2. A Calibração Industrial</h4>
-            <p>A calibração industrial aplica-se aos instrumentos de controlo interno fabril (micrómetros, paquímetros, manómetros de processo). Não tem imposição periódica fixa do Estado, sendo a frequência definida pela análise de risco da própria empresa.</p>
-          `
-        },
-        '4': {
-          title: 'Como Definir Intervalos de Calibração com Base no Documento OIML D 10',
-          tag: 'GESTÃO DA QUALIDADE & OIML',
-          author: 'Gabinete Técnico Metrion',
-          body: `
-            <p class="text-base text-white font-medium">Fixar cegamente intervalos de 12 meses para todos os instrumentos é dispendioso e tecnicamente ineficiente.</p>
-            <p>O documento internacional OIML D 10 (Guidelines for the determination of calibration intervals of measuring instruments) propõe metodologias dinâmicas para ajustar prazos com base empírica.</p>
-            <h4 class="text-white font-bold text-base mt-4">1. O Método em Escada (Automatic Adjustment)</h4>
-            <p>Se um instrumento se mantém dentro de 50% do seu Erro Máximo Admissível (EMA) durante 2 calibrações consecutivas, o seu intervalo é estendido (ex.: de 12 para 18 meses). Caso apresente desvio, o intervalo é reduzido imediatamente.</p>
-            <h4 class="text-white font-bold text-base mt-4">2. Cartas de Controlo de Deriva</h4>
-            <p>Ao traçar a evolução do erro em função do tempo, é possível extrapolar com precisão a data em que o instrumento ultrapassará o limite de aceitação, programando a recalibração antes da ocorrência de não conformidades.</p>
-          `
-        }
-      };
-
-      const readerModal = document.querySelector('#article-reader-modal');
-      const readerContent = document.querySelector('#article-modal-content');
-      const closeBtn = readerModal ? readerModal.querySelector('.modal__close') : null;
-      const backdrop = readerModal ? readerModal.querySelector('.modal__backdrop') : null;
-
-      const openReader = (articleId) => {
-        const article = articlesData[articleId];
-        if (!article || !readerContent) return;
-
-        readerContent.innerHTML = `
-          <div class="border-b border-[#343434] pb-4 mb-4">
-            <span class="text-xs font-mono font-bold text-[#ff9d3d]">${article.tag}</span>
-            <h2 id="article-modal-title" class="text-2xl font-bold font-heading text-white mt-1 mb-2">${article.title}</h2>
-            <div class="text-xs text-[#b7b2aa] font-mono">${article.author}</div>
-          </div>
-          <div class="space-y-4">
-            ${article.body}
-          </div>
-          <div class="pt-6 border-t border-[#343434] flex justify-between items-center mt-6">
-            <span class="text-xs text-[#b7b2aa]">Dúvidas sobre a aplicação deste conceito na sua empresa?</span>
-            <button type="button" class="btn btn--primary btn-open-quote text-xs py-2 px-4">Pedir Consultoria</button>
-          </div>
-        `;
-
-        readerModal.classList.add('is-active');
-        document.body.style.overflow = 'hidden';
-
-        // Close the reader and let the shared quote modal handle the request
-        readerContent.querySelectorAll('.btn-open-quote').forEach(b => {
-          b.addEventListener('click', () => {
-            readerModal.classList.remove('is-active');
-            document.body.style.overflow = '';
-            document.dispatchEvent(new CustomEvent('mp:open-quote'));
-          });
-        });
-      };
-
-      const closeReader = () => {
-        readerModal.classList.remove('is-active');
-        document.body.style.overflow = '';
-      };
-
-      document.querySelectorAll('.btn-read-article').forEach(btn => {
-        btn.addEventListener('click', () => {
-          openReader(btn.dataset.article);
-        });
-      });
-
-      if (closeBtn) closeBtn.addEventListener('click', closeReader);
-      if (backdrop) backdrop.addEventListener('click', closeReader);
     });
   </script>
 </body>

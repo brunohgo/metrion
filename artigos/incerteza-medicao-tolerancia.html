@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incerteza de Medição vs Tolerância: Evitar Decisões Falsas — Metrion</title>
+  <meta name="description" content="Como aplicar a zona de guarda (guard band) e regras de decisão ISO/IEC Guide 98-4 para evitar aceitar peças defeituosas ou rejeitar peças conformes.">
+  <link rel="canonical" href="https://metrion.pt/artigos/incerteza-medicao-tolerancia.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Incerteza de Medição vs Tolerância: Evitar Decisões Falsas — Metrion">
+  <meta property="og:description" content="Como aplicar a zona de guarda (guard band) e regras de decisão ISO/IEC Guide 98-4 para evitar aceitar peças defeituosas ou rejeitar peças conformes.">
+  <meta property="og:url" content="https://metrion.pt/artigos/incerteza-medicao-tolerancia.html">
+  <meta property="og:image" content="https://metrion.pt/images/blog-uncertainty.jpg">
+  <meta property="og:locale" content="pt_PT">
+  <meta property="og:site_name" content="Metrion">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Incerteza de Medição vs Tolerância: Evitar Decisões Falsas — Metrion">
+  <meta name="twitter:description" content="Zona de guarda (guard band) e regras de decisão ISO/IEC Guide 98-4 para evitar aceitar peças defeituosas ou rejeitar peças conformes.">
+  <meta name="twitter:image" content="https://metrion.pt/images/blog-uncertainty.jpg">
+  <meta name="twitter:site" content="@metrion">
+  <link rel="icon" type="image/svg+xml" href="/brand/metrion-mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <style>html,body{background-color:#121212;color:#fffaf4;margin:0;padding:0;}</style>
+</head>
+<body class="bg-[#121212] text-[#fffaf4] antialiased selection:bg-[#ff6a00] selection:text-white">
+
+  <header class="header is-scrolled" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo" aria-label="Metrion Homepage"><img src="/brand/metrion-logo.png" alt="Metrion" width="190" height="55"></a>
+      <nav class="header__nav">
+        <a href="/" class="header__nav-link">Início</a>
+        <a href="/sobre.html" class="header__nav-link">Sobre</a>
+        <a href="/servicos/calibracao.html" class="header__nav-link">Calibração</a>
+        <a href="/servicos/qualificacao-termica.html" class="header__nav-link">Qualificação Térmica</a>
+        <a href="/artigos.html" class="header__nav-link is-active">Artigos</a>
+        <a href="/contactos.html" class="header__nav-link">Contactos</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <button type="button" class="header__cta desktop-only btn-open-quote">Pedir Orçamento</button>
+        <button class="header__mobile-toggle" aria-label="Abrir Menu de Navegação" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="header__mobile-menu" aria-label="Menu Mobile">
+      <a href="/" class="header__mobile-link">Início</a>
+      <a href="/sobre.html" class="header__mobile-link">A Empresa</a>
+      <a href="/servicos/calibracao.html" class="header__mobile-link">Calibração</a>
+      <a href="/servicos/manutencao.html" class="header__mobile-link">Manutenção</a>
+      <a href="/servicos/qualificacao-termica.html" class="header__mobile-link">Qualificação Térmica</a>
+      <a href="/servicos/gestao-calibracoes.html" class="header__mobile-link">Gestão de Calibrações</a>
+      <a href="/servicos/rastreabilidade.html" class="header__mobile-link">Rastreabilidade Metrológica</a>
+      <a href="/servicos/auditorias.html" class="header__mobile-link">Apoio a Auditorias</a>
+      <a href="/artigos.html" class="header__mobile-link">Artigos Técnicos</a>
+      <a href="/contactos.html" class="header__mobile-link">Contactos</a>
+      <div class="pt-6">
+        <button type="button" class="btn btn--primary w-full justify-center btn-open-quote">Solicitar Proposta Metrológica</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="pt-36 pb-12 bg-gradient-to-b from-[#242424]/80 to-[#121212] border-b border-[#343434]">
+      <div class="max-w-3xl mx-auto px-6">
+        <nav aria-label="Breadcrumb" class="text-xs text-[#b7b2aa] mb-4">
+          <a href="/" class="hover:text-[#ff9d3d]">Início</a>
+          <span class="mx-1">/</span>
+          <a href="/artigos.html" class="hover:text-[#ff9d3d]">Artigos</a>
+          <span class="mx-1">/</span>
+          <span class="text-[#ff9d3d]">Incerteza &amp; Tolerância</span>
+        </nav>
+        <span class="inline-block text-xs font-mono font-bold px-2.5 py-1 rounded bg-[#121212]/80 text-[#ff9d3d] border border-cyan-400/20 mb-4">INCERTEZA &amp; GUM (ISO/IEC Guide 98-4)</span>
+        <h1 class="text-3xl md:text-4xl font-bold font-heading text-white mb-4 leading-tight">
+          Incerteza de Medição vs Tolerância de Processo: Como Evitar Decisões Falsas
+        </h1>
+        <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-[#b7b2aa]">
+          <span>Leitura: 6 min</span>
+          <span>&bull;</span>
+          <span>Equipa de Engenharia Metrológica Metrion</span>
+        </div>
+      </div>
+    </section>
+
+    <article class="max-w-3xl mx-auto px-6 py-14">
+      <figure class="rounded-2xl overflow-hidden mb-10 border border-[#343434]">
+        <img src="/images/blog-uncertainty.jpg" alt="Gráficos de cálculo de incerteza de medição e análise estatística GUM" class="w-full h-auto object-cover" width="1376" height="768" loading="lazy" decoding="async">
+      </figure>
+
+      <div class="space-y-5 text-[#b7b2aa] leading-relaxed">
+        <p class="text-lg text-white font-medium">
+          Na indústria moderna, o resultado de uma medição não é apenas um número: é uma tomada de decisão sobre conformidade ou rejeição.
+        </p>
+        <p>
+          Quando um instrumento indica um valor próximo do limite de tolerância superior (LTS) ou inferior (LTI), a incerteza expandida de medição determine a probabilidade de estarmos a aceitar uma peça defeituosa (risco do consumidor) ou a rejeitar uma peça conforme (risco do produtor).
+        </p>
+
+        <h2 class="text-xl font-bold font-heading text-white pt-4">1. A regra de decisão com zona de guarda</h2>
+        <p>
+          De acordo com o referencial ISO/IEC Guide 98-4, a aplicação de uma zona de guarda (<em>guard band</em>, <strong>w</strong>) reduz o intervalo de aceitação: <strong>w = r × U</strong>, onde <strong>r</strong> é o multiplicador de guarda e <strong>U</strong> é a incerteza expandida. Isto assegura que mesmo no pior cenário de deriva metrológica, a peça instalada no cliente final cumpre as especificações nominais.
+        </p>
+        <p>
+          A escolha de <strong>r</strong> depende do risco que a organização está disposta a assumir. Um fator conservador protege o consumidor mas aumenta a taxa de falsas rejeições; um fator mais permissivo reduz desperdício mas expõe a empresa a não conformidades.
+        </p>
+
+        <h2 class="text-xl font-bold font-heading text-white pt-4">2. Recomendações para gestores de qualidade</h2>
+        <p>
+          Antes de definir a periodicidade de calibração, certifique-se de que a razão de capacidade de medição (TUR — <em>Test Uncertainty Ratio</em>) é de pelo menos 4:1 face à tolerância do seu processo produtivo. Quanto maior esta razão, menor o impacto da incerteza na decisão de conformidade.
+        </p>
+        <p>
+          Documente a regra de decisão adotada no procedimento interno: qual o fator de guarda utilizado, como é calculada a incerteza e qual o critério de aceitação/rejeição. Esta documentação é frequentemente solicitada em auditorias de sistemas de gestão da qualidade.
+        </p>
+
+        <h2 class="text-xl font-bold font-heading text-white pt-4">3. Conclusão</h2>
+        <p>
+          Harmonizar a incerteza expandida com o limite de tolerância do cliente não é um exercício académico — é o que distingue uma decisão tecnicamente defensável de uma suposição arriscada. A calibração com incerteza declarada é o primeiro passo para uma regra de decisão sólida.
+        </p>
+      </div>
+
+      <div class="mt-10 p-6 rounded-2xl bg-[#242424]/50 border border-[#ff6a00]/15">
+        <p class="text-white font-semibold mb-2">Precisa de apoio na definição da regra de decisão?</p>
+        <p class="text-sm text-[#b7b2aa] mb-4">A Metrion analisa as tolerâncias do seu processo e propõe uma regra de decisão documentada, alinhada com o ISO/IEC Guide 98-4.</p>
+        <button type="button" class="btn btn--primary btn-open-quote text-sm">Pedir Consultoria</button>
+      </div>
+
+      <p class="mt-8 text-sm text-[#8f8a83]">
+        <a href="/artigos.html" class="text-[#ff6a00] hover:text-[#ff9d3d]">&larr; Voltar a todos os artigos</a>
+      </p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__bottom">
+        <div class="footer__copy">&copy; 2026 Metrion. Artigos técnicos de engenharia metrológica.</div>
+        <div class="footer__legal-links">
+          <a href="/privacidade.html" class="footer__legal-link">Privacidade</a>
+          <a href="/cookies.html" class="footer__legal-link">Cookies</a>
+          <a href="/" class="footer__legal-link">Início</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://metrion.pt/#organization",
+        "name": "Metrion",
+        "url": "https://metrion.pt",
+        "logo": "https://metrion.pt/brand/metrion-logo.png"
+      },
+      {
+        "@type": "Article",
+        "@id": "https://metrion.pt/artigos/incerteza-medicao-tolerancia.html#article",
+        "headline": "Incerteza de Medição vs Tolerância de Processo: Como Evitar Decisões Falsas",
+        "description": "Como aplicar a zona de guarda (guard band) e regras de decisão ISO/IEC Guide 98-4 para evitar aceitar peças defeituosas ou rejeitar peças conformes.",
+        "image": "https://metrion.pt/images/blog-uncertainty.jpg",
+        "url": "https://metrion.pt/artigos/incerteza-medicao-tolerancia.html",
+        "author": { "@type": "Organization", "name": "Equipa de Engenharia Metrológica Metrion" },
+        "publisher": { "@id": "https://metrion.pt/#organization" },
+        "articleSection": "Incerteza & GUM",
+        "keywords": ["incerteza de medição", "guard band", "ISO/IEC Guide 98-4", "tolerância de processo"],
+        "inLanguage": "pt-PT"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://metrion.pt/" },
+          { "@type": "ListItem", "position": 2, "name": "Artigos", "item": "https://metrion.pt/artigos.html" },
+          { "@type": "ListItem", "position": 3, "name": "Incerteza de Medição vs Tolerância", "item": "https://metrion.pt/artigos/incerteza-medicao-tolerancia.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script type="module">
+    import '/src/styles/main.css';
+    import { initHeader } from '/src/js/components/header.js';
+    import { initQuoteModal } from '/src/js/components/quoteModal.js';
+    import { initCookieBanner } from '/src/js/components/cookieBanner.js';
+    import { initMagneticButtons } from '/src/js/components/magneticButtons.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initHeader();
+      initQuoteModal();
+      initCookieBanner();
+      initMagneticButtons();
+    });
+  </script>
+</body>
+</html>

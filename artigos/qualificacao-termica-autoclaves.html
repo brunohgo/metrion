@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qualificação Térmica de Autoclaves: EudraLex Anexo 15 — Metrion</title>
+  <meta name="description" content="Distribuição térmica em vazio e penetração de calor com carga crítica, cálculo do valor F0 e identificação do ponto frio em autoclaves segundo o Anexo 15.">
+  <link rel="canonical" href="https://metrion.pt/artigos/qualificacao-termica-autoclaves.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Qualificação Térmica de Autoclaves: EudraLex Anexo 15 — Metrion">
+  <meta property="og:description" content="Distribuição térmica em vazio e penetração de calor com carga crítica, cálculo do valor F0 e identificação do ponto frio em autoclaves segundo o Anexo 15.">
+  <meta property="og:url" content="https://metrion.pt/artigos/qualificacao-termica-autoclaves.html">
+  <meta property="og:image" content="https://metrion.pt/images/blog-autoclave.jpg">
+  <meta property="og:locale" content="pt_PT">
+  <meta property="og:site_name" content="Metrion">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Qualificação Térmica de Autoclaves: EudraLex Anexo 15 — Metrion">
+  <meta name="twitter:description" content="Distribuição térmica em vazio e penetração de calor, cálculo do F0 e identificação do ponto frio em autoclaves.">
+  <meta name="twitter:image" content="https://metrion.pt/images/blog-autoclave.jpg">
+  <meta name="twitter:site" content="@metrion">
+  <link rel="icon" type="image/svg+xml" href="/brand/metrion-mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <style>html,body{background-color:#121212;color:#fffaf4;margin:0;padding:0;}</style>
+</head>
+<body class="bg-[#121212] text-[#fffaf4] antialiased selection:bg-[#ff6a00] selection:text-white">
+
+  <header class="header is-scrolled" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo" aria-label="Metrion Homepage"><img src="/brand/metrion-logo.png" alt="Metrion" width="190" height="55"></a>
+      <nav class="header__nav">
+        <a href="/" class="header__nav-link">Início</a>
+        <a href="/sobre.html" class="header__nav-link">Sobre</a>
+        <a href="/servicos/calibracao.html" class="header__nav-link">Calibração</a>
+        <a href="/servicos/qualificacao-termica.html" class="header__nav-link">Qualificação Térmica</a>
+        <a href="/artigos.html" class="header__nav-link is-active">Artigos</a>
+        <a href="/contactos.html" class="header__nav-link">Contactos</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <button type="button" class="header__cta desktop-only btn-open-quote">Pedir Orçamento</button>
+        <button class="header__mobile-toggle" aria-label="Abrir Menu de Navegação" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="header__mobile-menu" aria-label="Menu Mobile">
+      <a href="/" class="header__mobile-link">Início</a>
+      <a href="/sobre.html" class="header__mobile-link">A Empresa</a>
+      <a href="/servicos/calibracao.html" class="header__mobile-link">Calibração</a>
+      <a href="/servicos/manutencao.html" class="header__mobile-link">Manutenção</a>
+      <a href="/servicos/qualificacao-termica.html" class="header__mobile-link">Qualificação Térmica</a>
+      <a href="/servicos/gestao-calibracoes.html" class="header__mobile-link">Gestão de Calibrações</a>
+      <a href="/servicos/rastreabilidade.html" class="header__mobile-link">Rastreabilidade Metrológica</a>
+      <a href="/servicos/auditorias.html" class="header__mobile-link">Apoio a Auditorias</a>
+      <a href="/artigos.html" class="header__mobile-link">Artigos Técnicos</a>
+      <a href="/contactos.html" class="header__mobile-link">Contactos</a>
+      <div class="pt-6">
+        <button type="button" class="btn btn--primary w-full justify-center btn-open-quote">Solicitar Proposta Metrológica</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="pt-36 pb-12 bg-gradient-to-b from-[#242424]/80 to-[#121212] border-b border-[#343434]">
+      <div class="max-w-3xl mx-auto px-6">
+        <nav aria-label="Breadcrumb" class="text-xs text-[#b7b2aa] mb-4">
+          <a href="/" class="hover:text-[#ff9d3d]">Início</a>
+          <span class="mx-1">/</span>
+          <a href="/artigos.html" class="hover:text-[#ff9d3d]">Artigos</a>
+          <span class="mx-1">/</span>
+          <span class="text-[#ff9d3d]">Qualificação Térmica</span>
+        </nav>
+        <span class="inline-block text-xs font-mono font-bold px-2.5 py-1 rounded bg-[#121212]/80 text-[#ff9d3d] border border-cyan-400/20 mb-4">QUALIFICAÇÃO TÉRMICA &amp; GMP</span>
+        <h1 class="text-3xl md:text-4xl font-bold font-heading text-white mb-4 leading-tight">
+          Qualificação Térmica em Autoclaves: O que Exige o Anexo 15 do EudraLex
+        </h1>
+        <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-[#b7b2aa]">
+          <span>Leitura: 8 min</span>
+          <span>&bull;</span>
+          <span>Especialista em Ensaios Térmicos</span>
+        </div>
+      </div>
+    </section>
+
+    <article class="max-w-3xl mx-auto px-6 py-14">
+      <figure class="rounded-2xl overflow-hidden mb-10 border border-[#343434]">
+        <img src="/images/blog-autoclave.jpg" alt="Autoclave industrial e câmara de ensaio térmico com registadores de temperatura" class="w-full h-auto object-cover" width="1376" height="768" loading="lazy" decoding="async">
+      </figure>
+
+      <div class="space-y-5 text-[#b7b2aa] leading-relaxed">
+        <p class="text-lg text-white font-medium">
+          A qualificação de autoclaves na indústria farmacêutica e de dispositivos médicos requer uma abordagem multifásica rigorosa.
+        </p>
+        <p>
+          O Anexo 15 das Boas Práticas de Fabrico (GMP) europeias estipula que a qualificação deve demonstrar homogeneidade térmica em todo o volume útil da câmara de esterilização, garantindo que o processo é reprodutível e que os parâmetros críticos são mantidos dentro de limites definidos.
+        </p>
+
+        <h2 class="text-xl font-bold font-heading text-white pt-4">1. Distribuição em vazio vs penetração de calor com carga</h2>
+        <p>
+          Não basta qualificar a câmara vazia. É obrigatório executar o mapeamento térmico (distribuição de calor) e, em seguida, o ensaio de penetração de calor com a carga máxima e o padrão de empilhamento mais desfavorável (<em>worst-case</em>). Sensores flexíveis de temperatura são inseridos no interior dos artigos mais densos para confirmar que a temperatura de esterilização é mantida durante o tempo estipulado.
+        </p>
+        <p>
+          O ponto frio — a localização que atinge a temperatura mais baixa ou demora mais a aquecer — deve ser identificado em cada configuração de carga, pois é o que determina a eficácia real do ciclo.
+        </p>
+
+        <h2 class="text-xl font-bold font-heading text-white pt-4">2. Cálculo do fator de letalidade F0</h2>
+        <p>
+          O valor <strong>F0</strong> acumula matematicamente a letalidade biológica do ciclo, normalizada para 121 °C. Na prática, integra a temperatura e o tempo de exposição para traduzir o ciclo num único indicador de eficácia esterilizante, garantindo a inativação fiável de microrganismos e esporos termorresistentes.
+        </p>
+
+        <h2 class="text-xl font-bold font-heading text-white pt-4">3. Documentação e critérios de aceitação</h2>
+        <p>
+          O relatório deve incluir a identificação de todos os sensores, a sua posição no interior da câmara e da carga, as curvas de temperatura e o F0 calculado. A conformidade é demonstrada contra os critérios de aceitação definidos no protocolo de qualificação, que devem estar alinhados com o produto e com o ciclo validado.
+        </p>
+
+        <h2 class="text-xl font-bold font-heading text-white pt-4">4. Conclusão</h2>
+        <p>
+          A qualificação térmica não é um ensaio pontual, mas um processo documentado que combina distribuição de calor, penetração com carga e cálculo de F0. É esta trilha de evidência que sustenta a aprovação do ciclo perante uma inspeção regulamentar.
+        </p>
+      </div>
+
+      <div class="mt-10 p-6 rounded-2xl bg-[#242424]/50 border border-[#ff6a00]/15">
+        <p class="text-white font-semibold mb-2">Precisa de qualificar uma autoclave?</p>
+        <p class="text-sm text-[#b7b2aa] mb-4">A Metrion realiza mapeamento térmico, ensaios de penetração com carga e relatórios conformes com o EudraLex Anexo 15 e a ISO 17665.</p>
+        <button type="button" class="btn btn--primary btn-open-quote text-sm">Solicitar Proposta</button>
+      </div>
+
+      <p class="mt-8 text-sm text-[#8f8a83]">
+        <a href="/artigos.html" class="text-[#ff6a00] hover:text-[#ff9d3d]">&larr; Voltar a todos os artigos</a>
+      </p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__bottom">
+        <div class="footer__copy">&copy; 2026 Metrion. Artigos técnicos de engenharia metrológica.</div>
+        <div class="footer__legal-links">
+          <a href="/privacidade.html" class="footer__legal-link">Privacidade</a>
+          <a href="/cookies.html" class="footer__legal-link">Cookies</a>
+          <a href="/" class="footer__legal-link">Início</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://metrion.pt/#organization",
+        "name": "Metrion",
+        "url": "https://metrion.pt",
+        "logo": "https://metrion.pt/brand/metrion-logo.png"
+      },
+      {
+        "@type": "Article",
+        "@id": "https://metrion.pt/artigos/qualificacao-termica-autoclaves.html#article",
+        "headline": "Qualificação Térmica em Autoclaves: O que Exige o Anexo 15 do EudraLex",
+        "description": "Distribuição térmica em vazio e penetração de calor com carga crítica, cálculo do valor F0 e identificação do ponto frio em autoclaves segundo o Anexo 15.",
+        "image": "https://metrion.pt/images/blog-autoclave.jpg",
+        "url": "https://metrion.pt/artigos/qualificacao-termica-autoclaves.html",
+        "author": { "@type": "Organization", "name": "Especialista em Ensaios Térmicos" },
+        "publisher": { "@id": "https://metrion.pt/#organization" },
+        "articleSection": "Qualificação Térmica",
+        "keywords": ["qualificação térmica", "autoclave", "EudraLex Anexo 15", "F0", "esterilização"],
+        "inLanguage": "pt-PT"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://metrion.pt/" },
+          { "@type": "ListItem", "position": 2, "name": "Artigos", "item": "https://metrion.pt/artigos.html" },
+          { "@type": "ListItem", "position": 3, "name": "Qualificação Térmica em Autoclaves", "item": "https://metrion.pt/artigos/qualificacao-termica-autoclaves.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script type="module">
+    import '/src/styles/main.css';
+    import { initHeader } from '/src/js/components/header.js';
+    import { initQuoteModal } from '/src/js/components/quoteModal.js';
+    import { initCookieBanner } from '/src/js/components/cookieBanner.js';
+    import { initMagneticButtons } from '/src/js/components/magneticButtons.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initHeader();
+      initQuoteModal();
+      initCookieBanner();
+      initMagneticButtons();
+    });
+  </script>
+</body>
+</html>

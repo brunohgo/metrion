@@ -2,73 +2,97 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://metrion.pt/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://metrion.pt/sobre.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://metrion.pt/servicos/calibracao.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://metrion.pt/servicos/manutencao.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://metrion.pt/servicos/qualificacao-termica.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://metrion.pt/servicos/gestao-calibracoes.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://metrion.pt/servicos/rastreabilidade.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://metrion.pt/servicos/auditorias.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://metrion.pt/contactos.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://metrion.pt/artigos.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://metrion.pt/artigos/incerteza-medicao-tolerancia.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://metrion.pt/artigos/qualificacao-termica-autoclaves.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://metrion.pt/artigos/calibracao-vs-verificacao-legal.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://metrion.pt/artigos/intervalos-calibracao-oiml-d10.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://metrion.pt/privacidade.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://metrion.pt/cookies.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
