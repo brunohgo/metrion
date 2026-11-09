@@ -55,6 +55,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>{{SITE_URL}}/artigos.html</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>{{SITE_URL}}/privacidade.html</loc>
     <lastmod>2026-10-20</lastmod>
     <changefreq>yearly</changefreq>
