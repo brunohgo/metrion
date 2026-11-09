@@ -30,7 +30,10 @@ test("superfícies ocultas não mantêm backdrop-filter ativo", async ({ page })
   expect(bannerFilter).toBe("none");
 
   // 3) Ao abrir o modal, o efeito volta a aplicar-se.
-  await page.getByRole("button", { name: /Pedir Orçamento/i }).first().click();
+  await page
+    .locator(".hero")
+    .getByRole("button", { name: "Solicitar Orçamento" })
+    .click();
   await expect(modal).toHaveClass(/is-active/);
 
   const openFilter = await page
