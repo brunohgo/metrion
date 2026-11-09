@@ -482,7 +482,6 @@
   transform: translateX(-50%) translateY(10px);
   min-width: 280px;
   background: rgba(36, 36, 36, 0.95);
-  backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 106, 0, 0.15);
   border-radius: 12px;
   padding: 0.75rem;
@@ -491,10 +490,14 @@
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* O blur só é aplicado quando o menu está realmente visível, para não
+   manter uma superfície desfocada composta enquanto está oculto. */
 .header__dropdown:hover .header__dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .header__dropdown-item {
@@ -1820,7 +1823,6 @@ body:has(.header.is-menu-open) .cookie-banner,
   right: 1.5rem;
   max-width: 500px;
   background: rgba(36, 36, 36, 0.95);
-  backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 106, 0, 0.15);
   border-radius: 16px;
   padding: 1.5rem 2rem;
@@ -1829,8 +1831,11 @@ body:has(.header.is-menu-open) .cookie-banner,
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* O blur só existe quando o banner está efetivamente apresentado. */
 .cookie-banner.is-visible {
   transform: translateY(0);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .cookie-banner__title {
@@ -2210,6 +2215,11 @@ body:has(.header.is-menu-open) .cookie-banner,
   position: absolute;
   inset: 0;
   background: rgba(18, 18, 18, 0.85);
+}
+
+/* Só aplica blur quando o modal está aberto. Enquanto oculto (presente em
+   todas as páginas), o backdrop não deve manter uma camada desfocada. */
+.modal.is-active .modal__backdrop {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
