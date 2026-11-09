@@ -1703,6 +1703,31 @@ body:has(.header.is-menu-open) .cookie-banner,
   color: var(--color-blue-electric);
 }
 
+.footer__vezio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--color-gray-muted);
+  text-decoration: none;
+}
+
+.footer__vezio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer__vezio-link:hover {
+  color: var(--color-blue-electric);
+}
+
+.footer__vezio-text {
+  font-weight: 500;
+}
+
 @media (max-width: 768px) {
   .footer__top {
     grid-template-columns: 1fr 1fr;
