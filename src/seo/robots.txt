@@ -21,4 +21,4 @@ Disallow: /
 User-agent: OAI-SearchBot
 Disallow: /
 
-Sitemap: {{SITE_URL}}/sitemap.xml
+Sitemap: https://metrion.pt/sitemap.xml

@@ -11,10 +11,10 @@
  */
 export default {
   // URL pública do site (sem barra final). Usada nas tags SEO.
-  url: 'https://www.exemplo.invalid',
+  url: 'https://metrion.pt',
 
   // Domínio sem esquema. Usado em mailto:, canonical e no sitemap.
-  domain: 'exemplo.invalid',
+  domain: 'metrion.pt',
 
   // Email de contacto publicado no site.
   contactEmail: 'contacto@exemplo.invalid',

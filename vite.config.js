@@ -30,10 +30,37 @@ function seoFilesPlugin() {
   };
 }
 
+/**
+ * Substitui os placeholders %VITE_SITE_URL%, %VITE_SITE_DOMAIN% e
+ * %VITE_CONTACT_EMAIL% nos ficheiros HTML emitidos pelo build, para que o
+ * domínio real seja injectado nas tags SEO (canonical, JSON-LD, Open Graph).
+ */
+function siteUrlHtmlPlugin() {
+  return {
+    name: 'metrion-site-url-html',
+    generateBundle(_, bundle) {
+      for (const [fileName, chunk] of Object.entries(bundle)) {
+        if (!fileName.endsWith('.html')) continue;
+        const replace = (str) =>
+          str
+            .replaceAll('%VITE_SITE_URL%', site.url)
+            .replaceAll('%VITE_SITE_DOMAIN%', site.domain)
+            .replaceAll('%VITE_CONTACT_EMAIL%', site.contactEmail);
+        if (chunk.type === 'asset') {
+          chunk.source = replace(chunk.source);
+        } else if (chunk.type === 'chunk') {
+          chunk.code = replace(chunk.code);
+        }
+      }
+    },
+  };
+}
+
 export default defineConfig({
   plugins: [
     tailwindcss(),
     seoFilesPlugin(),
+    siteUrlHtmlPlugin(),
   ],
   // Valores injectados no HTML (%VITE_SITE_URL%) e no JS
   // (import.meta.env.VITE_SITE_URL) durante o build.
